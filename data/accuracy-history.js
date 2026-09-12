@@ -21,6 +21,34 @@
   const CFG={ipc:{label:'IPC',tol:.10,unit:'p.p.'},tc:{label:'Tipo de cambio',tol:1.00,unit:'%'},tamar:{label:'TAMAR',tol:.10,unit:'p.p.'}};
   function periodLabel(period){const [y,m]=period.split('-');return `${MONTH_NAME[m]} ${y}`}
   function currentYM(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`}
+
+  /* REM Senderos · IPC: full vintage matrix from the verified historical dataset. */
+  function renderIpcHistoryTable(){
+    const panel=document.getElementById('path-ipc'),hist=window.REM_HISTORY?.vintages||{},actual=window.REM_HISTORY?.actualIpc||{};
+    if(!panel||!Object.keys(hist).length)return;
+    const vintages=Object.keys(hist).sort(),periods=Array.from({length:12},(_,i)=>`2026-${String(i+1).padStart(2,'0')}`);
+    const prevVintage=period=>{const [y,m]=period.split('-').map(Number),d=new Date(Date.UTC(y,m-2,1));return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}`};
+    const fmt=v=>Number(v).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
+    const wrap=panel.querySelector('.tbl-wrap');if(!wrap)return;
+    let html='<table style="min-width:1120px"><thead><tr><th>Mes</th>';
+    vintages.forEach(v=>{html+=`<th>${hist[v]?.label?.replace('REM ','REM ')||v}</th>`});
+    html+='<th>Real INDEC</th></tr></thead><tbody>';
+    periods.forEach(period=>{
+      const real=Number(actual[period]),isObserved=Number.isFinite(real),prior=prevVintage(period);
+      html+=`<tr${isObserved?' class="cur-row"':''}><td>${periodLabel(period)}</td>`;
+      vintages.forEach(v=>{
+        const val=Number(hist[v]?.ipcPath?.[period]),isPrior=v===prior&&Number.isFinite(val);
+        html+=Number.isFinite(val)?`<td${isPrior?' class="hi" title="REM inmediatamente anterior al mes observado"':''}>${fmt(val)}</td>`:'<td class="nd">—</td>';
+      });
+      html+=Number.isFinite(real)?`<td class="hi">${fmt(real)}</td>`:'<td class="nd">—</td>';
+      html+='</tr>';
+    });
+    html+='</tbody></table>';wrap.innerHTML=html;
+    const note=panel.querySelector('.note');
+    if(note)note.innerHTML='Cada columna corresponde al vintage REM publicado. <strong>En negrita: REM inmediatamente anterior al mes observado</strong> (referencia usada en Accuracy). Desplazá horizontalmente para ver toda la serie.';
+  }
+  renderIpcHistoryTable();
+
   function realFor(variable,period){
     if(variable==='ipc') return Number(window.REM_HISTORY?.actualIpc?.[period]);
     if(variable==='tc'){
