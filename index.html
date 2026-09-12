@@ -9,22 +9,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg:             #0d1117;
-  --bg2:            #161b23;
-  --bg3:            #1c2333;
-  --brd:            rgba(255,255,255,.10);
-  --brd-hov:        rgba(255,255,255,.22);
-  --txt:            #f0f6fc;
-  --txt2:           #adbac7;
-  --txt3:           #6e7f8d;
-  --amber:          #F5C36B;
-  --blue:           #78AEDE;
-  --green:          #3fb950;
-  --red:            #f85149;
-  --purple:         #AFA9EC;
-  --teal:           #5DCAA5;
-  --coral:          #F0997B;
-  --gray:           #B4B2A9;
+  --bg:             #0F1419;
+  --bg2:            #161C23;
+  --bg3:            #1B222B;
+  --brd:            rgba(255,255,255,.08);
+  --brd-hov:        rgba(255,255,255,.16);
+  --txt:            #E7EBEF;
+  --txt2:           #9AA4AF;
+  --txt3:           #68737F;
+  --amber:          #C29B55;
+  --blue:           #6B9FD1;
+  --green:          #5F9F84;
+  --red:            #BD6A67;
+  --purple:         #73879C;
+  --teal:           #5F9F84;
+  --coral:          #BD6A67;
+  --gray:           #AEB7C0;
   --font:           'Inter', system-ui, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,47 +41,46 @@ body {
 
 /* ── Header ── */
 .hdr { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 14px; border-bottom: 1px solid var(--brd); margin-bottom: 18px; }
-.hdr-title { font-size: 16px; font-weight: 700; color: var(--txt); }
+.hdr-title { font-size: 16px; font-weight: 700; color: var(--txt); letter-spacing:-.01em; }
 .hdr-sub { font-size: 12px; color: var(--txt3); margin-top: 3px; }
 .hdr-right { text-align: right; }
 .hdr-ts { font-size: 12px; color: var(--txt2); }
-.live-badge { font-size: 9px; padding: 2px 7px; border-radius: 20px; border: 1px solid var(--blue); color: var(--blue); margin-left: 6px; font-weight: 500; }
+.live-badge { font-size: 9px; padding: 2px 7px; border-radius: 5px; border: 1px solid rgba(107,159,209,.40); color: var(--blue); margin-left: 6px; font-weight: 600; background:rgba(107,159,209,.06); }
 
 /* ── Cards KPI ── */
 .cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 16px; }
-.card { background: var(--bg2); border-radius: 10px; padding: 13px 15px; border: 1px solid var(--brd); transition: border-color .15s; }
+.card { background: var(--bg2); border-radius: 7px; padding: 13px 15px; border: 1px solid var(--brd); transition: border-color .15s; }
+.card:hover { border-color: var(--brd-hov); }
 .card-label { font-size: 11px; color: var(--txt3); margin-bottom: 3px; display: flex; justify-content: space-between; align-items: center; }
-.card-val { font-size: 20px; font-weight: 700; color: var(--txt); }
-.card-val.amber { color: var(--amber); }
-.card-val.teal  { color: var(--teal); }
-.card-val.coral { color: var(--coral); }
+.card-val { font-size: 20px; font-weight: 700; color: var(--txt); letter-spacing:-.02em; }
+.card-val.amber, .card-val.teal, .card-val.coral { color: var(--txt); }
 .card-sub { font-size: 11px; color: var(--txt2); margin-top: 3px; }
-.card-bar { height: 2px; background: var(--brd); border-radius: 2px; margin-top: 8px; }
-.card-bar-fill { height: 2px; border-radius: 2px; transition: width .5s; }
+.card-bar { height: 2px; background: rgba(255,255,255,.06); border-radius: 1px; margin-top: 8px; }
+.card-bar-fill { height: 2px; border-radius: 1px; transition: width .5s; }
 .live-status { font-size: 11px; color: var(--txt3); margin-bottom: 14px; }
 .live-status.ok { color: var(--teal); }
 .live-status.err { color: var(--coral); }
 
 /* ── Rendimiento / comparación ── */
 .rend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-.rend-card { background: var(--bg2); border-radius: 10px; padding: 13px 15px; border: 1px solid var(--brd); transition: border-color .15s; }
+.rend-card { background: var(--bg2); border-radius: 7px; padding: 13px 15px; border: 1px solid var(--brd); transition: border-color .15s; }
 .rend-label { font-size: 11px; color: var(--txt3); margin-bottom: 4px; }
 .rend-val { font-size: 26px; font-weight: 700; }
 .rend-detail { font-size: 11px; color: var(--txt3); margin-top: 3px; }
-.rend-bar { height: 2px; background: var(--brd); border-radius: 2px; margin-top: 8px; }
-.rend-bar-fill { height: 2px; border-radius: 2px; transition: width .5s; }
-.performance-card { background:var(--bg2); border:1px solid var(--brd); border-radius:10px; padding:13px 15px; margin-bottom:10px; }
+.rend-bar { height: 2px; background: var(--brd); border-radius: 1px; margin-top: 8px; }
+.rend-bar-fill { height: 2px; border-radius: 1px; transition: width .5s; }
+.performance-card { background:var(--bg2); border:1px solid var(--brd); border-radius:7px; padding:13px 15px; margin-bottom:10px; }
 .perf-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:4px; }
 .perf-title { font-size:12px; font-weight:600; color:var(--txt); }
 .perf-sub { font-size:10.5px; color:var(--txt3); margin-top:2px; }
-.perf-delta { font-size:11px; font-weight:600; color:var(--blue); white-space:nowrap; background:rgba(120,174,222,.10); border:1px solid rgba(120,174,222,.22); border-radius:20px; padding:3px 8px; }
+.perf-delta { font-size:11px; font-weight:600; color:var(--blue); white-space:nowrap; background:rgba(107,159,209,.08); border:1px solid rgba(107,159,209,.22); border-radius:5px; padding:3px 8px; }
 .perf-chart-wrap { position:relative; height:150px; width:100%; }
 .perf-chart-wrap canvas { width:100%; height:100%; display:block; }
 .perf-reading { font-size:11px; color:var(--txt2); line-height:1.55; border-top:1px solid rgba(255,255,255,.06); padding-top:8px; margin-top:3px; }
 .perf-reading strong { color:var(--txt); font-weight:600; }
 
 /* ── Insight ── */
-.insight { background: var(--bg2); border: 1px solid var(--brd); border-left: 2px solid var(--blue); border-radius: 0 10px 10px 0; padding: 10px 14px; margin-bottom: 18px; }
+.insight { background: var(--bg2); border: 1px solid var(--brd); border-left: 2px solid var(--blue); border-radius: 0 7px 7px 0; padding: 10px 14px; margin-bottom: 18px; }
 .insight p { font-size: 12px; color: var(--txt2); line-height: 1.65; }
 .insight p + p { margin-top: 4px; }
 .insight strong { color: var(--txt); font-weight: 600; }
@@ -92,76 +91,76 @@ body {
 .sec-title { font-size: 11px; font-weight: 600; color: var(--txt3); letter-spacing: .08em; text-transform: uppercase; }
 .sec-sub { font-size: 11px; color: var(--txt3); }
 
-/* ── Tabs (pill) ── */
-.tabs { display: flex; gap: 6px; margin-bottom: 12px; }
-.tab { font-size: 12px; font-weight: 500; padding: 5px 16px; border-radius: 20px; border: 1px solid var(--brd); cursor: pointer; background: var(--bg2); color: var(--txt3); transition: all .15s; }
-.tab:hover { color: var(--txt); border-color: var(--brd-hov); }
-.tab.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+/* ── Tabs ── */
+.tabs { display: flex; gap: 5px; margin-bottom: 12px; }
+.tab { font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 6px; border: 1px solid var(--brd); cursor: pointer; background: transparent; color: var(--txt3); transition: all .15s; }
+.tab:hover { color: var(--txt); border-color: var(--brd-hov); background:rgba(255,255,255,.025); }
+.tab.active { background: rgba(107,159,209,.12); color: #D7E5F2; border-color: rgba(107,159,209,.40); }
 
 .panel { display: none; }
 .panel.active { display: block; }
 
 /* ── Scorecard ── */
 .scorecard { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 10px; }
-.sc { background: var(--bg2); border: 1px solid var(--brd); border-radius: 10px; padding: 8px 12px; }
+.sc { background: var(--bg2); border: 1px solid var(--brd); border-radius: 7px; padding: 8px 12px; }
 .sc-lbl { font-size: 11px; color: var(--txt3); margin-bottom: 2px; }
 .sc-val { font-size: 17px; font-weight: 700; color: var(--txt); }
 
 /* ── Tabla ── */
-.tbl-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
-thead th { font-size: 11px; font-weight: 600; color: var(--txt3); padding: 6px 10px; border-bottom: 1px solid var(--brd); text-align: right; letter-spacing: .03em; white-space: nowrap; text-transform: uppercase; }
+.tbl-wrap { overflow-x: auto; border:1px solid var(--brd); border-radius:7px; }
+table { width: 100%; border-collapse: collapse; font-size: 11.5px; background:rgba(255,255,255,.008); }
+thead th { font-size: 10.5px; font-weight: 600; color: var(--txt3); padding: 7px 10px; border-bottom: 1px solid var(--brd); text-align: right; letter-spacing: .04em; white-space: nowrap; text-transform: uppercase; background:rgba(255,255,255,.018); }
 thead th:first-child { text-align: left; }
-tbody td { padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,.05); text-align: right; color: var(--txt2); font-size: 13px; }
-tbody td:first-child { text-align: left; color: var(--txt2); font-size: 13px; }
-tbody tr:hover td { background: var(--bg3); }
-tbody tr.cur-row td { background: rgba(120,174,222,.06); }
-tbody tr.yr-row td { color: var(--purple); border-top: 1px solid var(--brd); font-size: 12px; }
+tbody td { padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,.045); text-align: right; color: var(--txt2); font-size: 12.5px; }
+tbody tr:last-child td { border-bottom:0; }
+tbody td:first-child { text-align: left; color: var(--txt2); font-size: 12.5px; }
+tbody tr:hover td { background: rgba(255,255,255,.025); }
+tbody tr.cur-row td { background: rgba(107,159,209,.055); }
+tbody tr.yr-row td { color: var(--blue); border-top: 1px solid var(--brd); font-size: 12px; }
 .hi { color: var(--txt); font-weight: 600; font-size: 13px; }
 .nd { color: var(--txt3); }
 
 /* ── Badges ── */
-.badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-.b-ok   { background: rgba(93,202,165,.15); color: var(--teal);   border: 1px solid rgba(93,202,165,.3); }
-.b-warn { background: rgba(245,195,107,.15); color: var(--amber);  border: 1px solid rgba(245,195,107,.3); }
-.b-bad  { background: rgba(240,153,123,.15); color: var(--coral);  border: 1px solid rgba(240,153,123,.3); }
-.b-pend { background: rgba(255,255,255,.05); color: var(--txt2);   border: 1px solid var(--brd); }
-.b-now  { background: rgba(120,174,222,.15); color: var(--blue);   border: 1px solid rgba(120,174,222,.3); }
-.b-yr   { background: rgba(175,169,236,.15); color: var(--purple); border: 1px solid rgba(175,169,236,.3); }
+.badge { display: inline-block; padding: 2px 7px; border-radius: 5px; font-size: 10.5px; font-weight: 600; }
+.b-ok   { background: rgba(95,159,132,.09); color: var(--teal);   border: 1px solid rgba(95,159,132,.24); }
+.b-warn { background: rgba(194,155,85,.09); color: var(--amber);  border: 1px solid rgba(194,155,85,.24); }
+.b-bad  { background: rgba(189,106,103,.09); color: var(--coral);  border: 1px solid rgba(189,106,103,.24); }
+.b-pend { background: rgba(255,255,255,.025); color: var(--txt2);   border: 1px solid var(--brd); }
+.b-now  { background: rgba(107,159,209,.09); color: var(--blue);   border: 1px solid rgba(107,159,209,.24); }
+.b-yr   { background: rgba(107,159,209,.07); color: var(--blue); border: 1px solid rgba(107,159,209,.20); }
 
 /* ── Stamp ── */
-.stamp { font-size: 11px; color: var(--txt3); margin-top: 8px; padding: 5px 10px; background: var(--bg2); border-radius: 6px; display: inline-block; border: 1px solid var(--brd); }
-.stamp span { color: var(--txt); font-weight: 500; }
+.stamp { font-size: 11px; color: var(--txt3); margin-top: 8px; padding: 5px 9px; background: rgba(255,255,255,.018); border-radius: 6px; display: inline-block; border: 1px solid var(--brd); }
+.stamp span { color: var(--txt2); font-weight: 500; }
 
 /* ── Formulario ── */
 .form-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
 .field { display: flex; flex-direction: column; gap: 4px; }
 .field label { font-size: 11px; font-weight: 600; color: var(--txt3); letter-spacing: .04em; }
-.field select, .field input { background: var(--bg2); border: 1px solid var(--brd); border-radius: 8px; color: var(--txt); font-family: var(--font); font-size: 13px; padding: 7px 10px; outline: none; min-width: 130px; transition: border-color .15s; }
+.field select, .field input { background: var(--bg2); border: 1px solid var(--brd); border-radius: 6px; color: var(--txt); font-family: var(--font); font-size: 13px; padding: 7px 10px; outline: none; min-width: 130px; transition: border-color .15s; }
 .field select:focus, .field input:focus { border-color: var(--blue); }
-.btn-submit { padding: 7px 18px; border-radius: 20px; border: none; cursor: pointer; font-size: 13px; font-weight: 500; background: var(--blue); color: #fff; transition: all .15s; align-self: flex-end; }
-.btn-submit:hover { opacity: .85; }
+.btn-submit { padding: 7px 18px; border-radius: 6px; border: 1px solid rgba(107,159,209,.45); cursor: pointer; font-size: 13px; font-weight: 600; background: rgba(107,159,209,.16); color: #DCE8F3; transition: all .15s; align-self: flex-end; }
+.btn-submit:hover { background:rgba(107,159,209,.22); }
 .msg-ok { font-size: 11px; color: var(--teal); display: none; align-self: center; }
-
 
 /* ── Visualizaciones ── */
 .viz-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
-.viz-card { background:var(--bg2); border:1px solid var(--brd); border-radius:10px; padding:13px 15px; min-width:0; }
+.viz-card { background:var(--bg2); border:1px solid var(--brd); border-radius:7px; padding:13px 15px; min-width:0; }
 .viz-card.full { grid-column:1 / -1; }
 .viz-head { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:8px; }
 .viz-title { font-size:12px; font-weight:600; color:var(--txt); }
 .viz-sub { font-size:10.5px; color:var(--txt3); margin-top:2px; }
 .viz-controls { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
-.viz-controls select { background:var(--bg3); border:1px solid var(--brd); border-radius:7px; color:var(--txt2); font:inherit; font-size:11px; padding:4px 7px; outline:none; }
+.viz-controls select { background:var(--bg3); border:1px solid var(--brd); border-radius:6px; color:var(--txt2); font:inherit; font-size:11px; padding:4px 7px; outline:none; }
 .chart-wrap { position:relative; height:240px; width:100%; }
 .chart-wrap canvas { width:100%; height:100%; display:block; }
 .chart-legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:7px; font-size:10.5px; color:var(--txt3); }
 .retry-link{background:none;border:0;color:var(--blue);font:inherit;font-size:11px;cursor:pointer;padding:0;margin-left:6px;text-decoration:underline;text-underline-offset:2px}
-.legend-dot { width:7px; height:7px; border-radius:50%; display:inline-block; margin-right:4px; vertical-align:1px; }
-.legend-line { width:14px; height:2px; display:inline-block; margin-right:5px; vertical-align:3px; border-radius:2px; }
+.legend-dot { width:7px; height:7px; border-radius:2px; display:inline-block; margin-right:4px; vertical-align:1px; }
+.legend-line { width:14px; height:2px; display:inline-block; margin-right:5px; vertical-align:3px; border-radius:1px; }
 .viz-note { margin-top:6px; font-size:10.5px; color:var(--txt3); line-height:1.5; }
 .metric-row { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:8px; }
-.metric-mini { background:var(--bg3); border:1px solid rgba(255,255,255,.06); border-radius:8px; padding:7px 9px; }
+.metric-mini { background:var(--bg3); border:1px solid rgba(255,255,255,.055); border-radius:6px; padding:7px 9px; }
 .metric-mini .m-l { font-size:9.5px; color:var(--txt3); text-transform:uppercase; letter-spacing:.04em; }
 .metric-mini .m-v { font-size:14px; font-weight:700; color:var(--txt); margin-top:1px; }
 @media(max-width:780px){ .viz-grid{grid-template-columns:1fr} .viz-card.full{grid-column:auto} .chart-wrap{height:195px} }
@@ -197,7 +196,7 @@ footer { border-top: 1px solid var(--brd); margin-top: 20px; padding-top: 10px; 
       <div class="card-label" title="SIOPEL es cotización intrames; el REM proyecta promedio mensual">TC SIOPEL · hoy <span class="live-badge" id="live-badge">…</span></div>
       <div class="card-val amber" id="kpi-tc-val">—</div>
       <div class="card-sub" id="kpi-tc-sub">consultando seguimiento-fx…</div>
-      <div class="card-bar"><div class="card-bar-fill" id="kpi-tc-bar" style="width:0%;background:var(--amber)"></div></div>
+      <div class="card-bar"><div class="card-bar-fill" id="kpi-tc-bar" style="width:0%;background:var(--blue)"></div></div>
     </div>
     <div class="card">
       <div class="card-label">IPC · ago-26 <span class="badge b-ok">REAL</span></div>
@@ -209,13 +208,13 @@ footer { border-top: 1px solid var(--brd); margin-top: 20px; padding-top: 10px; 
       <div class="card-label">TAMAR · proj sep-26</div>
       <div class="card-val coral">24,11%</div>
       <div class="card-sub" style="color:var(--coral)">REM ago · vs REM jul 22,72% · +1,39 p.p.</div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:88%;background:var(--teal)"></div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:88%;background:var(--coral)"></div></div>
     </div>
     <div class="card">
       <div class="card-label">TC proj dic-26 (REM ago)</div>
       <div class="card-val amber">$1.630</div>
       <div class="card-sub" style="color:var(--amber)">vs jul: $1.652 · ▼ −$22 rev. a la baja</div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:85%;background:var(--amber)"></div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:85%;background:var(--blue)"></div></div>
     </div>
   </div>
   <div class="live-status" id="live-status"></div>
@@ -341,7 +340,6 @@ footer { border-top: 1px solid var(--brd); margin-top: 20px; padding-top: 10px; 
   </div>
 </div>
 
-
 <!-- Sección percentiles -->
 <div class="section">
   <div class="sec-hdr">
@@ -408,7 +406,6 @@ footer { border-top: 1px solid var(--brd); margin-top: 20px; padding-top: 10px; 
   </div>
 </div>
 
-
 <!-- Visualizaciones -->
 <div class="section" id="section-charts">
   <div class="sec-hdr">
@@ -449,9 +446,9 @@ footer { border-top: 1px solid var(--brd); margin-top: 20px; padding-top: 10px; 
       </div>
       <div class="chart-wrap"><canvas id="chart-tc" role="img" aria-label="Gráfico de tipo de cambio SIOPEL y REM"></canvas></div>
       <div class="chart-legend">
-        <span><i class="legend-line" style="background:var(--amber)"></i>Mediana REM</span>
+        <span><i class="legend-line" style="background:var(--blue)"></i>Mediana REM</span>
         <span><i class="legend-dot" style="background:var(--purple)"></i>P10–P90</span>
-        <span><i class="legend-dot" style="background:var(--blue)"></i>SIOPEL intrames</span>
+        <span><i class="legend-dot" style="background:var(--txt)"></i>SIOPEL intrames</span>
       </div>
       <div class="viz-note">El REM proyecta promedios mensuales; SIOPEL es una cotización intrames y se muestra como referencia, no como cierre mensual.</div>
     </div>
@@ -791,7 +788,6 @@ function resetManualData(){
   location.reload()
 }
 
-
 const IPC_VINTAGES = {
   may: {'Mar 2026':3.00,'Abr 2026':2.60,'May 2026':2.29,'Jun 2026':2.00,'Jul 2026':1.98,'Ago 2026':1.80,'Sep 2026':1.80},
   jun: {'Abr 2026':2.60,'May 2026':2.30,'Jun 2026':2.10,'Jul 2026':2.00,'Ago 2026':1.80,'Sep 2026':1.87,'Oct 2026':1.80},
@@ -829,7 +825,7 @@ function xyFactory(w,h,pad,labels,yMin,yMax){
   return {x:i=>pad.l+(w-pad.l-pad.r)*(labels.length===1?.5:i/span), y:v=>pad.t+(yMax-v)/(yMax-yMin)*(h-pad.t-pad.b)}
 }
 function drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt}){
-  ctx.save(); ctx.font='10px Inter, system-ui, sans-serif'; ctx.fillStyle=cssVar('--txt3'); ctx.strokeStyle='rgba(255,255,255,.09)'; ctx.lineWidth=1
+  ctx.save(); ctx.font='10px Inter, system-ui, sans-serif'; ctx.fillStyle=cssVar('--txt3'); ctx.strokeStyle='rgba(255,255,255,.07)'; ctx.lineWidth=1
   for(let i=0;i<=4;i++){
     const y=pad.t+(h-pad.t-pad.b)*i/4
     ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke()
@@ -849,8 +845,8 @@ function drawPolyline(ctx,pts,color,width=2){
 function addHit(canvas,x,y,label,color){ canvas._hit.push({x,y,label,color}) }
 function enableCanvasTooltip(canvas){
   if(canvas._tooltipBound)return; canvas._tooltipBound=true
-  const tip=document.createElement('div'); tip.className='canvas-tip'; tip.style.cssText='position:fixed;z-index:9999;pointer-events:none;background:#1c2333;border:1px solid rgba(255,255,255,.18);border-radius:6px;padding:5px 8px;font:600 11px Inter,system-ui;color:#f0f6fc;display:none;box-shadow:0 4px 14px rgba(0,0,0,.35)'; document.body.appendChild(tip)
-  const move=e=>{const r=canvas.getBoundingClientRect(),sx=(e.clientX-r.left)*(canvas._chartW/r.width),sy=(e.clientY-r.top)*(canvas._chartH/r.height);let best=null,bd=999;for(const h of canvas._hit||[]){const d=Math.hypot(sx-h.x,sy-h.y);if(d<bd){bd=d;best=h}}if(best&&bd<16){tip.textContent=best.label;tip.style.color=best.color||'#f0f6fc';tip.style.left=Math.min(window.innerWidth-170,e.clientX+10)+'px';tip.style.top=Math.max(8,e.clientY-38)+'px';tip.style.display='block'}else tip.style.display='none'}
+  const tip=document.createElement('div'); tip.className='canvas-tip'; tip.style.cssText='position:fixed;z-index:9999;pointer-events:none;background:#1B222B;border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 8px;font:600 11px Inter,system-ui;color:#E7EBEF;display:none;box-shadow:0 4px 14px rgba(0,0,0,.30)'; document.body.appendChild(tip)
+  const move=e=>{const r=canvas.getBoundingClientRect(),sx=(e.clientX-r.left)*(canvas._chartW/r.width),sy=(e.clientY-r.top)*(canvas._chartH/r.height);let best=null,bd=999;for(const h of canvas._hit||[]){const d=Math.hypot(sx-h.x,sy-h.y);if(d<bd){bd=d;best=h}}if(best&&bd<16){tip.textContent=best.label;tip.style.color=best.color||'#E7EBEF';tip.style.left=Math.min(window.innerWidth-170,e.clientX+10)+'px';tip.style.top=Math.max(8,e.clientY-38)+'px';tip.style.display='block'}else tip.style.display='none'}
   canvas.addEventListener('mousemove',move); canvas.addEventListener('mouseleave',()=>tip.style.display='none'); canvas.addEventListener('touchstart',e=>{if(e.touches[0])move(e.touches[0])},{passive:true})
 }
 function fillBand(ctx,pts,colorFill,colorStroke){
@@ -865,7 +861,7 @@ function renderPerformanceComparison(){
   const vals=[ipc,tc].filter(Number.isFinite), max=Math.max(10,...vals.map(v=>Math.abs(v)))*1.15
   const left=Math.min(118,Math.max(92,w*.22)), right=42, x0=left, x1=w-right, barW=Math.max(40,x1-x0)
   const rows=[
-    {label:'TC a dic-26',value:tc,color:cssVar('--amber'),sub:'SIOPEL → REM dic'},
+    {label:'TC a dic-26',value:tc,color:cssVar('--blue'),sub:'SIOPEL → REM dic'},
     {label:'IPC sep–dic',value:ipc,color:cssVar('--gray'),sub:'REM ago / reales si existen'}
   ]
   ctx.save();ctx.font='11px Inter, system-ui, sans-serif';ctx.textBaseline='middle'
@@ -873,10 +869,10 @@ function renderPerformanceComparison(){
     const y=46+i*58, bh=15
     ctx.fillStyle=cssVar('--txt2');ctx.textAlign='left';ctx.fillText(r.label,8,y-6)
     ctx.font='9px Inter, system-ui, sans-serif';ctx.fillStyle=cssVar('--txt3');ctx.fillText(r.sub,8,y+11);ctx.font='11px Inter, system-ui, sans-serif'
-    ctx.fillStyle='rgba(255,255,255,.07)';ctx.beginPath();ctx.roundRect(x0,y-bh/2,barW,bh,7);ctx.fill()
+    ctx.fillStyle='rgba(255,255,255,.055)';ctx.beginPath();ctx.roundRect(x0,y-bh/2,barW,bh,5);ctx.fill()
     if(Number.isFinite(r.value)){
       const fill=Math.max(2,Math.min(barW,Math.abs(r.value)/max*barW))
-      ctx.fillStyle=r.color;ctx.beginPath();ctx.roundRect(x0,y-bh/2,fill,bh,7);ctx.fill()
+      ctx.fillStyle=r.color;ctx.beginPath();ctx.roundRect(x0,y-bh/2,fill,bh,5);ctx.fill()
       ctx.fillStyle=r.color;ctx.font='600 12px Inter, system-ui, sans-serif';ctx.textAlign='right';ctx.fillText((r.value>=0?'+':'')+r.value.toFixed(1).replace('.',',')+'%',w-4,y)
       addHit(canvas,x0+fill,y,`${r.label}: ${(r.value>=0?'+':'')+r.value.toFixed(1).replace('.',',')}%`,r.color)
     }else{
@@ -901,7 +897,7 @@ function renderIPCChart(){
   const labels=order.filter(m=>f[m]!=null || DATA.ipc[m]?.real!=null || (vintage==='ago'&&IPC_PCT_AGO[m]))
   const vals=[];labels.forEach(m=>{if(f[m]!=null)vals.push(f[m]);if(DATA.ipc[m]?.real!=null)vals.push(DATA.ipc[m].real);if(vintage==='ago'&&IPC_PCT_AGO[m])vals.push(IPC_PCT_AGO[m].p10,IPC_PCT_AGO[m].p90)})
   const [yMin,yMax]=niceRange(vals,.18),xy=xyFactory(w,h,pad,labels,yMin,yMax);drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:v=>v.toFixed(1).replace('.',',')+'%'})
-  if(vintage==='ago'){const band=labels.map((m,i)=>IPC_PCT_AGO[m]?{x:xy.x(i),lo:xy.y(IPC_PCT_AGO[m].p10),hi:xy.y(IPC_PCT_AGO[m].p90)}:null).filter(Boolean);fillBand(ctx,band,'rgba(175,169,236,.12)','rgba(175,169,236,.35)')}
+  if(vintage==='ago'){const band=labels.map((m,i)=>IPC_PCT_AGO[m]?{x:xy.x(i),lo:xy.y(IPC_PCT_AGO[m].p10),hi:xy.y(IPC_PCT_AGO[m].p90)}:null).filter(Boolean);fillBand(ctx,band,'rgba(107,159,209,.10)','rgba(107,159,209,.28)')}
   const fp=[],rp=[];labels.forEach((m,i)=>{if(f[m]!=null)fp.push([xy.x(i),xy.y(f[m]),m,f[m]]);if(DATA.ipc[m]?.real!=null)rp.push([xy.x(i),xy.y(DATA.ipc[m].real),m,DATA.ipc[m].real])})
   drawPolyline(ctx,fp.map(x=>x.slice(0,2)),cssVar('--blue'),2.2);drawPolyline(ctx,rp.map(x=>x.slice(0,2)),cssVar('--teal'),2.4)
   fp.forEach(([x,y,m,v])=>addHit(canvas,x,y,`${m}: REM ${fmtPct(v,2)}`,cssVar('--blue')));rp.forEach(([x,y,m,v])=>addHit(canvas,x,y,`${m}: real ${fmtPct(v,2)}`,cssVar('--teal')))
@@ -911,9 +907,9 @@ function renderTCChart(){
   const c=canvasSetup('chart-tc');if(!c)return;const {canvas,ctx,w,h}=c;enableCanvasTooltip(canvas);const pad={l:54,r:14,t:14,b:30}
   const labels=['Sep 2026','Oct 2026','Nov 2026','Dic 2026'],vals=[];labels.forEach(m=>{const z=TC_PCT_AGO[m];vals.push(z.p10,z.med,z.p90)});if(Number.isFinite(currentSiopel))vals.push(currentSiopel)
   const [yMin,yMax]=niceRange(vals,.10),xy=xyFactory(w,h,pad,labels,yMin,yMax);drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:v=>'$'+Math.round(v).toLocaleString('es-AR')})
-  const band=labels.map((m,i)=>({x:xy.x(i),lo:xy.y(TC_PCT_AGO[m].p10),hi:xy.y(TC_PCT_AGO[m].p90)}));fillBand(ctx,band,'rgba(175,169,236,.12)','rgba(175,169,236,.35)')
-  const med=labels.map((m,i)=>[xy.x(i),xy.y(TC_PCT_AGO[m].med)]);drawPolyline(ctx,med,cssVar('--amber'),2.4);med.forEach(([x,y],i)=>addHit(canvas,x,y,`${labels[i]}: mediana ${fmtTC(TC_PCT_AGO[labels[i]].med)}`,cssVar('--amber')))
-  if(Number.isFinite(currentSiopel)){const x=xy.x(0),y=xy.y(currentSiopel);ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fillStyle=cssVar('--blue');ctx.fill();addHit(canvas,x,y,`SIOPEL intrames: ${fmtTC(currentSiopel)}`,cssVar('--blue'))}
+  const band=labels.map((m,i)=>({x:xy.x(i),lo:xy.y(TC_PCT_AGO[m].p10),hi:xy.y(TC_PCT_AGO[m].p90)}));fillBand(ctx,band,'rgba(107,159,209,.10)','rgba(107,159,209,.28)')
+  const med=labels.map((m,i)=>[xy.x(i),xy.y(TC_PCT_AGO[m].med)]);drawPolyline(ctx,med,cssVar('--blue'),2.4);med.forEach(([x,y],i)=>addHit(canvas,x,y,`${labels[i]}: mediana ${fmtTC(TC_PCT_AGO[labels[i]].med)}`,cssVar('--blue')))
+  if(Number.isFinite(currentSiopel)){const x=xy.x(0),y=xy.y(currentSiopel);ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fillStyle=cssVar('--txt');ctx.fill();ctx.strokeStyle=cssVar('--bg2');ctx.lineWidth=1.5;ctx.stroke();addHit(canvas,x,y,`SIOPEL intrames: ${fmtTC(currentSiopel)}`,cssVar('--txt'))}
 }
 function accuracyObservations(variable){
   const cfg={
@@ -952,7 +948,7 @@ function renderAccuracyChart(){
   const labels=rows.map(r=>isAll?`${r.varLabel} ${r.m.split(' ')[0]}`:r.m),xy=xyFactory(w,h,pad,labels,yMin,yMax)
   drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:v=>isAll?((v>=0?'+':'')+v.toFixed(1).replace('.',',')+'x'):(variable==='tc'?((v>=0?'+':'')+v.toFixed(1).replace('.',',')+'%'):((v>=0?'+':'')+v.toFixed(2).replace('.',',')))})
   const y0=xy.y(0),tol=isAll?1:(variable==='tc'?1:.10)
-  ;[-tol,tol].forEach(t=>{if(t<yMin||t>yMax)return;const yy=xy.y(t);ctx.save();ctx.strokeStyle='rgba(93,202,165,.38)';ctx.setLineDash([4,4]);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.restore()})
+  ;[-tol,tol].forEach(t=>{if(t<yMin||t>yMax)return;const yy=xy.y(t);ctx.save();ctx.strokeStyle='rgba(95,159,132,.34)';ctx.setLineDash([4,4]);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.restore()})
   ctx.strokeStyle=cssVar('--txt3');ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(pad.l,y0);ctx.lineTo(w-pad.r,y0);ctx.stroke()
   const bw=Math.min(42,(w-pad.l-pad.r)/Math.max(rows.length,1)*.50)
   rows.forEach((r,i)=>{const val=isAll?r.norm:r.error,cx=xy.x(i),yv=xy.y(val),top=Math.min(y0,yv),hh=Math.max(2,Math.abs(yv-y0)),inside=Math.abs(r.error)<=r.tol+1e-9,col=inside?cssVar('--teal'):(r.error>0?cssVar('--coral'):cssVar('--amber'));ctx.fillStyle=col;ctx.globalAlpha=.86;ctx.fillRect(cx-bw/2,top,bw,hh);ctx.globalAlpha=1;const valText=isAll?`${val>=0?'+':''}${val.toFixed(2).replace('.',',')}x`:`${r.error>=0?'+':''}${r.error.toFixed(variable==='tc'?1:2).replace('.',',')} ${r.unit}`;addHit(canvas,cx,r.error>=0?top:top+hh,`${r.varLabel} ${r.m}: ${valText}`,col)})
