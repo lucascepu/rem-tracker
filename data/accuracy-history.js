@@ -5,6 +5,15 @@
   const manualSection=document.querySelector('.form-section');
   if(manualSection) manualSection.remove();
 
+  /* Panorama: "Completo" already renders real data as solid lines and REM as
+     dashed projections. Remove the redundant combined view. */
+  const perfSelect=document.getElementById('perf-view');
+  if(perfSelect){
+    const combined=perfSelect.querySelector('option[value="combined"]');
+    if(combined) combined.remove();
+    if(perfSelect.value==='combined') perfSelect.value='full';
+  }
+
   const MONTH_NAME={'01':'Ene','02':'Feb','03':'Mar','04':'Abr','05':'May','06':'Jun','07':'Jul','08':'Ago','09':'Sep','10':'Oct','11':'Nov','12':'Dic'};
   const CFG={ipc:{label:'IPC',tol:.10,unit:'p.p.'},tc:{label:'Tipo de cambio',tol:1.00,unit:'%'},tamar:{label:'TAMAR',tol:.10,unit:'p.p.'}};
   function periodLabel(period){const [y,m]=period.split('-');return `${MONTH_NAME[m]} ${y}`}
