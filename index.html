@@ -5,976 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>REM Tracker — BCRA 2026</title>
 <style>
-/* Google Fonts — Inter */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-:root {
-  --bg:             #0F1419;
-  --bg2:            #161C23;
-  --bg3:            #1B222B;
-  --brd:            rgba(255,255,255,.08);
-  --brd-hov:        rgba(255,255,255,.16);
-  --txt:            #E7EBEF;
-  --txt2:           #9AA4AF;
-  --txt3:           #68737F;
-  --amber:          #C29B55;
-  --blue:           #6B9FD1;
-  --green:          #5F9F84;
-  --red:            #BD6A67;
-  --purple:         #73879C;
-  --teal:           #5F9F84;
-  --coral:          #BD6A67;
-  --gray:           #AEB7C0;
-  --font:           'Inter', system-ui, sans-serif;
+:root{
+  --bg:#0F1419;--surface:#161C23;--surface2:#1B222B;--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+  --text:#E7EBEF;--muted:#9AA4AF;--faint:#68737F;--blue:#6B9FD1;--green:#5F9F84;--amber:#C29B55;--red:#BD6A67;
+  --font:'Inter',system-ui,sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg);
-  color: var(--txt);
-  font-family: var(--font);
-  font-size: 14px;
-  line-height: 1.6;
-  padding: 20px;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── Header ── */
-.hdr { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 14px; border-bottom: 1px solid var(--brd); margin-bottom: 18px; }
-.hdr-title { font-size: 16px; font-weight: 700; color: var(--txt); letter-spacing:-.01em; }
-.hdr-sub { font-size: 12px; color: var(--txt3); margin-top: 3px; }
-.hdr-right { text-align: right; }
-.hdr-ts { font-size: 12px; color: var(--txt2); }
-.live-badge { font-size: 9px; padding: 2px 7px; border-radius: 5px; border: 1px solid rgba(107,159,209,.40); color: var(--blue); margin-left: 6px; font-weight: 600; background:rgba(107,159,209,.06); }
-
-/* ── Cards KPI ── */
-.cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 16px; }
-.card { background: var(--bg2); border-radius: 7px; padding: 13px 15px; border: 1px solid var(--brd); transition: border-color .15s; }
-.card:hover { border-color: var(--brd-hov); }
-.card-label { font-size: 11px; color: var(--txt3); margin-bottom: 3px; display: flex; justify-content: space-between; align-items: center; }
-.card-val { font-size: 20px; font-weight: 700; color: var(--txt); letter-spacing:-.02em; }
-.card-val.amber, .card-val.teal, .card-val.coral { color: var(--txt); }
-.card-sub { font-size: 11px; color: var(--txt2); margin-top: 3px; }
-.card-bar { height: 2px; background: rgba(255,255,255,.06); border-radius: 1px; margin-top: 8px; }
-.card-bar-fill { height: 2px; border-radius: 1px; transition: width .5s; }
-.live-status { font-size: 11px; color: var(--txt3); margin-bottom: 14px; }
-.live-status.ok { color: var(--teal); }
-.live-status.err { color: var(--coral); }
-
-/* ── Rendimiento / comparación ── */
-.rend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-.rend-card { background: var(--bg2); border-radius: 7px; padding: 13px 15px; border: 1px solid var(--brd); transition: border-color .15s; }
-.rend-label { font-size: 11px; color: var(--txt3); margin-bottom: 4px; }
-.rend-val { font-size: 26px; font-weight: 700; }
-.rend-detail { font-size: 11px; color: var(--txt3); margin-top: 3px; }
-.rend-bar { height: 2px; background: var(--brd); border-radius: 1px; margin-top: 8px; }
-.rend-bar-fill { height: 2px; border-radius: 1px; transition: width .5s; }
-.performance-card { background:var(--bg2); border:1px solid var(--brd); border-radius:7px; padding:13px 15px; margin-bottom:10px; }
-.perf-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:4px; }
-.perf-title { font-size:12px; font-weight:600; color:var(--txt); }
-.perf-sub { font-size:10.5px; color:var(--txt3); margin-top:2px; }
-.perf-delta { font-size:11px; font-weight:600; color:var(--blue); white-space:nowrap; background:rgba(107,159,209,.08); border:1px solid rgba(107,159,209,.22); border-radius:5px; padding:3px 8px; }
-.perf-chart-wrap { position:relative; height:150px; width:100%; }
-.perf-chart-wrap canvas { width:100%; height:100%; display:block; }
-.perf-reading { font-size:11px; color:var(--txt2); line-height:1.55; border-top:1px solid rgba(255,255,255,.06); padding-top:8px; margin-top:3px; }
-.perf-reading strong { color:var(--txt); font-weight:600; }
-
-/* ── Insight ── */
-.insight { background: var(--bg2); border: 1px solid var(--brd); border-left: 2px solid var(--blue); border-radius: 0 7px 7px 0; padding: 10px 14px; margin-bottom: 18px; }
-.insight p { font-size: 12px; color: var(--txt2); line-height: 1.65; }
-.insight p + p { margin-top: 4px; }
-.insight strong { color: var(--txt); font-weight: 600; }
-
-/* ── Section ── */
-.section { margin-bottom: 18px; }
-.sec-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.sec-title { font-size: 11px; font-weight: 600; color: var(--txt3); letter-spacing: .08em; text-transform: uppercase; }
-.sec-sub { font-size: 11px; color: var(--txt3); }
-
-/* ── Tabs ── */
-.tabs { display: flex; gap: 5px; margin-bottom: 12px; }
-.tab { font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 6px; border: 1px solid var(--brd); cursor: pointer; background: transparent; color: var(--txt3); transition: all .15s; }
-.tab:hover { color: var(--txt); border-color: var(--brd-hov); background:rgba(255,255,255,.025); }
-.tab.active { background: rgba(107,159,209,.12); color: #D7E5F2; border-color: rgba(107,159,209,.40); }
-
-.panel { display: none; }
-.panel.active { display: block; }
-
-/* ── Scorecard ── */
-.scorecard { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 10px; }
-.sc { background: var(--bg2); border: 1px solid var(--brd); border-radius: 7px; padding: 8px 12px; }
-.sc-lbl { font-size: 11px; color: var(--txt3); margin-bottom: 2px; }
-.sc-val { font-size: 17px; font-weight: 700; color: var(--txt); }
-
-/* ── Tabla ── */
-.tbl-wrap { overflow-x: auto; border:1px solid var(--brd); border-radius:7px; }
-table { width: 100%; border-collapse: collapse; font-size: 11.5px; background:rgba(255,255,255,.008); }
-thead th { font-size: 10.5px; font-weight: 600; color: var(--txt3); padding: 7px 10px; border-bottom: 1px solid var(--brd); text-align: right; letter-spacing: .04em; white-space: nowrap; text-transform: uppercase; background:rgba(255,255,255,.018); }
-thead th:first-child { text-align: left; }
-tbody td { padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,.045); text-align: right; color: var(--txt2); font-size: 12.5px; }
-tbody tr:last-child td { border-bottom:0; }
-tbody td:first-child { text-align: left; color: var(--txt2); font-size: 12.5px; }
-tbody tr:hover td { background: rgba(255,255,255,.025); }
-tbody tr.cur-row td { background: rgba(107,159,209,.055); }
-tbody tr.yr-row td { color: var(--blue); border-top: 1px solid var(--brd); font-size: 12px; }
-.hi { color: var(--txt); font-weight: 600; font-size: 13px; }
-.nd { color: var(--txt3); }
-
-/* ── Badges ── */
-.badge { display: inline-block; padding: 2px 7px; border-radius: 5px; font-size: 10.5px; font-weight: 600; }
-.b-ok   { background: rgba(95,159,132,.09); color: var(--teal);   border: 1px solid rgba(95,159,132,.24); }
-.b-warn { background: rgba(194,155,85,.09); color: var(--amber);  border: 1px solid rgba(194,155,85,.24); }
-.b-bad  { background: rgba(189,106,103,.09); color: var(--coral);  border: 1px solid rgba(189,106,103,.24); }
-.b-pend { background: rgba(255,255,255,.025); color: var(--txt2);   border: 1px solid var(--brd); }
-.b-now  { background: rgba(107,159,209,.09); color: var(--blue);   border: 1px solid rgba(107,159,209,.24); }
-.b-yr   { background: rgba(107,159,209,.07); color: var(--blue); border: 1px solid rgba(107,159,209,.20); }
-
-/* ── Stamp ── */
-.stamp { font-size: 11px; color: var(--txt3); margin-top: 8px; padding: 5px 9px; background: rgba(255,255,255,.018); border-radius: 6px; display: inline-block; border: 1px solid var(--brd); }
-.stamp span { color: var(--txt2); font-weight: 500; }
-
-/* ── Formulario ── */
-.form-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
-.field { display: flex; flex-direction: column; gap: 4px; }
-.field label { font-size: 11px; font-weight: 600; color: var(--txt3); letter-spacing: .04em; }
-.field select, .field input { background: var(--bg2); border: 1px solid var(--brd); border-radius: 6px; color: var(--txt); font-family: var(--font); font-size: 13px; padding: 7px 10px; outline: none; min-width: 130px; transition: border-color .15s; }
-.field select:focus, .field input:focus { border-color: var(--blue); }
-.btn-submit { padding: 7px 18px; border-radius: 6px; border: 1px solid rgba(107,159,209,.45); cursor: pointer; font-size: 13px; font-weight: 600; background: rgba(107,159,209,.16); color: #DCE8F3; transition: all .15s; align-self: flex-end; }
-.btn-submit:hover { background:rgba(107,159,209,.22); }
-.msg-ok { font-size: 11px; color: var(--teal); display: none; align-self: center; }
-
-/* ── Visualizaciones ── */
-.viz-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
-.viz-card { background:var(--bg2); border:1px solid var(--brd); border-radius:7px; padding:13px 15px; min-width:0; }
-.viz-card.full { grid-column:1 / -1; }
-.viz-head { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:8px; }
-.viz-title { font-size:12px; font-weight:600; color:var(--txt); }
-.viz-sub { font-size:10.5px; color:var(--txt3); margin-top:2px; }
-.viz-controls { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
-.viz-controls select { background:var(--bg3); border:1px solid var(--brd); border-radius:6px; color:var(--txt2); font:inherit; font-size:11px; padding:4px 7px; outline:none; }
-.chart-wrap { position:relative; height:240px; width:100%; }
-.chart-wrap canvas { width:100%; height:100%; display:block; }
-.chart-legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:7px; font-size:10.5px; color:var(--txt3); }
-.retry-link{background:none;border:0;color:var(--blue);font:inherit;font-size:11px;cursor:pointer;padding:0;margin-left:6px;text-decoration:underline;text-underline-offset:2px}
-.legend-dot { width:7px; height:7px; border-radius:2px; display:inline-block; margin-right:4px; vertical-align:1px; }
-.legend-line { width:14px; height:2px; display:inline-block; margin-right:5px; vertical-align:3px; border-radius:1px; }
-.viz-note { margin-top:6px; font-size:10.5px; color:var(--txt3); line-height:1.5; }
-.metric-row { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:8px; }
-.metric-mini { background:var(--bg3); border:1px solid rgba(255,255,255,.055); border-radius:6px; padding:7px 9px; }
-.metric-mini .m-l { font-size:9.5px; color:var(--txt3); text-transform:uppercase; letter-spacing:.04em; }
-.metric-mini .m-v { font-size:14px; font-weight:700; color:var(--txt); margin-top:1px; }
-@media(max-width:780px){ .viz-grid{grid-template-columns:1fr} .viz-card.full{grid-column:auto} .chart-wrap{height:195px} }
-
-/* ── Footer ── */
-footer { border-top: 1px solid var(--brd); margin-top: 20px; padding-top: 10px; display: flex; justify-content: space-between; font-size: 11px; color: var(--txt3); flex-wrap: wrap; gap: 6px; }
-
-@media(max-width:600px) { body{padding:14px} .cards{grid-template-columns:1fr 1fr} .rend-grid{grid-template-columns:1fr} .scorecard{grid-template-columns:1fr 1fr} .hdr{flex-direction:column;gap:6px} .perf-chart-wrap{height:135px} .perf-head{align-items:center} .perf-delta{font-size:10px} }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.55;padding:22px;min-height:100vh;-webkit-font-smoothing:antialiased}
+.shell{max-width:1380px;margin:0 auto}
+.hdr{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.hdr-title{font-size:18px;font-weight:700;letter-spacing:-.02em}.hdr-title span{color:var(--blue);font-size:12px;font-weight:500;margin-left:7px}
+.hdr-sub{font-size:11px;color:var(--faint);margin-top:3px}.hdr-right{text-align:right}.hdr-ts{font-size:11px;color:var(--muted)}
+.main-tabs{display:flex;gap:22px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.main-tab{appearance:none;background:none;border:0;color:var(--faint);font:600 12px var(--font);padding:13px 0 11px;cursor:pointer;position:relative;letter-spacing:.02em}
+.main-tab:hover{color:var(--muted)}.main-tab.active{color:var(--text)}.main-tab.active:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue)}
+.main-panel{display:none}.main-panel.active{display:block}
+.section{margin-bottom:26px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:12px}
+.kicker{font-size:10px;color:var(--faint);font-weight:600;letter-spacing:.09em;text-transform:uppercase}.section-title{font-size:16px;font-weight:650;letter-spacing:-.01em;margin-top:2px}.section-sub{font-size:11px;color:var(--faint)}
+.overview-grid{display:grid;grid-template-columns:minmax(290px,1.15fr) 2fr;gap:28px;padding:20px 0 24px;border-bottom:1px solid var(--border);margin-bottom:20px}
+.hero-label{font-size:11px;color:var(--faint);display:flex;align-items:center;gap:7px}.live-badge{font-size:9px;color:var(--blue);border:1px solid rgba(107,159,209,.32);padding:1px 6px;border-radius:4px;background:rgba(107,159,209,.05)}
+.hero-value{font-size:38px;font-weight:700;letter-spacing:-.045em;line-height:1.05;margin:7px 0 5px}.hero-sub{font-size:11px;color:var(--muted);max-width:330px}.live-status{font-size:10.5px;color:var(--faint);margin-top:10px}.live-status.ok{color:var(--green)}.live-status.err{color:var(--red)}
+.metric-strip{display:grid;grid-template-columns:repeat(3,1fr);align-self:end;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.metric{padding:12px 16px 12px 0}.metric+.metric{border-left:1px solid var(--border);padding-left:16px}.metric-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint)}.metric-value{font-size:22px;font-weight:650;letter-spacing:-.025em;margin-top:3px}.metric-note{font-size:10.5px;color:var(--muted);margin-top:2px}
+.analysis-block{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0}.analysis-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:8px}.analysis-title{font-size:13px;font-weight:600}.analysis-sub{font-size:10.5px;color:var(--faint);margin-top:2px}.delta-chip{font-size:10.5px;color:var(--blue);font-weight:600;white-space:nowrap}.perf-wrap{height:250px;position:relative}.perf-wrap canvas,.chart-wrap canvas{width:100%;height:100%;display:block}
+.analysis-reading{font-size:11px;color:var(--muted);padding-top:9px;border-top:1px solid rgba(255,255,255,.05)}.analysis-reading strong{color:var(--text);font-weight:600}.insight{margin-top:12px;padding-left:12px;border-left:2px solid var(--blue);font-size:11px;color:var(--muted);line-height:1.65}.insight p+p{margin-top:3px}.insight strong{color:var(--text);font-weight:600}
+.subtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.subtab{appearance:none;background:none;border:1px solid var(--border);border-radius:5px;color:var(--faint);font:500 11px var(--font);padding:5px 10px;cursor:pointer}.subtab:hover{color:var(--muted);border-color:var(--border2)}.subtab.active{color:var(--text);border-color:rgba(107,159,209,.35);background:rgba(107,159,209,.08)}
+.subpanel{display:none}.subpanel.active{display:block}.nested-tabs{display:flex;gap:16px;margin-bottom:12px;border-bottom:1px solid var(--border)}.nested-tab{appearance:none;background:none;border:0;color:var(--faint);font:600 11px var(--font);padding:5px 0 8px;cursor:pointer;position:relative}.nested-tab.active{color:var(--text)}.nested-tab.active:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--blue)}
+.tbl-wrap{overflow-x:auto;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}table{width:100%;border-collapse:collapse;font-size:11.5px}thead th{font-size:9.5px;font-weight:600;color:var(--faint);padding:7px 9px;border-bottom:1px solid var(--border);text-align:right;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}thead th:first-child{text-align:left}tbody td{padding:7px 9px;border-bottom:1px solid rgba(255,255,255,.045);text-align:right;color:var(--muted)}tbody tr:last-child td{border-bottom:0}tbody td:first-child{text-align:left}tbody tr:hover td{background:rgba(255,255,255,.018)}tbody tr.cur-row td{background:rgba(107,159,209,.04)}tbody tr.yr-row td{color:var(--blue);border-top:1px solid var(--border)}.hi{color:var(--text);font-weight:600}.nd{color:var(--faint)}
+.badge{display:inline-block;padding:1px 6px;border-radius:4px;font-size:9.5px;font-weight:600}.b-ok{color:var(--green);background:rgba(95,159,132,.08);border:1px solid rgba(95,159,132,.22)}.b-warn{color:var(--amber);background:rgba(194,155,85,.08);border:1px solid rgba(194,155,85,.22)}.b-bad{color:var(--red);background:rgba(189,106,103,.08);border:1px solid rgba(189,106,103,.22)}.b-pend{color:var(--muted);background:rgba(255,255,255,.02);border:1px solid var(--border)}.b-now{color:var(--blue);background:rgba(107,159,209,.07);border:1px solid rgba(107,159,209,.22)}.b-yr{color:var(--blue);background:rgba(107,159,209,.05);border:1px solid rgba(107,159,209,.18)}
+.note{font-size:10.5px;color:var(--faint);margin-top:7px;line-height:1.5}.note strong{color:var(--muted);font-weight:500}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.chart-block{min-width:0}.chart-block.full{grid-column:1/-1}.chart-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:7px}.chart-title{font-size:12px;font-weight:600}.chart-sub{font-size:10px;color:var(--faint);margin-top:2px}.chart-wrap{height:250px;position:relative;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding-top:6px}.chart-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:7px;font-size:10px;color:var(--faint)}.legend-line{width:14px;height:2px;display:inline-block;margin-right:5px;vertical-align:3px}.legend-dot{width:7px;height:7px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:1px}.chart-head select{background:var(--surface);border:1px solid var(--border);border-radius:5px;color:var(--muted);font:11px var(--font);padding:4px 7px}
+.acc-metrics{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:10px}.acc-metric{padding:9px 0}.acc-metric+.acc-metric{border-left:1px solid var(--border);padding-left:14px}.acc-l{font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}.acc-v{font-size:17px;font-weight:650;margin-top:2px}
+.form-section{margin-top:24px;padding-top:16px;border-top:1px solid var(--border)}.form-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}.field{display:flex;flex-direction:column;gap:4px}.field label{font-size:9.5px;color:var(--faint);font-weight:600;letter-spacing:.04em}.field select,.field input{background:var(--surface);border:1px solid var(--border);border-radius:5px;color:var(--text);font:12px var(--font);padding:6px 9px;min-width:130px}.btn{background:rgba(107,159,209,.12);border:1px solid rgba(107,159,209,.34);border-radius:5px;color:var(--text);font:600 11px var(--font);padding:7px 12px;cursor:pointer}.btn.secondary{background:none;border-color:var(--border);color:var(--muted)}.msg-ok{font-size:10.5px;color:var(--green);display:none}
+footer{border-top:1px solid var(--border);margin-top:28px;padding-top:10px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:10px;color:var(--faint)}
+.retry-link{background:none;border:0;color:var(--blue);font:inherit;text-decoration:underline;cursor:pointer}
+@media(max-width:850px){body{padding:16px}.overview-grid{grid-template-columns:1fr;gap:18px}.metric-strip{grid-template-columns:1fr 1fr 1fr}.chart-grid{grid-template-columns:1fr}.chart-block.full{grid-column:auto}}
+@media(max-width:600px){.hdr{flex-direction:column;gap:6px}.hdr-right{text-align:left}.main-tabs{gap:18px}.hero-value{font-size:34px}.metric-strip{grid-template-columns:1fr}.metric+.metric{border-left:0;border-top:1px solid var(--border);padding-left:0}.metric{padding:10px 0}.perf-wrap{height:215px}.chart-wrap{height:210px}.acc-metrics{grid-template-columns:1fr}.acc-metric+.acc-metric{border-left:0;border-top:1px solid var(--border);padding-left:0}.section-head{align-items:flex-start;flex-direction:column;gap:2px}}
 </style>
 </head>
 <body>
-
-<!-- Header -->
-<div class="hdr">
+<div class="shell">
+<header class="hdr">
   <div>
-    <div class="hdr-title">REM Tracker <span style="color:var(--blue);font-size:13px;font-weight:400;margin-left:6px">BCRA · 2026</span></div>
-    <div class="hdr-sub">Seguimiento de proyecciones vs. dato real — consenso 47 participantes</div>
+    <div class="hdr-title">REM Tracker <span>BCRA · 2026</span></div>
+    <div class="hdr-sub">Seguimiento de expectativas, dato observado y precisión del consenso</div>
   </div>
   <div class="hdr-right">
     <div class="hdr-ts" id="ts-now"></div>
-    <div class="hdr-ts" style="opacity:.5;font-size:10px;margin-top:2px">bcra.gob.ar · rem mar · abr · may · jun · jul · ago 2026</div>
+    <div class="hdr-sub">REM ago-26 · 47 participantes · publicado 4 sep 2026</div>
   </div>
+</header>
+
+<nav class="main-tabs" aria-label="Secciones principales">
+  <button class="main-tab active" onclick="switchMain('overview',this)">PANORAMA</button>
+  <button class="main-tab" onclick="switchMain('rem',this)">REM</button>
+  <button class="main-tab" onclick="switchMain('accuracy',this)">ACCURACY</button>
+</nav>
+
+<main>
+<section class="main-panel active" id="main-overview">
+  <div class="overview-grid">
+    <div>
+      <div class="hero-label">SIOPEL · intrames <span class="live-badge" id="live-badge">…</span></div>
+      <div class="hero-value" id="kpi-tc-val">—</div>
+      <div class="hero-sub" id="kpi-tc-sub">consultando seguimiento-fx…</div>
+      <div class="live-status" id="live-status"></div>
+    </div>
+    <div class="metric-strip">
+      <div class="metric"><div class="metric-label">IPC real · ago-26</div><div class="metric-value">1,70%</div><div class="metric-note">REM ago 1,72% · error −0,02 p.p.</div></div>
+      <div class="metric"><div class="metric-label">TC REM · dic-26</div><div class="metric-value">$1.630</div><div class="metric-note">−$22 vs REM jul</div></div>
+      <div class="metric"><div class="metric-label">TAMAR REM · sep-26</div><div class="metric-value">24,11%</div><div class="metric-note">+1,39 p.p. vs REM jul</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div><div class="kicker">Lectura ejecutiva</div><div class="section-title">Depreciación implícita vs. REM IPC</div></div><div class="section-sub">base actual = 0% · sep → dic 2026</div></div>
+    <div class="analysis-block">
+      <div class="analysis-head"><div><div class="analysis-title">Trayectoria acumulada</div><div class="analysis-sub">TC: SIOPEL actual → mediana REM mensual · IPC: acumulado compuesto REM</div></div><div class="delta-chip" id="perf-delta">calculando…</div></div>
+      <div class="perf-wrap"><canvas id="chart-performance"></canvas></div>
+      <div class="analysis-reading" id="perf-reading">Esperando SIOPEL para completar la comparación.</div>
+    </div>
+    <div class="insight"><p id="insight-text">Cargando dato en vivo…</p><p>REM ago-26 revisa el TC dic-26 a <strong>$1.630</strong> y mantiene una inflación mensual cerca de 1,6%–1,8% hacia fin de año. TAMAR sep-26 sube a <strong>24,11%</strong>.</p></div>
+  </div>
+</section>
+
+<section class="main-panel" id="main-rem">
+  <div class="section-head"><div><div class="kicker">Relevamiento de expectativas</div><div class="section-title">Detalle REM</div></div><div class="section-sub">senderos, dispersión y comparación visual</div></div>
+  <div class="subtabs" id="tabs-rem"><button class="subtab active" onclick="switchRem('path',this)">Senderos</button><button class="subtab" onclick="switchRem('distribution',this)">Distribución</button><button class="subtab" onclick="switchRem('charts',this)">Gráficos</button></div>
+  <div class="subpanel active" id="rem-path">
+    <div class="nested-tabs" id="tabs-path"><button class="nested-tab active" onclick="switchPath('ipc',this)">IPC</button><button class="nested-tab" onclick="switchPath('tc',this)">Tipo de cambio</button><button class="nested-tab" onclick="switchPath('tamar',this)">TAMAR</button></div>
+    <div class="subpanel active" id="path-ipc"><div class="tbl-wrap"><table><thead><tr><th>Mes</th><th>REM May</th><th>REM Jun</th><th>REM Jul</th><th>REM Ago</th><th>Real INDEC</th><th>Desvío</th></tr></thead><tbody id="tbody-ipc">
+      <tr><td>Mar 2026</td><td>3,00%</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td class="hi">3,40%</td><td><span class="badge b-bad">▲ +0,40 p.p.</span></td></tr>
+      <tr><td>Abr 2026</td><td>2,60%</td><td>2,60%</td><td class="nd">—</td><td class="nd">—</td><td class="hi">2,60%</td><td><span class="badge b-ok">✓ exacto</span></td></tr>
+      <tr class="cur-row"><td>May 2026</td><td>2,29%</td><td>2,30%</td><td>2,30%</td><td class="nd">—</td><td class="hi">2,10%</td><td><span class="badge b-warn">▼ −0,20 p.p.</span></td></tr>
+      <tr class="cur-row"><td>Jun 2026</td><td>2,00%</td><td>2,10%</td><td>2,10%</td><td class="hi">2,00%</td><td class="hi">1,90%</td><td><span class="badge b-ok">✓ −0,10 p.p.</span></td></tr>
+      <tr class="cur-row"><td>Jul 2026</td><td>1,98%</td><td>2,00%</td><td>2,00%</td><td class="hi">2,00%</td><td class="hi">2,10%</td><td><span class="badge b-ok">✓ +0,10 p.p.</span></td></tr>
+      <tr class="cur-row"><td>Ago 2026</td><td>1,80%</td><td>1,80%</td><td>1,80%</td><td class="hi">1,72%</td><td class="hi">1,70%</td><td><span class="badge b-ok">✓ −0,02 p.p.</span></td></tr>
+      <tr><td>Sep 2026</td><td>1,80%</td><td>1,87%</td><td>1,89%</td><td class="hi">1,80%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
+      <tr><td>Oct 2026</td><td class="nd">—</td><td>1,80%</td><td>1,78%</td><td class="hi">1,70%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
+      <tr><td>Nov 2026</td><td class="nd">—</td><td class="nd">—</td><td>1,71%</td><td class="hi">1,60%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
+      <tr><td>Dic 2026</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td class="hi">1,78%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
+      <tr class="yr-row"><td>Dic-26 (i.a.)</td><td class="nd">—</td><td class="nd">—</td><td>30,0%</td><td class="hi">30,0%</td><td class="nd">—</td><td><span class="badge b-yr">sin cambio</span></td></tr><tr class="yr-row"><td>Dic 2027 (i.a.)</td><td class="nd">—</td><td class="nd">—</td><td>19,9%</td><td class="hi">20,0%</td><td class="nd">—</td><td><span class="badge b-yr">+0,1 p.p.</span></td></tr>
+    </tbody></table></div><div class="note">Filas anuales: variación interanual proyectada por REM. <strong>No son senderos mensuales.</strong></div></div>
+    <div class="subpanel" id="path-tc"><div class="tbl-wrap"><table><thead><tr><th>Mes</th><th>REM Jun</th><th>REM Jul</th><th>REM Ago</th><th>Observado / Intrames</th><th>Desvío</th></tr></thead><tbody id="tbody-tc">
+      <tr><td>Jun 2026</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td class="hi">$1.428</td><td><span class="badge b-pend">sin forecast comparable</span></td></tr><tr><td>Jul 2026</td><td>$1.482</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr><tr><td>Ago 2026</td><td>$1.513</td><td>$1.512</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
+      <tr class="cur-row" id="tr-sep-tc"><td>Sep 2026</td><td>$1.548</td><td>$1.546</td><td class="hi">$1.530</td><td class="hi" id="td-sep-real">—</td><td id="td-sep-desv"><span class="badge b-now">intrames</span></td></tr><tr><td>Oct 2026</td><td>$1.589</td><td>$1.577</td><td class="hi">$1.565</td><td class="nd">—</td><td><span class="badge b-warn">▼ −$12 vs jul</span></td></tr><tr><td>Nov 2026</td><td>$1.621</td><td>$1.618</td><td class="hi">$1.600</td><td class="nd">—</td><td><span class="badge b-warn">▼ −$18 vs jul</span></td></tr><tr><td>Dic 2026</td><td>$1.673</td><td>$1.652</td><td class="hi">$1.630</td><td class="nd">—</td><td><span class="badge b-warn">▼ −$22 vs jul</span></td></tr>
+      <tr><td>Ene 2027</td><td>$1.688</td><td>$1.688</td><td class="hi">$1.661</td><td class="nd">—</td><td><span class="badge b-warn">▼ −$27 vs jul</span></td></tr><tr><td>Feb 2027</td><td class="nd">—</td><td class="nd">—</td><td class="hi">$1.695</td><td class="nd">—</td><td><span class="badge b-pend">REM ago</span></td></tr><tr class="yr-row"><td>Mar 2027 *</td><td class="nd">—</td><td>$1.737</td><td class="hi">$1.719</td><td class="nd">—</td><td><span class="badge b-yr">interpolado</span></td></tr><tr class="yr-row"><td>Abr 2027 *</td><td class="nd">—</td><td>$1.766</td><td class="hi">$1.749</td><td class="nd">—</td><td><span class="badge b-yr">interpolado</span></td></tr><tr class="yr-row"><td>May 2027 *</td><td class="nd">—</td><td>$1.796</td><td class="hi">$1.781</td><td class="nd">—</td><td><span class="badge b-yr">interpolado</span></td></tr><tr class="yr-row"><td>Jun 2027 *</td><td class="nd">—</td><td>$1.826</td><td class="hi">$1.813</td><td class="nd">—</td><td><span class="badge b-yr">interpolado</span></td></tr><tr class="yr-row"><td>Dic 2027</td><td>$2.018</td><td>$2.018</td><td class="hi">$2.016</td><td class="nd">—</td><td><span class="badge b-yr">+23,7% i.a.</span></td></tr>
+    </tbody></table></div><div class="note">Sep-26 a feb-27: datos directos REM ago-26. Mar-nov 2027: interpolados. <strong>El SIOPEL intrames es referencia; no reemplaza el promedio mensual observado.</strong></div></div>
+    <div class="subpanel" id="path-tamar"><div class="tbl-wrap"><table><thead><tr><th>Mes</th><th>REM Jun</th><th>REM Jul</th><th>REM Ago</th><th>Real BCRA (TNA)</th><th>Desvío</th></tr></thead><tbody id="tbody-tamar"><tr><td>Jun 2026</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr><tr><td>Jul 2026</td><td>22,50%</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr><tr><td>Ago 2026</td><td>22,75%</td><td>22,40%</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr><tr class="cur-row"><td>Sep 2026</td><td>22,53%</td><td>22,72%</td><td class="hi">24,11%</td><td class="nd">—</td><td><span class="badge b-bad">▲ +1,39 p.p.</span></td></tr><tr><td>Oct 2026</td><td>22,47%</td><td>22,30%</td><td class="hi">23,80%</td><td class="nd">—</td><td><span class="badge b-bad">▲ +1,50 p.p.</span></td></tr><tr><td>Nov 2026</td><td>22,10%</td><td>22,10%</td><td class="hi">23,26%</td><td class="nd">—</td><td><span class="badge b-bad">▲ +1,16 p.p.</span></td></tr><tr><td>Dic 2026</td><td>22,00%</td><td>22,20%</td><td class="hi">23,45%</td><td class="nd">—</td><td><span class="badge b-bad">▲ +1,25 p.p.</span></td></tr><tr><td>Ene 2027</td><td class="nd">—</td><td>22,10%</td><td class="hi">23,00%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr><tr><td>Feb 2027</td><td class="nd">—</td><td class="nd">—</td><td class="hi">22,90%</td><td class="nd">—</td><td><span class="badge b-pend">nuevo</span></td></tr><tr class="yr-row"><td>Dic 2027</td><td>18,5%</td><td>19,1%</td><td class="hi">20,1%</td><td class="nd">—</td><td><span class="badge b-warn">▲ +1,0 p.p.</span></td></tr></tbody></table></div><div class="note">TAMAR REM: promedio mensual de días hábiles, expresado como TNA.</div></div>
+  </div>
+  <div class="subpanel" id="rem-distribution"><div class="nested-tabs" id="tabs-pct"><button class="nested-tab active" onclick="switchPct('ipc-pct',this)">IPC mensual</button><button class="nested-tab" onclick="switchPct('tc-pct',this)">Tipo de cambio</button></div><div class="subpanel active" id="dist-ipc-pct"><div class="tbl-wrap"><table><thead><tr><th>Mes</th><th>P10</th><th>P25</th><th>Mediana</th><th>P75</th><th>P90</th><th>Rango P10–P90</th></tr></thead><tbody><tr class="cur-row"><td>Ago 2026</td><td>1,60%</td><td>1,70%</td><td class="hi">1,72%</td><td>1,80%</td><td>1,96%</td><td><span class="badge b-pend">0,36 p.p.</span></td></tr><tr><td>Sep 2026</td><td>1,60%</td><td>1,70%</td><td class="hi">1,80%</td><td>1,90%</td><td>1,98%</td><td><span class="badge b-pend">0,38 p.p.</span></td></tr><tr><td>Oct 2026</td><td>1,49%</td><td>1,60%</td><td class="hi">1,70%</td><td>1,80%</td><td>1,92%</td><td><span class="badge b-pend">0,43 p.p.</span></td></tr><tr><td>Nov 2026</td><td>1,40%</td><td>1,57%</td><td class="hi">1,60%</td><td>1,71%</td><td>1,84%</td><td><span class="badge b-pend">0,44 p.p.</span></td></tr><tr><td>Dic 2026</td><td>1,50%</td><td>1,60%</td><td class="hi">1,78%</td><td>1,88%</td><td>2,00%</td><td><span class="badge b-pend">0,50 p.p.</span></td></tr></tbody></table></div><div class="note">P10–P90 contiene el 80% central de las respuestas. La dispersión aumenta hacia diciembre.</div></div><div class="subpanel" id="dist-tc-pct"><div class="tbl-wrap"><table><thead><tr><th>Mes</th><th>P10</th><th>P25</th><th>Mediana</th><th>P75</th><th>P90</th><th>Rango P10–P90</th></tr></thead><tbody><tr class="cur-row"><td>Sep 2026</td><td>$1.514</td><td>$1.522</td><td class="hi">$1.530</td><td>$1.540</td><td>$1.547</td><td><span class="badge b-ok">$33</span></td></tr><tr><td>Oct 2026</td><td>$1.539</td><td>$1.551</td><td class="hi">$1.565</td><td>$1.581</td><td>$1.594</td><td><span class="badge b-ok">$55</span></td></tr><tr><td>Nov 2026</td><td>$1.563</td><td>$1.579</td><td class="hi">$1.600</td><td>$1.622</td><td>$1.646</td><td><span class="badge b-warn">$83</span></td></tr><tr><td>Dic 2026</td><td>$1.591</td><td>$1.605</td><td class="hi">$1.630</td><td>$1.672</td><td>$1.705</td><td><span class="badge b-bad">$114</span></td></tr></tbody></table></div><div class="note">La dispersión P10–P90 se amplía de $33 en septiembre a $114 en diciembre.</div></div></div>
+  <div class="subpanel" id="rem-charts"><div class="chart-grid"><div class="chart-block"><div class="chart-head"><div><div class="chart-title">IPC · REM vs. dato real</div><div class="chart-sub">mediana seleccionada y banda P10–P90 para REM ago</div></div><select id="ipc-vintage" onchange="renderIPCChart()"><option value="ago" selected>REM Ago</option><option value="jul">REM Jul</option><option value="jun">REM Jun</option><option value="may">REM May</option></select></div><div class="chart-wrap"><canvas id="chart-ipc"></canvas></div><div class="chart-legend"><span><i class="legend-line" style="background:var(--blue)"></i>REM</span><span><i class="legend-line" style="background:var(--green)"></i>Real INDEC</span><span><i class="legend-dot" style="background:#73879C"></i>P10–P90</span></div><div class="note" id="ipc-chart-note"></div></div><div class="chart-block"><div class="chart-head"><div><div class="chart-title">Tipo de cambio · corredor REM</div><div class="chart-sub">mediana y P10–P90 · SIOPEL intrames como referencia</div></div></div><div class="chart-wrap"><canvas id="chart-tc"></canvas></div><div class="chart-legend"><span><i class="legend-line" style="background:var(--blue)"></i>Mediana REM</span><span><i class="legend-dot" style="background:#73879C"></i>P10–P90</span><span><i class="legend-dot" style="background:var(--text)"></i>SIOPEL</span></div><div class="note">REM = promedio mensual; SIOPEL = cotización intrames. La comparación es indicativa.</div></div></div></div>
+</section>
+
+<section class="main-panel" id="main-accuracy"><div class="section-head"><div><div class="kicker">Evaluación histórica</div><div class="section-title">Accuracy del REM</div></div><div class="section-sub">solo observaciones con forecast y dato real comparable</div></div><div class="chart-head"><div><div class="chart-title" id="accuracy-title">Accuracy del REM · IPC</div><div class="chart-sub" id="accuracy-sub">Error por período con dato real · real − REM</div></div><select id="accuracy-variable" onchange="renderAccuracyChart()"><option value="ipc" selected>IPC</option><option value="tc">Tipo de cambio</option><option value="tamar">TAMAR</option><option value="all">Consolidado</option></select></div><div class="chart-wrap" style="height:270px"><canvas id="chart-accuracy"></canvas></div><div class="acc-metrics"><div class="acc-metric"><div class="acc-l" id="acc-mae-lbl">MAE</div><div class="acc-v" id="acc-mae">—</div></div><div class="acc-metric"><div class="acc-l" id="acc-hit-lbl">Dentro tolerancia</div><div class="acc-v" id="acc-hit">—</div></div><div class="acc-metric"><div class="acc-l" id="acc-bias-lbl">Sesgo medio</div><div class="acc-v" id="acc-bias">—</div></div></div><div class="note" id="accuracy-note">IPC y TAMAR se miden en p.p.; TC usa error porcentual contra promedio mensual observado.</div><div class="form-section"><div class="section-head"><div><div class="kicker">Dato observado</div><div class="section-title" style="font-size:14px">Actualizar serie real</div></div><div class="section-sub">queda guardado localmente en este navegador</div></div><div class="form-row"><div class="field"><label>VARIABLE</label><select id="inp-var"><option value="ipc">IPC mensual</option><option value="tc">Tipo de cambio</option><option value="tamar">TAMAR TNA</option></select></div><div class="field"><label>MES</label><select id="inp-mes"><option>Jun 2026</option><option>Jul 2026</option><option>Ago 2026</option><option>Sep 2026</option><option>Oct 2026</option><option>Nov 2026</option><option>Dic 2026</option></select></div><div class="field"><label>VALOR REAL</label><input type="number" id="inp-val" step="0.01" placeholder="ej: 2.10"></div><button class="btn" onclick="cargarDato()">Cargar</button><button class="btn secondary" type="button" onclick="resetManualData()">Restablecer</button><span class="msg-ok" id="msg-ok">guardado</span></div><div class="note">Para TC cargar el <strong>promedio mensual observado</strong>, no el spot SIOPEL intrames.</div></div></section>
+</main>
+<footer><span>Fuente: BCRA REM · INDEC · SIOPEL en vivo desde seguimiento-fx.vercel.app</span><span>REM ago-26 · IPC real ago-26</span></footer>
 </div>
-
-<!-- KPIs -->
-<div class="section">
-  <div class="sec-hdr">
-    <span class="sec-title">Estado actual</span>
-    <span class="sec-sub" id="status-cutoff">REM ago-26 · IPC real ago-26 · FX intrames</span>
-  </div>
-  <div class="cards">
-    <div class="card">
-      <div class="card-label" title="SIOPEL es cotización intrames; el REM proyecta promedio mensual">TC SIOPEL · hoy <span class="live-badge" id="live-badge">…</span></div>
-      <div class="card-val amber" id="kpi-tc-val">—</div>
-      <div class="card-sub" id="kpi-tc-sub">consultando seguimiento-fx…</div>
-      <div class="card-bar"><div class="card-bar-fill" id="kpi-tc-bar" style="width:0%;background:var(--blue)"></div></div>
-    </div>
-    <div class="card">
-      <div class="card-label">IPC · ago-26 <span class="badge b-ok">REAL</span></div>
-      <div class="card-val teal">1,70%</div>
-      <div class="card-sub" style="color:var(--teal)">REM ago: 1,72% · error −0,02 p.p.</div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:95%;background:var(--teal)"></div></div>
-    </div>
-    <div class="card">
-      <div class="card-label">TAMAR · proj sep-26</div>
-      <div class="card-val coral">24,11%</div>
-      <div class="card-sub" style="color:var(--coral)">REM ago · vs REM jul 22,72% · +1,39 p.p.</div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:88%;background:var(--coral)"></div></div>
-    </div>
-    <div class="card">
-      <div class="card-label">TC proj dic-26 (REM ago)</div>
-      <div class="card-val amber">$1.630</div>
-      <div class="card-sub" style="color:var(--amber)">vs jul: $1.652 · ▼ −$22 rev. a la baja</div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:85%;background:var(--blue)"></div></div>
-    </div>
-  </div>
-  <div class="live-status" id="live-status"></div>
-</div>
-
-<!-- Rendimiento -->
-<div class="section">
-  <div class="sec-hdr">
-    <span class="sec-title">Rendimiento proyectado</span>
-    <span class="sec-sub">sep → dic 2026 · según rem-ago</span>
-  </div>
-  <div class="performance-card">
-    <div class="perf-head">
-      <div>
-        <div class="perf-title">TC vs. IPC · horizonte comparable</div>
-        <div class="perf-sub">sep → dic 2026 · SIOPEL actual vs. REM ago</div>
-      </div>
-      <div class="perf-delta" id="perf-delta">calculando…</div>
-    </div>
-    <div class="perf-chart-wrap"><canvas id="chart-performance"></canvas></div>
-    <div class="perf-reading" id="perf-reading">Esperando SIOPEL para completar la comparación.</div>
-  </div>
-  <div class="insight">
-    <p id="insight-text">Cargando dato en vivo…</p>
-    <p>El REM de agosto <strong>baja el TC nuevamente</strong>: dic-26 cae a <strong>$1.630</strong> (−$22 vs jul). Tercer relevamiento consecutivo a la baja. La TAMAR sube fuerte: dic-26 pasa a <strong>23,45%</strong> (+1,25 p.p. vs jul). PIB 2026 cae a <strong>2,1%</strong> (−0,6 p.p.). IPC ago-26 fue <strong>1,70%</strong>, prácticamente en línea con la mediana REM ago de <strong>1,72%</strong> (error −0,02 p.p.).</p>
-  </div>
-</div>
-
-<!-- Sendero mensual -->
-<div class="section">
-  <div class="sec-hdr">
-    <span class="sec-title">Sendero mensual</span>
-    <span class="sec-sub">proyecciones vs. dato real</span>
-  </div>
-  <div class="tabs" id="tabs-main">
-    <button class="tab active" onclick="switchTab('ipc')">IPC</button>
-    <button class="tab" onclick="switchTab('tc')">Tipo de cambio</button>
-    <button class="tab" onclick="switchTab('tamar')">TAMAR</button>
-  </div>
-
-  <!-- IPC -->
-  <div class="panel active" id="panel-ipc">
-    <div class="scorecard">
-      <div class="sc"><div class="sc-lbl">Con dato real</div><div class="sc-val" id="ipc-sc-real" style="color:var(--blue)">6 / 10</div></div>
-      <div class="sc"><div class="sc-lbl">Acertó (±0,1)</div><div class="sc-val" id="ipc-sc-hit" style="color:var(--teal)">4</div></div>
-      <div class="sc"><div class="sc-lbl">Sobreestimó</div><div class="sc-val" id="ipc-sc-over" style="color:var(--amber)">1</div></div>
-      <div class="sc"><div class="sc-lbl">Subestimó</div><div class="sc-val" id="ipc-sc-under" style="color:var(--coral)">1</div></div>
-    </div>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Mes</th><th>REM May</th><th>REM Jun</th><th>REM Jul</th><th>REM Ago</th><th>Real INDEC</th><th>Desvío</th></tr></thead>
-      <tbody id="tbody-ipc">
-        <tr><td>Mar 2026</td><td>3,00%</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td class="hi">3,40%</td><td><span class="badge b-bad">▲ +0,40 p.p.</span></td></tr>
-        <tr><td>Abr 2026</td><td>2,60%</td><td>2,60%</td><td class="nd">—</td><td class="nd">—</td><td class="hi">2,60%</td><td><span class="badge b-ok">✓ exacto</span></td></tr>
-        <tr class="cur-row"><td>May 2026</td><td>2,29%</td><td>2,30%</td><td>2,30%</td><td class="nd">—</td><td class="hi">2,10%</td><td><span class="badge b-warn">▼ −0,20 p.p.</span></td></tr>
-        <tr class="cur-row"><td>Jun 2026</td><td>2,00%</td><td>2,10%</td><td>2,10%</td><td class="hi">2,00%</td><td class="hi">1,90%</td><td><span class="badge b-ok">✓ −0,10 p.p.</span></td></tr>
-        <tr class="cur-row"><td>Jul 2026</td><td>1,98%</td><td>2,00%</td><td>2,00%</td><td class="hi">2,00%</td><td class="hi">2,10%</td><td><span class="badge b-ok">✓ +0,10 p.p.</span></td></tr>
-        <tr class="cur-row"><td>Ago 2026</td><td>1,80%</td><td>1,80%</td><td>1,80%</td><td class="hi">1,72%</td><td class="hi">1,70%</td><td><span class="badge b-ok">✓ −0,02 p.p.</span></td></tr>
-        <tr><td>Sep 2026</td><td>1,80%</td><td>1,87%</td><td>1,89%</td><td class="hi">1,80%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr><td>Oct 2026</td><td class="nd">—</td><td>1,80%</td><td>1,78%</td><td class="hi">1,70%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr><td>Nov 2026</td><td class="nd">—</td><td class="nd">—</td><td>1,71%</td><td class="hi">1,60%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr><td>Dic 2026</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td class="hi">1,78%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr class="yr-row"><td>Dic-26 (i.a.)</td><td class="nd">—</td><td class="nd">—</td><td>30,0%</td><td class="hi">30,0%</td><td class="nd">—</td><td><span class="badge b-yr">sin cambio</span></td></tr>
-        <tr class="yr-row"><td>Dic 2027 (i.a.)</td><td class="nd">—</td><td class="nd">—</td><td>19,9%</td><td class="hi">20,0%</td><td class="nd">—</td><td><span class="badge b-yr">+0,1 p.p.</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="stamp" style="margin-top:8px">Filas anuales: variación interanual del IPC proyectada por el REM. <span>No son senderos mensuales.</span></div>
-  </div>
-
-  <!-- TC -->
-  <div class="panel" id="panel-tc">
-    <div class="scorecard">
-      <div class="sc"><div class="sc-lbl">Con dato real</div><div class="sc-val" style="color:var(--blue)">3 / 9</div></div>
-      <div class="sc"><div class="sc-lbl">Acertó (≤1%)</div><div class="sc-val" style="color:var(--teal)">1</div></div>
-      <div class="sc"><div class="sc-lbl">Desvío mod. (1–3%)</div><div class="sc-val" style="color:var(--amber)">2</div></div>
-      <div class="sc"><div class="sc-lbl">Desvío imp. (>3%)</div><div class="sc-val" style="color:var(--coral)">0</div></div>
-    </div>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Mes</th><th>REM Jun</th><th>REM Jul</th><th>REM Ago</th><th>Observado / Intrames</th><th>Desvío</th></tr></thead>
-      <tbody id="tbody-tc">
-        <tr><td>Jun 2026</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td class="hi">$1.428</td><td><span class="badge b-ok">+0,4% ✓</span></td></tr>
-        <tr><td>Jul 2026</td><td>$1.482</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr><td>Ago 2026</td><td>$1.513</td><td>$1.512</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr class="cur-row" id="tr-sep-tc"><td>Sep 2026</td><td>$1.548</td><td>$1.546</td><td class="hi">$1.530</td><td class="hi" id="td-sep-real">—</td><td id="td-sep-desv"><span class="badge b-now">intrames</span></td></tr>
-        <tr><td>Oct 2026</td><td>$1.589</td><td>$1.577</td><td class="hi">$1.565</td><td class="nd">—</td><td><span class="badge b-warn">▼ −$12 vs jul</span></td></tr>
-        <tr><td>Nov 2026</td><td>$1.621</td><td>$1.618</td><td class="hi">$1.600</td><td class="nd">—</td><td><span class="badge b-warn">▼ −$18 vs jul</span></td></tr>
-        <tr><td>Dic 2026</td><td>$1.673</td><td>$1.652</td><td class="hi">$1.630</td><td class="nd">—</td><td><span class="badge b-warn">▼ −$22 vs jul</span></td></tr>
-        <tr><td>Ene 2027</td><td>$1.688</td><td>$1.688</td><td class="hi">$1.661</td><td class="nd">—</td><td><span class="badge b-warn">▼ −$27 vs jul</span></td></tr>
-        <tr><td>Feb 2027</td><td class="nd">—</td><td class="nd">—</td><td class="hi">$1.695</td><td class="nd">—</td><td><span class="badge b-pend">REM ago</span></td></tr>
-        <tr class="yr-row"><td>Mar 2027 *</td><td class="nd">—</td><td>$1.737</td><td class="hi">$1.719</td><td class="nd">—</td><td><span class="badge b-yr">interpolado</span></td></tr>
-        <tr class="yr-row"><td>Abr 2027 *</td><td class="nd">—</td><td>$1.766</td><td class="hi">$1.749</td><td class="nd">—</td><td><span class="badge b-yr">interpolado</span></td></tr>
-        <tr class="yr-row"><td>May 2027 *</td><td class="nd">—</td><td>$1.796</td><td class="hi">$1.781</td><td class="nd">—</td><td><span class="badge b-yr">interpolado</span></td></tr>
-        <tr class="yr-row"><td>Jun 2027 *</td><td class="nd">—</td><td>$1.826</td><td class="hi">$1.813</td><td class="nd">—</td><td><span class="badge b-yr">interpolado</span></td></tr>
-        <tr class="yr-row"><td>Dic 2027</td><td>$2.018</td><td>$2.018</td><td class="hi">$2.016</td><td class="nd">—</td><td><span class="badge b-yr">+23,7% i.a.</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="stamp" style="margin-top:8px">Sep-26 a feb-27: datos directos REM ago-26. Mar-nov 2027: interpolados (1,789%/mes). <span>Dic 2027: $2.016 (REM ago-26 anual).</span></div>
-  </div>
-
-  <!-- TAMAR -->
-  <div class="panel" id="panel-tamar">
-    <div class="scorecard">
-      <div class="sc"><div class="sc-lbl">Con dato real</div><div class="sc-val" style="color:var(--blue)">2 / 9</div></div>
-      <div class="sc"><div class="sc-lbl">Acertó (≤0,1)</div><div class="sc-val" style="color:var(--teal)">0</div></div>
-      <div class="sc"><div class="sc-lbl">Sobreestimó</div><div class="sc-val" style="color:var(--amber)">2</div></div>
-      <div class="sc"><div class="sc-lbl">Subestimó</div><div class="sc-val" style="color:var(--coral)">0</div></div>
-    </div>
-    <div class="tbl-wrap"><table>
-      <thead><tr><th>Mes</th><th>REM Jun</th><th>REM Jul</th><th>REM Ago</th><th>Real BCRA (TNA)</th><th>Desvío</th></tr></thead>
-      <tbody id="tbody-tamar">
-        <tr><td>Jun 2026</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr><td>Jul 2026</td><td>22,50%</td><td class="nd">—</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr><td>Ago 2026</td><td>22,75%</td><td>22,40%</td><td class="nd">—</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr class="cur-row"><td>Sep 2026</td><td>22,53%</td><td>22,72%</td><td class="hi">24,11%</td><td class="nd">—</td><td><span class="badge b-bad">▲ +1,39 p.p.</span></td></tr>
-        <tr><td>Oct 2026</td><td>22,47%</td><td>22,30%</td><td class="hi">23,80%</td><td class="nd">—</td><td><span class="badge b-bad">▲ +1,50 p.p.</span></td></tr>
-        <tr><td>Nov 2026</td><td>22,10%</td><td>22,10%</td><td class="hi">23,26%</td><td class="nd">—</td><td><span class="badge b-bad">▲ +1,16 p.p.</span></td></tr>
-        <tr><td>Dic 2026</td><td>22,00%</td><td>22,20%</td><td class="hi">23,45%</td><td class="nd">—</td><td><span class="badge b-bad">▲ +1,25 p.p.</span></td></tr>
-        <tr><td>Ene 2027</td><td class="nd">—</td><td>22,10%</td><td class="hi">23,00%</td><td class="nd">—</td><td><span class="badge b-pend">pendiente</span></td></tr>
-        <tr><td>Feb 2027</td><td class="nd">—</td><td class="nd">—</td><td class="hi">22,90%</td><td class="nd">—</td><td><span class="badge b-pend">nuevo</span></td></tr>
-        <tr class="yr-row"><td>Dic 2027</td><td>18,5%</td><td>19,1%</td><td class="hi">20,1%</td><td class="nd">—</td><td><span class="badge b-warn">▲ +1,0 p.p.</span></td></tr>
-      </tbody>
-    </table></div>
-    <div class="stamp" style="margin-top:8px">Dic 2027: TAMAR 18,5% TNA mediana REM mayo. <span>El REM no publica proyección de TAMAR para 2028.</span></div>
-  </div>
-</div>
-
-<!-- Sección percentiles -->
-<div class="section">
-  <div class="sec-hdr">
-    <span class="sec-title">Distribución de proyecciones — percentiles</span>
-    <span class="sec-sub">ago → dic 2026 · REM ago-26 · 47 participantes</span>
-  </div>
-
-  <div class="tabs" id="tabs-pct">
-    <button class="tab active" onclick="switchPct('ipc-pct')">IPC mensual</button>
-    <button class="tab" onclick="switchPct('tc-pct')">Tipo de cambio</button>
-  </div>
-
-  <div id="panel-ipc-pct" class="panel active">
-    <div class="stamp" style="margin-bottom:10px">El rango P10–P90 representa el 80% central de las proyecciones. La mediana es el valor que divide en partes iguales. <span>Fuente: Cuadro 10.1 REM ago-26.</span></div>
-    <div class="tbl-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th style="text-align:left">Mes</th>
-            <th>P10</th>
-            <th>P25</th>
-            <th>Mediana</th>
-            <th>P75</th>
-            <th>P90</th>
-            <th>Rango P10–P90</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="cur-row"><td>Ago 2026</td><td>1,60%</td><td>1,70%</td><td class="hi">1,72%</td><td>1,80%</td><td>1,96%</td><td><span class="badge b-pend">0,36 p.p.</span></td></tr>
-          <tr><td>Sep 2026</td><td>1,60%</td><td>1,70%</td><td class="hi">1,80%</td><td>1,90%</td><td>1,98%</td><td><span class="badge b-pend">0,38 p.p.</span></td></tr>
-          <tr><td>Oct 2026</td><td>1,49%</td><td>1,60%</td><td class="hi">1,70%</td><td>1,80%</td><td>1,92%</td><td><span class="badge b-pend">0,43 p.p.</span></td></tr>
-          <tr><td>Nov 2026</td><td>1,40%</td><td>1,57%</td><td class="hi">1,60%</td><td>1,71%</td><td>1,84%</td><td><span class="badge b-pend">0,44 p.p.</span></td></tr>
-          <tr><td>Dic 2026</td><td>1,50%</td><td>1,60%</td><td class="hi">1,78%</td><td>1,88%</td><td>2,00%</td><td><span class="badge b-pend">0,50 p.p.</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="stamp" style="margin-top:8px">Lectura: en agosto, el 80% de los analistas proyecta IPC entre 1,60% y 1,96%. El consenso (mediana) es 1,72%. La incertidumbre crece hacia diciembre (rango de 0,50 p.p.). P10 implica inflación relativamente más baja y P90 relativamente más alta.</div>
-  </div>
-
-  <div id="panel-tc-pct" class="panel">
-    <div class="stamp" style="margin-bottom:10px">Percentiles del TC nominal promedio mensual ($/USD). <span>Fuente: Cuadro 10.4 REM ago-26. Nota: el REM no reporta percentiles para agosto (mes relevado).</span></div>
-    <div class="tbl-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th style="text-align:left">Mes</th>
-            <th>P10</th>
-            <th>P25</th>
-            <th>Mediana</th>
-            <th>P75</th>
-            <th>P90</th>
-            <th>Rango P10–P90</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="cur-row"><td>Sep 2026</td><td>$1.514</td><td>$1.522</td><td class="hi">$1.530</td><td>$1.540</td><td>$1.547</td><td><span class="badge b-ok">$33</span></td></tr>
-          <tr><td>Oct 2026</td><td>$1.539</td><td>$1.551</td><td class="hi">$1.565</td><td>$1.581</td><td>$1.594</td><td><span class="badge b-ok">$55</span></td></tr>
-          <tr><td>Nov 2026</td><td>$1.563</td><td>$1.579</td><td class="hi">$1.600</td><td>$1.622</td><td>$1.646</td><td><span class="badge b-warn">$83</span></td></tr>
-          <tr><td>Dic 2026</td><td>$1.591</td><td>$1.605</td><td class="hi">$1.630</td><td>$1.672</td><td>$1.705</td><td><span class="badge b-bad">$114</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="stamp" style="margin-top:8px">La dispersión del TC crece significativamente hacia fin de año: el rango P10–P90 pasa de $33 en septiembre a $114 en diciembre. La asimetría es notable: en dic-26, el P90 está $75 sobre la mediana pero el P10 solo $39 por debajo — el mercado tiene más riesgo al alza que a la baja.</div>
-  </div>
-</div>
-
-<!-- Visualizaciones -->
-<div class="section" id="section-charts">
-  <div class="sec-hdr">
-    <span class="sec-title">Seguimiento visual</span>
-    <span class="sec-sub">REM vs. observado · dispersión y accuracy</span>
-  </div>
-  <div class="viz-grid">
-    <div class="viz-card">
-      <div class="viz-head">
-        <div>
-          <div class="viz-title">IPC · REM vs. dato real</div>
-          <div class="viz-sub">Evolución mensual y banda P10–P90 para REM ago-26</div>
-        </div>
-        <div class="viz-controls">
-          <select id="ipc-vintage" onchange="renderIPCChart()">
-            <option value="ago" selected>REM Ago</option>
-            <option value="jul">REM Jul</option>
-            <option value="jun">REM Jun</option>
-            <option value="may">REM May</option>
-          </select>
-        </div>
-      </div>
-      <div class="chart-wrap"><canvas id="chart-ipc" role="img" aria-label="Gráfico IPC REM versus real"></canvas></div>
-      <div class="chart-legend">
-        <span><i class="legend-line" style="background:var(--blue)"></i>REM seleccionado</span>
-        <span><i class="legend-line" style="background:var(--teal)"></i>Real INDEC</span>
-        <span><i class="legend-dot" style="background:var(--purple)"></i>P10–P90 (REM ago)</span>
-      </div>
-      <div class="viz-note" id="ipc-chart-note"></div>
-    </div>
-
-    <div class="viz-card">
-      <div class="viz-head">
-        <div>
-          <div class="viz-title">Tipo de cambio · corredor REM</div>
-          <div class="viz-sub">SIOPEL intrames + mediana y rango P10–P90 del REM ago-26</div>
-        </div>
-      </div>
-      <div class="chart-wrap"><canvas id="chart-tc" role="img" aria-label="Gráfico de tipo de cambio SIOPEL y REM"></canvas></div>
-      <div class="chart-legend">
-        <span><i class="legend-line" style="background:var(--blue)"></i>Mediana REM</span>
-        <span><i class="legend-dot" style="background:var(--purple)"></i>P10–P90</span>
-        <span><i class="legend-dot" style="background:var(--txt)"></i>SIOPEL intrames</span>
-      </div>
-      <div class="viz-note">El REM proyecta promedios mensuales; SIOPEL es una cotización intrames y se muestra como referencia, no como cierre mensual.</div>
-    </div>
-
-    <div class="viz-card full">
-      <div class="viz-head">
-        <div>
-          <div class="viz-title" id="accuracy-title">Accuracy del REM · IPC</div>
-          <div class="viz-sub" id="accuracy-sub">Error por mes con dato real · real − REM</div>
-        </div>
-        <div class="viz-controls">
-          <select id="accuracy-variable" onchange="renderAccuracyChart()" aria-label="Variable para medir accuracy">
-            <option value="ipc" selected>IPC</option>
-            <option value="tc">Tipo de cambio</option>
-            <option value="tamar">TAMAR</option>
-            <option value="all">Consolidado</option>
-          </select>
-        </div>
-      </div>
-      <div class="chart-wrap" style="height:220px"><canvas id="chart-accuracy" role="img" aria-label="Accuracy histórico del REM"></canvas></div>
-      <div class="metric-row">
-        <div class="metric-mini"><div class="m-l" id="acc-mae-lbl">MAE</div><div class="m-v" id="acc-mae">—</div></div>
-        <div class="metric-mini"><div class="m-l" id="acc-hit-lbl">Dentro tolerancia</div><div class="m-v" id="acc-hit">—</div></div>
-        <div class="metric-mini"><div class="m-l" id="acc-bias-lbl">Sesgo medio</div><div class="m-v" id="acc-bias">—</div></div>
-      </div>
-      <div class="viz-note" id="accuracy-note">IPC y TAMAR se miden en p.p.; TC en error porcentual contra el promedio mensual observado. El consolidado normaliza cada error por su tolerancia para hacer comparables las variables.</div>
-    </div>
-  </div>
-</div>
-
-<!-- Cargar dato -->
-<div class="section">
-  <div class="sec-hdr">
-    <span class="sec-title">Cargar dato real</span>
-    <span class="sec-sub">cuando se publica el dato oficial</span>
-  </div>
-  <div class="form-row">
-    <div class="field">
-      <label>VARIABLE</label>
-      <select id="inp-var"><option value="ipc">IPC mensual</option><option value="tc">Tipo de cambio</option><option value="tamar">TAMAR TNA</option></select>
-    </div>
-    <div class="field">
-      <label>MES</label>
-      <select id="inp-mes"><option>Jun 2026</option><option>Jul 2026</option><option>Ago 2026</option><option>Sep 2026</option><option>Oct 2026</option><option>Nov 2026</option><option>Dic 2026</option></select>
-    </div>
-    <div class="field">
-      <label>VALOR REAL</label>
-      <input type="number" id="inp-val" step="0.01" placeholder="ej: 2.10">
-    </div>
-    <button class="btn-submit" onclick="cargarDato()">Cargar</button>
-    <button class="tab" type="button" onclick="resetManualData()">Restablecer datos manuales</button>
-    <span class="msg-ok" id="msg-ok">✓ guardado</span>
-  </div>
-</div>
-
-<footer>
-  <span>bcra.gob.ar · rem mar-26 · abr-26 · may-26 · jun-26 · jul-26 · ago-26 (pub. 4 sep) · TC en vivo: seguimiento-fx.vercel.app</span>
-  <span>último IPC: ago-26 1,70% · próximo: IPC sep-26 · REM sep-26</span>
-</footer>
-
 <script>
-const pad = n => String(n).padStart(2,'0')
-const now = new Date()
-const fmtPct = (v, d=2) => Number(v).toLocaleString('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d}) + '%'
-const fmtTC = v => '$' + Number(v).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})
-const monthKeys = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
-
-document.getElementById('ts-now').textContent =
-  `${pad(now.getDate())} ${now.toLocaleString('es-AR',{month:'short'})} ${now.getFullYear()} · ${pad(now.getHours())}:${pad(now.getMinutes())}`
-
-const DATA = {
-  ipc: {
-    'Mar 2026': {forecast:3.00, real:3.40},
-    'Abr 2026': {forecast:2.60, real:2.60},
-    'May 2026': {forecast:2.30, real:2.10},
-    'Jun 2026': {forecast:2.00, real:1.90},
-    'Jul 2026': {forecast:2.00, real:2.10},
-    'Ago 2026': {forecast:1.72, real:1.70},
-    'Sep 2026': {forecast:1.80, real:null},
-    'Oct 2026': {forecast:1.70, real:null},
-    'Nov 2026': {forecast:1.60, real:null},
-    'Dic 2026': {forecast:1.78, real:null}
-  },
-  tc: {
-    'Jun 2026': {forecast:null, real:1428},
-    'Jul 2026': {forecast:1482, real:null},
-    'Ago 2026': {forecast:1512, real:null},
-    'Sep 2026': {forecast:1530, real:null},
-    'Oct 2026': {forecast:1565, real:null},
-    'Nov 2026': {forecast:1600, real:null},
-    'Dic 2026': {forecast:1630, real:null}
-  },
-  tamar: {
-    'Jun 2026': {forecast:null, real:null},
-    'Jul 2026': {forecast:22.50, real:null},
-    'Ago 2026': {forecast:22.40, real:null},
-    'Sep 2026': {forecast:24.11, real:null},
-    'Oct 2026': {forecast:23.80, real:null},
-    'Nov 2026': {forecast:23.26, real:null},
-    'Dic 2026': {forecast:23.45, real:null}
-  }
-}
-
-const REM_SEP = DATA.tc['Sep 2026'].forecast
-const REM_DIC = DATA.tc['Dic 2026'].forecast
-const MANUAL_KEY = 'remTracker_manual_v2'
-const SIOPEL_KEY = 'remTracker_lastSiopel_v2'
-
-function ipcAccumulated(months){
-  return (months.reduce((acc,m)=>{
-    const x=DATA.ipc[m]
-    const rate=x?.real ?? x?.forecast
-    return Number.isFinite(rate) ? acc*(1+rate/100) : acc
-  },1)-1)*100
-}
-function ipcH2Accumulated(){
-  return ipcAccumulated(['Jul 2026','Ago 2026','Sep 2026','Oct 2026','Nov 2026','Dic 2026'])
-}
-function ipcForwardAccumulated(){
-  return ipcAccumulated(['Sep 2026','Oct 2026','Nov 2026','Dic 2026'])
-}
-
-function renderIPCAccumulated(){ renderPerformanceComparison() }
-
-function switchPct(key) {
-  document.querySelectorAll('#tabs-pct .tab').forEach((t,i) =>
-    t.classList.toggle('active', ['ipc-pct','tc-pct'][i] === key))
-  ;['ipc-pct','tc-pct'].forEach(k => {
-    const p = document.getElementById('panel-' + k)
-    if (p) p.classList.toggle('active', k === key)
-  })
-}
-
-function switchTab(key) {
-  document.querySelectorAll('#tabs-main .tab').forEach((t,i) =>
-    t.classList.toggle('active', ['ipc','tc','tamar'][i] === key))
-  ;['ipc','tc','tamar'].forEach(k => {
-    const p=document.getElementById('panel-'+k)
-    if(p) p.classList.toggle('active', k===key)
-  })
-}
-
-function parseARNumber(raw){
-  if(raw==null) return NaN
-  let x=String(raw).trim().replace(/\s/g,'').replace(/\$/g,'')
-  if(x.includes(',') && x.includes('.')) x=x.replace(/\./g,'').replace(',','.')
-  else if(x.includes(',')) x=x.replace(',','.')
-  return Number(x)
-}
-
-function extractSiopel(text){
-  if(!text) return NaN
-  const patterns=[
-    /SIOPEL[\s\S]{0,160}?\$\s*([\d.]+,\d{1,2})/i,
-    /SIOPEL[^\d]{0,80}([1-9]\d{3}(?:[.,]\d{1,2})?)/i,
-    /(?:siopel|spot)["']?\s*[:=]\s*["']?\$?\s*([\d.,]+)/i
-  ]
-  for(const rx of patterns){
-    const m=text.match(rx)
-    if(m){
-      const v=parseARNumber(m[1])
-      if(v>=1000 && v<=10000) return v
-    }
-  }
-  return NaN
-}
-
-async function fetchWithTimeout(url, ms=7000){
-  const ctl=new AbortController()
-  const timer=setTimeout(()=>ctl.abort(),ms)
-  try{
-    const r=await fetch(url,{cache:'no-store',signal:ctl.signal})
-    if(!r.ok) throw new Error('HTTP '+r.status)
-    return r
-  } finally { clearTimeout(timer) }
-}
-
-function storeSiopel(value, timestamp){
-  localStorage.setItem(SIOPEL_KEY, JSON.stringify({value,timestamp,source:'seguimiento-fx.vercel.app'}))
-}
-
-function loadCachedSiopel(){
-  try{
-    const x=JSON.parse(localStorage.getItem(SIOPEL_KEY)||'null')
-    if(x && Number(x.value)>=1000) return x
-  }catch{}
-  return null
-}
-
-function updateTC(siopel,{live=false,timestamp=null}={}) {
-  currentSiopel=siopel
-  const pctSep=((siopel-REM_SEP)/REM_SEP)*100
-  const pctDic=((REM_DIC-siopel)/siopel)*100
-  const sSep=pctSep>=0?'+':''
-  const inflation=ipcForwardAccumulated()
-
-  document.getElementById('kpi-tc-val').textContent=fmtTC(siopel)
-  document.getElementById('kpi-tc-sub').textContent=`REM sep prom.: ${fmtTC(REM_SEP)} · ${sSep}${pctSep.toFixed(1).replace('.',',')}% vs mediana`
-  document.getElementById('kpi-tc-sub').style.color=Math.abs(pctSep)<=1?'var(--teal)':'var(--amber)'
-  document.getElementById('kpi-tc-bar').style.width=Math.min(50+Math.abs(pctSep)*10,100)+'%'
-
-  const dif=pctDic-inflation
-  document.getElementById('insight-text').innerHTML=`Diferencial TC vs. IPC sep–dic: <strong>${dif>=0?'+':''}${dif.toFixed(1).replace('.',',')} p.p.</strong>, usando SIOPEL intrames ${fmtTC(siopel)} y REM dic-26 ${fmtTC(REM_DIC)}. <span title="El REM proyecta promedio mensual; SIOPEL es cotización intrames.">Comparación indicativa.</span>`
-  renderPerformanceComparison()
-
-  const cls=Math.abs(pctSep)<=1?'b-ok':Math.abs(pctSep)<=3?'b-warn':'b-bad'
-  document.getElementById('td-sep-real').innerHTML=`<span class="hi">${fmtTC(siopel)}</span> <span class="badge b-now">INTRAMES</span>`
-  document.getElementById('td-sep-desv').innerHTML=`<span class="badge ${cls}">${sSep}${pctSep.toFixed(1).replace('.',',')}% vs REM</span>`
-
-  const badge=document.getElementById('live-badge')
-  const st=document.getElementById('live-status')
-  if(live){
-    badge.textContent='en vivo'
-    st.className='live-status ok'
-    const dt=timestamp?new Date(timestamp):new Date()
-    st.textContent=`✓ SIOPEL actualizado desde seguimiento-fx.vercel.app · ${dt.toLocaleString('es-AR')}`
-  }else{
-    badge.textContent='último dato'
-    st.className='live-status err'
-    const dt=timestamp?new Date(timestamp):null
-    st.textContent=`⚠ seguimiento-fx no respondió · mostrando último SIOPEL válido${dt?' · '+dt.toLocaleString('es-AR'):''}`
-  }
-  renderTCChart()
-}
-
-async function fetchSIOPEL(){
-  let value=NaN
-  try{
-    try{
-      const direct=await fetchWithTimeout('https://seguimiento-fx.vercel.app/',3500)
-      value=extractSiopel(await direct.text())
-    }catch{}
-    if(!Number.isFinite(value)){
-      const proxy=await fetchWithTimeout('https://api.allorigins.win/get?url='+encodeURIComponent('https://seguimiento-fx.vercel.app/'),5000)
-      const j=await proxy.json()
-      value=extractSiopel(j.contents||'')
-    }
-    if(!Number.isFinite(value)) throw new Error('No se pudo interpretar SIOPEL')
-    const ts=new Date().toISOString()
-    storeSiopel(value,ts)
-    updateTC(value,{live:true,timestamp:ts})
-  }catch(err){
-    const cached=loadCachedSiopel()
-    if(cached){ updateTC(cached.value,{live:false,timestamp:cached.timestamp}); return }
-    document.getElementById('kpi-tc-val').textContent='sin conexión'
-    document.getElementById('kpi-tc-sub').textContent='sin último dato válido disponible'
-    document.getElementById('live-badge').textContent='offline'
-    const st=document.getElementById('live-status')
-    st.className='live-status err'
-    st.innerHTML='⚠ no se pudo obtener SIOPEL desde seguimiento-fx.vercel.app <button class="retry-link" onclick="fetchSIOPEL()">Reintentar</button>'
-  }
-}
-
-function getManual(){
-  try{return JSON.parse(localStorage.getItem(MANUAL_KEY)||'{}')}catch{return {}}
-}
-function saveManual(x){localStorage.setItem(MANUAL_KEY,JSON.stringify(x))}
-
-function findRow(variable,mes){
-  const body=document.getElementById('tbody-'+variable)
-  return Array.from(body?.rows||[]).find(tr=>tr.cells[0]?.textContent.trim()===mes)||null
-}
-
-function deviation(variable,val,proj){
-  if(!Number.isFinite(proj)) return {cls:'b-pend',txt:'sin forecast comparable'}
-  if(variable==='ipc'){
-    const d=val-proj, a=Math.abs(d)
-    return {cls:a<=0.1000001?'b-ok':d<0?'b-warn':'b-bad', txt:(a<=0.1000001?'✓ ':'')+(d>=0?'+':'')+d.toFixed(2).replace('.',',')+' p.p.'}
-  }
-  if(variable==='tc'){
-    const p=(val/proj-1)*100, a=Math.abs(p)
-    return {cls:a<=1?'b-ok':a<=3?'b-warn':'b-bad', txt:(p>=0?'+':'')+p.toFixed(1).replace('.',',')+'%'}
-  }
-  const d=val-proj,a=Math.abs(d)
-  return {cls:a<=0.1000001?'b-ok':d<0?'b-warn':'b-bad', txt:(d>=0?'+':'')+d.toFixed(2).replace('.',',')+' p.p.'}
-}
-
-function applyReal(variable,mes,val,{persist=false}={}){
-  if(DATA[variable]?.[mes]) DATA[variable][mes].real=val
-  const tr=findRow(variable,mes)
-  if(!tr) return
-  const proj=DATA[variable]?.[mes]?.forecast
-  const d=deviation(variable,val,proj)
-  const realIdx=variable==='ipc'?5:4
-  const devIdx=variable==='ipc'?6:5
-  const realTxt=variable==='tc'?fmtTC(val):(variable==='tamar'?fmtPct(val,2):fmtPct(val,2))
-  tr.cells[realIdx].innerHTML=`<span class="hi">${realTxt}</span>`
-  tr.cells[devIdx].innerHTML=`<span class="badge ${d.cls}">${d.txt}</span>`
-  tr.classList.add('cur-row')
-  if(persist){
-    const m=getManual(); m[variable+'|'+mes]=val; saveManual(m)
-  }
-  renderIPCAccumulated()
-  renderIPCScore()
-  renderIPCChart()
-  renderAccuracyChart()
-}
-
-function renderIPCScore(){
-  const entries=Object.entries(DATA.ipc).filter(([,x])=>Number.isFinite(x.real) && Number.isFinite(x.forecast))
-  let hit=0,over=0,under=0
-  entries.forEach(([,x])=>{
-    const d=x.real-x.forecast
-    if(Math.abs(d)<=0.1000001) hit++
-    else if(d<0) over++
-    else under++
-  })
-  document.getElementById('ipc-sc-real').textContent=`${entries.length} / ${Object.keys(DATA.ipc).length}`
-  document.getElementById('ipc-sc-hit').textContent=hit
-  document.getElementById('ipc-sc-over').textContent=over
-  document.getElementById('ipc-sc-under').textContent=under
-}
-
-function loadManualData(){
-  const m=getManual()
-  Object.entries(m).forEach(([k,v])=>{
-    const [variable,mes]=k.split('|')
-    if(Number.isFinite(Number(v))) applyReal(variable,mes,Number(v))
-  })
-}
-
-function cargarDato(){
-  const variable=document.getElementById('inp-var').value
-  const mes=document.getElementById('inp-mes').value
-  const val=parseFloat(document.getElementById('inp-val').value)
-  if(!Number.isFinite(val)) return
-  applyReal(variable,mes,val,{persist:true})
-  const msg=document.getElementById('msg-ok')
-  msg.style.display='inline'
-  setTimeout(()=>msg.style.display='none',2500)
-  document.getElementById('inp-val').value=''
-}
-
-function resetManualData(){
-  if(!confirm('¿Restablecer todos los datos ingresados manualmente?')) return
-  localStorage.removeItem(MANUAL_KEY)
-  location.reload()
-}
-
-const IPC_VINTAGES = {
-  may: {'Mar 2026':3.00,'Abr 2026':2.60,'May 2026':2.29,'Jun 2026':2.00,'Jul 2026':1.98,'Ago 2026':1.80,'Sep 2026':1.80},
-  jun: {'Abr 2026':2.60,'May 2026':2.30,'Jun 2026':2.10,'Jul 2026':2.00,'Ago 2026':1.80,'Sep 2026':1.87,'Oct 2026':1.80},
-  jul: {'May 2026':2.30,'Jun 2026':2.10,'Jul 2026':2.00,'Ago 2026':1.80,'Sep 2026':1.89,'Oct 2026':1.78,'Nov 2026':1.71},
-  ago: {'Jun 2026':2.00,'Jul 2026':2.00,'Ago 2026':1.72,'Sep 2026':1.80,'Oct 2026':1.70,'Nov 2026':1.60,'Dic 2026':1.78}
-}
-const IPC_PCT_AGO = {
-  'Ago 2026':{p10:1.60,p90:1.96}, 'Sep 2026':{p10:1.60,p90:1.98},
-  'Oct 2026':{p10:1.49,p90:1.92}, 'Nov 2026':{p10:1.40,p90:1.84}, 'Dic 2026':{p10:1.50,p90:2.00}
-}
-const TC_PCT_AGO = {
-  'Sep 2026':{p10:1514,med:1530,p90:1547}, 'Oct 2026':{p10:1539,med:1565,p90:1594},
-  'Nov 2026':{p10:1563,med:1600,p90:1646}, 'Dic 2026':{p10:1591,med:1630,p90:1705}
-}
-let currentSiopel = null
-
-function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim() }
-function canvasSetup(id){
-  const canvas=document.getElementById(id); if(!canvas)return null
-  const rect=canvas.getBoundingClientRect(); const dpr=Math.min(window.devicePixelRatio||1,2)
-  const w=Math.max(280,Math.round(rect.width||canvas.parentElement?.clientWidth||620))
-  const h=Math.max(160,Math.round(rect.height||canvas.parentElement?.clientHeight||240))
-  canvas.width=Math.round(w*dpr); canvas.height=Math.round(h*dpr)
-  const ctx=canvas.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,w,h)
-  canvas._chartW=w; canvas._chartH=h; canvas._hit=[]
-  return {canvas,ctx,w,h}
-}
-function niceRange(values,padPct=.12){
-  const a=values.filter(Number.isFinite); if(!a.length)return [0,1]
-  let lo=Math.min(...a), hi=Math.max(...a); if(lo===hi){lo-=1;hi+=1}
-  const p=(hi-lo)*padPct; return [lo-p,hi+p]
-}
-function xyFactory(w,h,pad,labels,yMin,yMax){
-  const span=Math.max(1,labels.length-1)
-  return {x:i=>pad.l+(w-pad.l-pad.r)*(labels.length===1?.5:i/span), y:v=>pad.t+(yMax-v)/(yMax-yMin)*(h-pad.t-pad.b)}
-}
-function drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt}){
-  ctx.save(); ctx.font='10px Inter, system-ui, sans-serif'; ctx.fillStyle=cssVar('--txt3'); ctx.strokeStyle='rgba(255,255,255,.07)'; ctx.lineWidth=1
-  for(let i=0;i<=4;i++){
-    const y=pad.t+(h-pad.t-pad.b)*i/4
-    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke()
-    const val=yMax-(yMax-yMin)*i/4; ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillText(yFmt(val),pad.l-7,y)
-  }
-  ctx.textAlign='center';ctx.textBaseline='top'
-  labels.forEach((lab,i)=>{ const x=pad.l+(w-pad.l-pad.r)*(labels.length===1?.5:i/Math.max(1,labels.length-1));ctx.fillText(lab.replace(' 2026',''),x,h-pad.b+9) })
-  ctx.restore()
-}
-function drawPolyline(ctx,pts,color,width=2){
-  if(!pts.length)return
-  ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath()
-  pts.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.stroke()
-  pts.forEach(([x,y])=>{ctx.beginPath();ctx.fillStyle=color;ctx.arc(x,y,3.2,0,Math.PI*2);ctx.fill();ctx.strokeStyle=cssVar('--bg2');ctx.lineWidth=1.5;ctx.stroke()})
-  ctx.restore()
-}
-function addHit(canvas,x,y,label,color){ canvas._hit.push({x,y,label,color}) }
-function enableCanvasTooltip(canvas){
-  if(canvas._tooltipBound)return; canvas._tooltipBound=true
-  const tip=document.createElement('div'); tip.className='canvas-tip'; tip.style.cssText='position:fixed;z-index:9999;pointer-events:none;background:#1B222B;border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 8px;font:600 11px Inter,system-ui;color:#E7EBEF;display:none;box-shadow:0 4px 14px rgba(0,0,0,.30)'; document.body.appendChild(tip)
-  const move=e=>{const r=canvas.getBoundingClientRect(),sx=(e.clientX-r.left)*(canvas._chartW/r.width),sy=(e.clientY-r.top)*(canvas._chartH/r.height);let best=null,bd=999;for(const h of canvas._hit||[]){const d=Math.hypot(sx-h.x,sy-h.y);if(d<bd){bd=d;best=h}}if(best&&bd<16){tip.textContent=best.label;tip.style.color=best.color||'#E7EBEF';tip.style.left=Math.min(window.innerWidth-170,e.clientX+10)+'px';tip.style.top=Math.max(8,e.clientY-38)+'px';tip.style.display='block'}else tip.style.display='none'}
-  canvas.addEventListener('mousemove',move); canvas.addEventListener('mouseleave',()=>tip.style.display='none'); canvas.addEventListener('touchstart',e=>{if(e.touches[0])move(e.touches[0])},{passive:true})
-}
-function fillBand(ctx,pts,colorFill,colorStroke){
-  if(pts.length<2)return;ctx.save();ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].hi);pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.hi));pts.slice().reverse().forEach(p=>ctx.lineTo(p.x,p.lo));ctx.closePath();ctx.fillStyle=colorFill;ctx.fill();ctx.strokeStyle=colorStroke;ctx.lineWidth=1;ctx.stroke();ctx.restore()
-}
-function renderPerformanceComparison(){
-  const deltaEl=document.getElementById('perf-delta'), readingEl=document.getElementById('perf-reading')
-  const c=canvasSetup('chart-performance'); if(!c)return
-  const {canvas,ctx,w,h}=c; enableCanvasTooltip(canvas)
-  const ipc=ipcForwardAccumulated(), h2=ipcH2Accumulated()
-  const tc=Number.isFinite(currentSiopel)?((REM_DIC-currentSiopel)/currentSiopel)*100:null
-  const vals=[ipc,tc].filter(Number.isFinite), max=Math.max(10,...vals.map(v=>Math.abs(v)))*1.15
-  const left=Math.min(118,Math.max(92,w*.22)), right=42, x0=left, x1=w-right, barW=Math.max(40,x1-x0)
-  const rows=[
-    {label:'TC a dic-26',value:tc,color:cssVar('--blue'),sub:'SIOPEL → REM dic'},
-    {label:'IPC sep–dic',value:ipc,color:cssVar('--gray'),sub:'REM ago / reales si existen'}
-  ]
-  ctx.save();ctx.font='11px Inter, system-ui, sans-serif';ctx.textBaseline='middle'
-  rows.forEach((r,i)=>{
-    const y=46+i*58, bh=15
-    ctx.fillStyle=cssVar('--txt2');ctx.textAlign='left';ctx.fillText(r.label,8,y-6)
-    ctx.font='9px Inter, system-ui, sans-serif';ctx.fillStyle=cssVar('--txt3');ctx.fillText(r.sub,8,y+11);ctx.font='11px Inter, system-ui, sans-serif'
-    ctx.fillStyle='rgba(255,255,255,.055)';ctx.beginPath();ctx.roundRect(x0,y-bh/2,barW,bh,5);ctx.fill()
-    if(Number.isFinite(r.value)){
-      const fill=Math.max(2,Math.min(barW,Math.abs(r.value)/max*barW))
-      ctx.fillStyle=r.color;ctx.beginPath();ctx.roundRect(x0,y-bh/2,fill,bh,5);ctx.fill()
-      ctx.fillStyle=r.color;ctx.font='600 12px Inter, system-ui, sans-serif';ctx.textAlign='right';ctx.fillText((r.value>=0?'+':'')+r.value.toFixed(1).replace('.',',')+'%',w-4,y)
-      addHit(canvas,x0+fill,y,`${r.label}: ${(r.value>=0?'+':'')+r.value.toFixed(1).replace('.',',')}%`,r.color)
-    }else{
-      ctx.fillStyle=cssVar('--txt3');ctx.textAlign='right';ctx.fillText('esperando SIOPEL',w-4,y)
-    }
-  })
-  ctx.restore()
-  if(Number.isFinite(tc)){
-    const dif=tc-ipc, fav=dif>=0?'a favor del TC':'a favor del IPC'
-    deltaEl.textContent=`TC − IPC: ${dif>=0?'+':''}${dif.toFixed(1).replace('.',',')} p.p.`
-    readingEl.innerHTML=`<strong>Lectura:</strong> desde SIOPEL ${fmtTC(currentSiopel)}, el REM implica una variación del TC de <strong>${tc>=0?'+':''}${tc.toFixed(1).replace('.',',')}%</strong> hasta dic-26, frente a un IPC sep–dic de <strong>+${ipc.toFixed(1).replace('.',',')}%</strong>. Diferencial: <strong>${dif>=0?'+':''}${dif.toFixed(1).replace('.',',')} p.p. ${fav}</strong>. Como referencia, el IPC acumulado jul–dic es +${h2.toFixed(1).replace('.',',')}%.`
-  }else{
-    deltaEl.textContent='esperando SIOPEL'
-    readingEl.innerHTML=`<strong>Lectura:</strong> IPC sep–dic proyectado: +${ipc.toFixed(1).replace('.',',')}%. La comparación con TC se completa al recibir SIOPEL.`
-  }
-}
-
-function renderIPCChart(){
-  const c=canvasSetup('chart-ipc'); if(!c)return; const {canvas,ctx,w,h}=c; enableCanvasTooltip(canvas)
-  const pad={l:42,r:14,t:14,b:30}, vintage=document.getElementById('ipc-vintage')?.value||'ago', f=IPC_VINTAGES[vintage]
-  const order=['Mar 2026','Abr 2026','May 2026','Jun 2026','Jul 2026','Ago 2026','Sep 2026','Oct 2026','Nov 2026','Dic 2026']
-  const labels=order.filter(m=>f[m]!=null || DATA.ipc[m]?.real!=null || (vintage==='ago'&&IPC_PCT_AGO[m]))
-  const vals=[];labels.forEach(m=>{if(f[m]!=null)vals.push(f[m]);if(DATA.ipc[m]?.real!=null)vals.push(DATA.ipc[m].real);if(vintage==='ago'&&IPC_PCT_AGO[m])vals.push(IPC_PCT_AGO[m].p10,IPC_PCT_AGO[m].p90)})
-  const [yMin,yMax]=niceRange(vals,.18),xy=xyFactory(w,h,pad,labels,yMin,yMax);drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:v=>v.toFixed(1).replace('.',',')+'%'})
-  if(vintage==='ago'){const band=labels.map((m,i)=>IPC_PCT_AGO[m]?{x:xy.x(i),lo:xy.y(IPC_PCT_AGO[m].p10),hi:xy.y(IPC_PCT_AGO[m].p90)}:null).filter(Boolean);fillBand(ctx,band,'rgba(107,159,209,.10)','rgba(107,159,209,.28)')}
-  const fp=[],rp=[];labels.forEach((m,i)=>{if(f[m]!=null)fp.push([xy.x(i),xy.y(f[m]),m,f[m]]);if(DATA.ipc[m]?.real!=null)rp.push([xy.x(i),xy.y(DATA.ipc[m].real),m,DATA.ipc[m].real])})
-  drawPolyline(ctx,fp.map(x=>x.slice(0,2)),cssVar('--blue'),2.2);drawPolyline(ctx,rp.map(x=>x.slice(0,2)),cssVar('--teal'),2.4)
-  fp.forEach(([x,y,m,v])=>addHit(canvas,x,y,`${m}: REM ${fmtPct(v,2)}`,cssVar('--blue')));rp.forEach(([x,y,m,v])=>addHit(canvas,x,y,`${m}: real ${fmtPct(v,2)}`,cssVar('--teal')))
-  const note=document.getElementById('ipc-chart-note');if(note)note.textContent=vintage==='ago'?'Banda de dispersión P10–P90 disponible para ago–dic del REM ago-26.':'Para este vintage se muestra mediana vs. real; la banda P10–P90 se conserva para REM ago-26.'
-}
-function renderTCChart(){
-  const c=canvasSetup('chart-tc');if(!c)return;const {canvas,ctx,w,h}=c;enableCanvasTooltip(canvas);const pad={l:54,r:14,t:14,b:30}
-  const labels=['Sep 2026','Oct 2026','Nov 2026','Dic 2026'],vals=[];labels.forEach(m=>{const z=TC_PCT_AGO[m];vals.push(z.p10,z.med,z.p90)});if(Number.isFinite(currentSiopel))vals.push(currentSiopel)
-  const [yMin,yMax]=niceRange(vals,.10),xy=xyFactory(w,h,pad,labels,yMin,yMax);drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:v=>'$'+Math.round(v).toLocaleString('es-AR')})
-  const band=labels.map((m,i)=>({x:xy.x(i),lo:xy.y(TC_PCT_AGO[m].p10),hi:xy.y(TC_PCT_AGO[m].p90)}));fillBand(ctx,band,'rgba(107,159,209,.10)','rgba(107,159,209,.28)')
-  const med=labels.map((m,i)=>[xy.x(i),xy.y(TC_PCT_AGO[m].med)]);drawPolyline(ctx,med,cssVar('--blue'),2.4);med.forEach(([x,y],i)=>addHit(canvas,x,y,`${labels[i]}: mediana ${fmtTC(TC_PCT_AGO[labels[i]].med)}`,cssVar('--blue')))
-  if(Number.isFinite(currentSiopel)){const x=xy.x(0),y=xy.y(currentSiopel);ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fillStyle=cssVar('--txt');ctx.fill();ctx.strokeStyle=cssVar('--bg2');ctx.lineWidth=1.5;ctx.stroke();addHit(canvas,x,y,`SIOPEL intrames: ${fmtTC(currentSiopel)}`,cssVar('--txt'))}
-}
-function accuracyObservations(variable){
-  const cfg={
-    ipc:{tol:.10,unit:'p.p.',label:'IPC'},
-    tc:{tol:1.00,unit:'%',label:'TC'},
-    tamar:{tol:.10,unit:'p.p.',label:'TAMAR'}
-  }
-  const variables=variable==='all'?['ipc','tc','tamar']:[variable]
-  const rows=[]
-  variables.forEach(v=>{
-    const c=cfg[v]
-    Object.entries(DATA[v]||{}).forEach(([m,x])=>{
-      if(!Number.isFinite(x.real)||!Number.isFinite(x.forecast)) return
-      const err=v==='tc'?((x.real/x.forecast)-1)*100:(x.real-x.forecast)
-      rows.push({variable:v,varLabel:c.label,m,error:err,tol:c.tol,unit:c.unit,norm:err/c.tol})
-    })
-  })
-  return rows
-}
-function renderAccuracyChart(){
-  const c=canvasSetup('chart-accuracy');if(!c)return;const {canvas,ctx,w,h}=c;enableCanvasTooltip(canvas);const pad={l:50,r:14,t:14,b:36}
-  const variable=document.getElementById('accuracy-variable')?.value||'ipc'
-  const rows=accuracyObservations(variable)
-  const title=document.getElementById('accuracy-title'),sub=document.getElementById('accuracy-sub'),note=document.getElementById('accuracy-note')
-  const maeLbl=document.getElementById('acc-mae-lbl'),hitLbl=document.getElementById('acc-hit-lbl'),biasLbl=document.getElementById('acc-bias-lbl')
-  const names={ipc:'IPC',tc:'Tipo de cambio',tamar:'TAMAR',all:'Consolidado'}
-  if(title)title.textContent='Accuracy del REM · '+names[variable]
-  if(sub)sub.textContent=variable==='all'?'Error normalizado por tolerancia · 1,0x = límite de acierto':'Error por período con dato real · real − REM'
-  if(note)note.textContent=variable==='all'?'Consolidado: IPC y TAMAR usan tolerancia ±0,10 p.p.; TC usa ±1,0%. Un valor de ±1,0x equivale al límite de tolerancia.':'Solo se incluyen períodos con forecast REM y dato real comparable. TC debe cargarse como promedio mensual observado, no como SIOPEL intrames.'
-  if(!rows.length){
-    ctx.save();ctx.fillStyle=cssVar('--txt3');ctx.font='12px Inter, system-ui, sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('Sin datos reales comparables todavía',w/2,h/2-6);ctx.font='10px Inter, system-ui, sans-serif';ctx.fillText('Cargá el dato real mensual para habilitar el accuracy',w/2,h/2+16);ctx.restore()
-    document.getElementById('acc-mae').textContent='—';document.getElementById('acc-hit').textContent='0 / 0';document.getElementById('acc-bias').textContent='—'
-    if(maeLbl)maeLbl.textContent=variable==='all'?'Error normalizado medio':'MAE';if(hitLbl)hitLbl.textContent='Dentro tolerancia';if(biasLbl)biasLbl.textContent=variable==='all'?'Observaciones':'Sesgo medio';return
-  }
-  const isAll=variable==='all',vals=rows.map(r=>isAll?r.norm:r.error),max=Math.max(isAll?1.15:(variable==='tc'?1.15:.12),...vals.map(Math.abs))*1.18,yMin=-max,yMax=max
-  const labels=rows.map(r=>isAll?`${r.varLabel} ${r.m.split(' ')[0]}`:r.m),xy=xyFactory(w,h,pad,labels,yMin,yMax)
-  drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:v=>isAll?((v>=0?'+':'')+v.toFixed(1).replace('.',',')+'x'):(variable==='tc'?((v>=0?'+':'')+v.toFixed(1).replace('.',',')+'%'):((v>=0?'+':'')+v.toFixed(2).replace('.',',')))})
-  const y0=xy.y(0),tol=isAll?1:(variable==='tc'?1:.10)
-  ;[-tol,tol].forEach(t=>{if(t<yMin||t>yMax)return;const yy=xy.y(t);ctx.save();ctx.strokeStyle='rgba(95,159,132,.34)';ctx.setLineDash([4,4]);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.restore()})
-  ctx.strokeStyle=cssVar('--txt3');ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(pad.l,y0);ctx.lineTo(w-pad.r,y0);ctx.stroke()
-  const bw=Math.min(42,(w-pad.l-pad.r)/Math.max(rows.length,1)*.50)
-  rows.forEach((r,i)=>{const val=isAll?r.norm:r.error,cx=xy.x(i),yv=xy.y(val),top=Math.min(y0,yv),hh=Math.max(2,Math.abs(yv-y0)),inside=Math.abs(r.error)<=r.tol+1e-9,col=inside?cssVar('--teal'):(r.error>0?cssVar('--coral'):cssVar('--amber'));ctx.fillStyle=col;ctx.globalAlpha=.86;ctx.fillRect(cx-bw/2,top,bw,hh);ctx.globalAlpha=1;const valText=isAll?`${val>=0?'+':''}${val.toFixed(2).replace('.',',')}x`:`${r.error>=0?'+':''}${r.error.toFixed(variable==='tc'?1:2).replace('.',',')} ${r.unit}`;addHit(canvas,cx,r.error>=0?top:top+hh,`${r.varLabel} ${r.m}: ${valText}`,col)})
-  const hit=rows.filter(r=>Math.abs(r.error)<=r.tol+1e-9).length
-  if(isAll){
-    const meanAbs=rows.reduce((a,r)=>a+Math.abs(r.norm),0)/rows.length
-    document.getElementById('acc-mae').textContent=meanAbs.toFixed(2).replace('.',',')+'x'
-    document.getElementById('acc-hit').textContent=`${hit} / ${rows.length}`
-    document.getElementById('acc-bias').textContent=String(rows.length)
-    if(maeLbl)maeLbl.textContent='Error normalizado medio';if(hitLbl)hitLbl.textContent='Dentro tolerancia';if(biasLbl)biasLbl.textContent='Observaciones'
-  }else{
-    const mae=rows.reduce((a,r)=>a+Math.abs(r.error),0)/rows.length,bias=rows.reduce((a,r)=>a+r.error,0)/rows.length,unit=variable==='tc'?'%':' p.p.'
-    document.getElementById('acc-mae').textContent=mae.toFixed(variable==='tc'?1:2).replace('.',',')+unit
-    document.getElementById('acc-hit').textContent=`${hit} / ${rows.length}`
-    document.getElementById('acc-bias').textContent=(bias>=0?'+':'')+bias.toFixed(variable==='tc'?1:2).replace('.',',')+unit
-    if(maeLbl)maeLbl.textContent='MAE';if(hitLbl)hitLbl.textContent=variable==='tc'?'Dentro ±1,0%':'Dentro ±0,10 p.p.';if(biasLbl)biasLbl.textContent='Sesgo medio'
-  }
-}
-function renderCharts(){ renderPerformanceComparison(); renderIPCChart(); renderTCChart(); renderAccuracyChart() }
-let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(renderCharts,120)})
-
-renderIPCAccumulated()
-renderIPCScore()
-renderCharts()
-loadManualData()
-fetchSIOPEL()
+const pad=n=>String(n).padStart(2,'0'),now=new Date();const fmtPct=(v,d=2)=>Number(v).toLocaleString('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d})+'%';const fmtTC=v=>'$'+Number(v).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});document.getElementById('ts-now').textContent=`${pad(now.getDate())} ${now.toLocaleString('es-AR',{month:'short'})} ${now.getFullYear()} · ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+const DATA={ipc:{'Mar 2026':{forecast:3,real:3.4},'Abr 2026':{forecast:2.6,real:2.6},'May 2026':{forecast:2.3,real:2.1},'Jun 2026':{forecast:2,real:1.9},'Jul 2026':{forecast:2,real:2.1},'Ago 2026':{forecast:1.72,real:1.7},'Sep 2026':{forecast:1.8,real:null},'Oct 2026':{forecast:1.7,real:null},'Nov 2026':{forecast:1.6,real:null},'Dic 2026':{forecast:1.78,real:null}},tc:{'Jun 2026':{forecast:null,real:1428},'Jul 2026':{forecast:1482,real:null},'Ago 2026':{forecast:1512,real:null},'Sep 2026':{forecast:1530,real:null},'Oct 2026':{forecast:1565,real:null},'Nov 2026':{forecast:1600,real:null},'Dic 2026':{forecast:1630,real:null}},tamar:{'Jun 2026':{forecast:null,real:null},'Jul 2026':{forecast:22.5,real:null},'Ago 2026':{forecast:22.4,real:null},'Sep 2026':{forecast:24.11,real:null},'Oct 2026':{forecast:23.8,real:null},'Nov 2026':{forecast:23.26,real:null},'Dic 2026':{forecast:23.45,real:null}}};const REM_SEP=1530,REM_DIC=1630,MANUAL_KEY='remTracker_manual_v2',SIOPEL_KEY='remTracker_lastSiopel_v2';let currentSiopel=null;
+function switchMain(key,btn){document.querySelectorAll('.main-tab').forEach(x=>x.classList.remove('active'));btn?.classList.add('active');document.querySelectorAll('.main-panel').forEach(x=>x.classList.remove('active'));document.getElementById('main-'+key)?.classList.add('active');requestAnimationFrame(()=>{if(key==='overview')renderPerformanceComparison();if(key==='rem'){renderIPCChart();renderTCChart()}if(key==='accuracy')renderAccuracyChart()})}function switchRem(key,btn){document.querySelectorAll('#tabs-rem .subtab').forEach(x=>x.classList.remove('active'));btn?.classList.add('active');['path','distribution','charts'].forEach(k=>document.getElementById('rem-'+k)?.classList.toggle('active',k===key));if(key==='charts')requestAnimationFrame(()=>{renderIPCChart();renderTCChart()})}function switchPath(key,btn){document.querySelectorAll('#tabs-path .nested-tab').forEach(x=>x.classList.remove('active'));btn?.classList.add('active');['ipc','tc','tamar'].forEach(k=>document.getElementById('path-'+k)?.classList.toggle('active',k===key))}function switchPct(key,btn){document.querySelectorAll('#tabs-pct .nested-tab').forEach(x=>x.classList.remove('active'));btn?.classList.add('active');['ipc-pct','tc-pct'].forEach(k=>document.getElementById('dist-'+k)?.classList.toggle('active',k===key))}
+function ipcAccumulated(months){return(months.reduce((a,m)=>{const x=DATA.ipc[m],r=x?.real??x?.forecast;return Number.isFinite(r)?a*(1+r/100):a},1)-1)*100}function ipcForwardAccumulated(){return ipcAccumulated(['Sep 2026','Oct 2026','Nov 2026','Dic 2026'])}function parseARNumber(raw){if(raw==null)return NaN;let x=String(raw).trim().replace(/\s/g,'').replace(/\$/g,'');if(x.includes(',')&&x.includes('.'))x=x.replace(/\./g,'').replace(',','.');else if(x.includes(','))x=x.replace(',','.');return Number(x)}function extractSiopel(text){if(!text)return NaN;for(const rx of[/SIOPEL[\s\S]{0,160}?\$\s*([\d.]+,\d{1,2})/i,/SIOPEL[^\d]{0,80}([1-9]\d{3}(?:[.,]\d{1,2})?)/i,/(?:siopel|spot)["']?\s*[:=]\s*["']?\$?\s*([\d.,]+)/i]){const m=text.match(rx);if(m){const v=parseARNumber(m[1]);if(v>=1000&&v<=10000)return v}}return NaN}async function fetchWithTimeout(url,ms=7000){const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),ms);try{const r=await fetch(url,{cache:'no-store',signal:ctl.signal});if(!r.ok)throw new Error('HTTP '+r.status);return r}finally{clearTimeout(timer)}}function storeSiopel(value,timestamp){localStorage.setItem(SIOPEL_KEY,JSON.stringify({value,timestamp,source:'seguimiento-fx.vercel.app'}))}function loadCachedSiopel(){try{const x=JSON.parse(localStorage.getItem(SIOPEL_KEY)||'null');if(x&&Number(x.value)>=1000)return x}catch{}return null}
+function updateTC(siopel,{live=false,timestamp=null}={}){currentSiopel=siopel;const pctSep=((siopel-REM_SEP)/REM_SEP)*100,s=pctSep>=0?'+':'';document.getElementById('kpi-tc-val').textContent=fmtTC(siopel);document.getElementById('kpi-tc-sub').textContent=`REM sep prom.: ${fmtTC(REM_SEP)} · ${s}${pctSep.toFixed(1).replace('.',',')}% vs mediana`;const dif=((REM_DIC-siopel)/siopel)*100-ipcForwardAccumulated();document.getElementById('insight-text').innerHTML=`Diferencial TC vs. IPC sep–dic: <strong>${dif>=0?'+':''}${dif.toFixed(1).replace('.',',')} p.p.</strong>, usando SIOPEL intrames ${fmtTC(siopel)} y REM dic-26 ${fmtTC(REM_DIC)}. Comparación indicativa.`;const cls=Math.abs(pctSep)<=1?'b-ok':Math.abs(pctSep)<=3?'b-warn':'b-bad';document.getElementById('td-sep-real').innerHTML=`<span class="hi">${fmtTC(siopel)}</span> <span class="badge b-now">INTRAMES</span>`;document.getElementById('td-sep-desv').innerHTML=`<span class="badge ${cls}">${s}${pctSep.toFixed(1).replace('.',',')}% vs REM</span>`;const badge=document.getElementById('live-badge'),st=document.getElementById('live-status');if(live){badge.textContent='en vivo';st.className='live-status ok';st.textContent=`SIOPEL actualizado · ${(timestamp?new Date(timestamp):new Date()).toLocaleString('es-AR')}`}else{badge.textContent='último dato';st.className='live-status err';st.textContent=`seguimiento-fx no respondió · mostrando último dato válido${timestamp?' · '+new Date(timestamp).toLocaleString('es-AR'):''}`};renderPerformanceComparison();renderTCChart()}async function fetchSIOPEL(){let value=NaN;try{try{const r=await fetchWithTimeout('https://seguimiento-fx.vercel.app/',3500);value=extractSiopel(await r.text())}catch{}if(!Number.isFinite(value)){const r=await fetchWithTimeout('https://api.allorigins.win/get?url='+encodeURIComponent('https://seguimiento-fx.vercel.app/'),5000),j=await r.json();value=extractSiopel(j.contents||'')}if(!Number.isFinite(value))throw new Error();const ts=new Date().toISOString();storeSiopel(value,ts);updateTC(value,{live:true,timestamp:ts})}catch{const c=loadCachedSiopel();if(c){updateTC(c.value,{live:false,timestamp:c.timestamp});return}document.getElementById('kpi-tc-val').textContent='sin conexión';document.getElementById('kpi-tc-sub').textContent='sin último dato válido';document.getElementById('live-badge').textContent='offline';const st=document.getElementById('live-status');st.className='live-status err';st.innerHTML='No se pudo obtener SIOPEL <button class="retry-link" onclick="fetchSIOPEL()">Reintentar</button>'}}
+function getManual(){try{return JSON.parse(localStorage.getItem(MANUAL_KEY)||'{}')}catch{return{}}}function saveManual(x){localStorage.setItem(MANUAL_KEY,JSON.stringify(x))}function findRow(v,m){const b=document.getElementById('tbody-'+v);return Array.from(b?.rows||[]).find(tr=>tr.cells[0]?.textContent.trim()===m)||null}function deviation(v,val,proj){if(!Number.isFinite(proj))return{cls:'b-pend',txt:'sin forecast comparable'};if(v==='ipc'){const d=val-proj,a=Math.abs(d);return{cls:a<=.1000001?'b-ok':d<0?'b-warn':'b-bad',txt:(a<=.1000001?'✓ ':'')+(d>=0?'+':'')+d.toFixed(2).replace('.',',')+' p.p.'}}if(v==='tc'){const p=(val/proj-1)*100,a=Math.abs(p);return{cls:a<=1?'b-ok':a<=3?'b-warn':'b-bad',txt:(p>=0?'+':'')+p.toFixed(1).replace('.',',')+'%'}}const d=val-proj,a=Math.abs(d);return{cls:a<=.1000001?'b-ok':d<0?'b-warn':'b-bad',txt:(d>=0?'+':'')+d.toFixed(2).replace('.',',')+' p.p.'}}function applyReal(v,m,val,{persist=false}={}){if(DATA[v]?.[m])DATA[v][m].real=val;const tr=findRow(v,m);if(tr){const d=deviation(v,val,DATA[v]?.[m]?.forecast),ri=v==='ipc'?5:4,di=v==='ipc'?6:5,txt=v==='tc'?fmtTC(val):fmtPct(val);tr.cells[ri].innerHTML=`<span class="hi">${txt}</span>`;tr.cells[di].innerHTML=`<span class="badge ${d.cls}">${d.txt}</span>`;tr.classList.add('cur-row')}if(persist){const x=getManual();x[v+'|'+m]=val;saveManual(x)}renderPerformanceComparison();renderIPCChart();renderAccuracyChart()}function loadManualData(){Object.entries(getManual()).forEach(([k,v])=>{const[a,b]=k.split('|');if(Number.isFinite(Number(v)))applyReal(a,b,Number(v))})}function cargarDato(){const v=document.getElementById('inp-var').value,m=document.getElementById('inp-mes').value,n=parseFloat(document.getElementById('inp-val').value);if(!Number.isFinite(n))return;applyReal(v,m,n,{persist:true});const e=document.getElementById('msg-ok');e.style.display='inline';setTimeout(()=>e.style.display='none',2000);document.getElementById('inp-val').value=''}function resetManualData(){if(!confirm('¿Restablecer todos los datos ingresados manualmente?'))return;localStorage.removeItem(MANUAL_KEY);location.reload()}
+const IPC_VINTAGES={may:{'Mar 2026':3,'Abr 2026':2.6,'May 2026':2.29,'Jun 2026':2,'Jul 2026':1.98,'Ago 2026':1.8,'Sep 2026':1.8},jun:{'Abr 2026':2.6,'May 2026':2.3,'Jun 2026':2.1,'Jul 2026':2,'Ago 2026':1.8,'Sep 2026':1.87,'Oct 2026':1.8},jul:{'May 2026':2.3,'Jun 2026':2.1,'Jul 2026':2,'Ago 2026':1.8,'Sep 2026':1.89,'Oct 2026':1.78,'Nov 2026':1.71},ago:{'Jun 2026':2,'Jul 2026':2,'Ago 2026':1.72,'Sep 2026':1.8,'Oct 2026':1.7,'Nov 2026':1.6,'Dic 2026':1.78}};const IPC_PCT_AGO={'Ago 2026':{p10:1.6,p90:1.96},'Sep 2026':{p10:1.6,p90:1.98},'Oct 2026':{p10:1.49,p90:1.92},'Nov 2026':{p10:1.4,p90:1.84},'Dic 2026':{p10:1.5,p90:2}};const TC_PCT_AGO={'Sep 2026':{p10:1514,med:1530,p90:1547},'Oct 2026':{p10:1539,med:1565,p90:1594},'Nov 2026':{p10:1563,med:1600,p90:1646},'Dic 2026':{p10:1591,med:1630,p90:1705}};function cssVar(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}function canvasSetup(id){const c=document.getElementById(id);if(!c||c.offsetParent===null)return null;const r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2),w=Math.max(280,Math.round(r.width||620)),h=Math.max(160,Math.round(r.height||240));c.width=w*d;c.height=h*d;const x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,w,h);c._chartW=w;c._chartH=h;c._hit=[];return{canvas:c,ctx:x,w,h}}function niceRange(a,p=.12){a=a.filter(Number.isFinite);if(!a.length)return[0,1];let lo=Math.min(...a),hi=Math.max(...a);if(lo===hi){lo--;hi++}const q=(hi-lo)*p;return[lo-q,hi+q]}function xyFactory(w,h,p,l,lo,hi){const s=Math.max(1,l.length-1);return{x:i=>p.l+(w-p.l-p.r)*(l.length===1?.5:i/s),y:v=>p.t+(hi-v)/(hi-lo)*(h-p.t-p.b)}}function drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt}){ctx.save();ctx.font='10px Inter,system-ui';ctx.fillStyle=cssVar('--faint');ctx.strokeStyle='rgba(255,255,255,.07)';for(let i=0;i<=4;i++){const y=pad.t+(h-pad.t-pad.b)*i/4;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillText(yFmt(yMax-(yMax-yMin)*i/4),pad.l-7,y)}ctx.textAlign='center';ctx.textBaseline='top';labels.forEach((l,i)=>ctx.fillText(l.replace(' 2026',''),pad.l+(w-pad.l-pad.r)*(labels.length===1?.5:i/Math.max(1,labels.length-1)),h-pad.b+9));ctx.restore()}function drawPolyline(ctx,p,c,w=2){if(!p.length)return;ctx.save();ctx.strokeStyle=c;ctx.lineWidth=w;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();p.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.stroke();p.forEach(([x,y])=>{ctx.beginPath();ctx.fillStyle=c;ctx.arc(x,y,3.1,0,Math.PI*2);ctx.fill();ctx.strokeStyle=cssVar('--bg');ctx.lineWidth=1.4;ctx.stroke()});ctx.restore()}function addHit(c,x,y,l,col){c._hit.push({x,y,label:l,color:col})}function enableCanvasTooltip(c){if(c._tooltipBound)return;c._tooltipBound=true;const t=document.createElement('div');t.style.cssText='position:fixed;z-index:9999;pointer-events:none;background:#1B222B;border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:5px 8px;font:600 11px Inter,system-ui;color:#E7EBEF;display:none';document.body.appendChild(t);const mv=e=>{const r=c.getBoundingClientRect(),sx=(e.clientX-r.left)*(c._chartW/r.width),sy=(e.clientY-r.top)*(c._chartH/r.height);let b=null,d=999;for(const h of c._hit||[]){const z=Math.hypot(sx-h.x,sy-h.y);if(z<d){d=z;b=h}}if(b&&d<16){t.textContent=b.label;t.style.color=b.color||'#E7EBEF';t.style.left=Math.min(innerWidth-170,e.clientX+10)+'px';t.style.top=Math.max(8,e.clientY-38)+'px';t.style.display='block'}else t.style.display='none'};c.addEventListener('mousemove',mv);c.addEventListener('mouseleave',()=>t.style.display='none');c.addEventListener('touchstart',e=>{if(e.touches[0])mv(e.touches[0])},{passive:true})}function fillBand(ctx,p,f,s){if(p.length<2)return;ctx.save();ctx.beginPath();ctx.moveTo(p[0].x,p[0].hi);p.slice(1).forEach(z=>ctx.lineTo(z.x,z.hi));p.slice().reverse().forEach(z=>ctx.lineTo(z.x,z.lo));ctx.closePath();ctx.fillStyle=f;ctx.fill();ctx.strokeStyle=s;ctx.stroke();ctx.restore()}
+function renderPerformanceComparison(){const c=canvasSetup('chart-performance');if(!c)return;const{canvas,ctx,w,h}=c;enableCanvasTooltip(canvas);const labels=['Hoy','Sep','Oct','Nov','Dic'],tc=Number.isFinite(currentSiopel)?[0,1530,1565,1600,1630].map((v,i)=>i?((v/currentSiopel)-1)*100:0):[0,null,null,null,null];let a=1;const ipc=[0];['Sep 2026','Oct 2026','Nov 2026','Dic 2026'].forEach(m=>{a*=1+(DATA.ipc[m]?.real??DATA.ipc[m]?.forecast)/100;ipc.push((a-1)*100)});const vals=[...tc,...ipc].filter(Number.isFinite),r=niceRange(vals,.18),yMin=Math.min(0,r[0]),yMax=Math.max(0,r[1]),pad={l:45,r:16,t:14,b:30},xy=xyFactory(w,h,pad,labels,yMin,yMax);drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:v=>(v>=0?'+':'')+v.toFixed(1).replace('.',',')+'%'});const ip=ipc.map((v,i)=>[xy.x(i),xy.y(v)]);drawPolyline(ctx,ip,cssVar('--muted'),2.2);ip.forEach(([x,y],i)=>addHit(canvas,x,y,`${labels[i]} · IPC ${ipc[i]>=0?'+':''}${ipc[i].toFixed(1).replace('.',',')}%`,cssVar('--muted')));if(tc.slice(1).every(Number.isFinite)){const tp=tc.map((v,i)=>[xy.x(i),xy.y(v)]);drawPolyline(ctx,tp,cssVar('--blue'),2.5);tp.forEach(([x,y],i)=>addHit(canvas,x,y,`${labels[i]} · TC ${tc[i]>=0?'+':''}${tc[i].toFixed(1).replace('.',',')}%`,cssVar('--blue')))}const de=document.getElementById('perf-delta'),re=document.getElementById('perf-reading');if(Number.isFinite(currentSiopel)){const d=tc[4]-ipc[4];de.textContent=`Dic · TC − IPC ${d>=0?'+':''}${d.toFixed(1).replace('.',',')} p.p.`;re.innerHTML=`<strong>Dic-26:</strong> depreciación implícita <strong>${tc[4]>=0?'+':''}${tc[4].toFixed(1).replace('.',',')}%</strong> vs IPC sep–dic <strong>+${ipc[4].toFixed(1).replace('.',',')}%</strong>. Diferencial: <strong>${d>=0?'+':''}${d.toFixed(1).replace('.',',')} p.p.</strong>`}else{de.textContent='esperando SIOPEL';re.innerHTML=`IPC sep–dic acumulado: <strong>+${ipc[4].toFixed(1).replace('.',',')}%</strong>.`}}
+function renderIPCChart(){const c=canvasSetup('chart-ipc');if(!c)return;const{canvas,ctx,w,h}=c;enableCanvasTooltip(canvas);const pad={l:42,r:14,t:14,b:30},v=document.getElementById('ipc-vintage')?.value||'ago',f=IPC_VINTAGES[v],order=['Mar 2026','Abr 2026','May 2026','Jun 2026','Jul 2026','Ago 2026','Sep 2026','Oct 2026','Nov 2026','Dic 2026'],labels=order.filter(m=>f[m]!=null||DATA.ipc[m]?.real!=null||(v==='ago'&&IPC_PCT_AGO[m])),vals=[];labels.forEach(m=>{if(f[m]!=null)vals.push(f[m]);if(DATA.ipc[m]?.real!=null)vals.push(DATA.ipc[m].real);if(v==='ago'&&IPC_PCT_AGO[m])vals.push(IPC_PCT_AGO[m].p10,IPC_PCT_AGO[m].p90)});const[yMin,yMax]=niceRange(vals,.18),xy=xyFactory(w,h,pad,labels,yMin,yMax);drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:x=>x.toFixed(1).replace('.',',')+'%'});if(v==='ago')fillBand(ctx,labels.map((m,i)=>IPC_PCT_AGO[m]?{x:xy.x(i),lo:xy.y(IPC_PCT_AGO[m].p10),hi:xy.y(IPC_PCT_AGO[m].p90)}:null).filter(Boolean),'rgba(107,159,209,.10)','rgba(107,159,209,.28)');const fp=[],rp=[];labels.forEach((m,i)=>{if(f[m]!=null)fp.push([xy.x(i),xy.y(f[m]),m,f[m]]);if(DATA.ipc[m]?.real!=null)rp.push([xy.x(i),xy.y(DATA.ipc[m].real),m,DATA.ipc[m].real])});drawPolyline(ctx,fp.map(x=>x.slice(0,2)),cssVar('--blue'),2.2);drawPolyline(ctx,rp.map(x=>x.slice(0,2)),cssVar('--green'),2.4);fp.forEach(([x,y,m,z])=>addHit(canvas,x,y,`${m}: REM ${fmtPct(z)}`,cssVar('--blue')));rp.forEach(([x,y,m,z])=>addHit(canvas,x,y,`${m}: real ${fmtPct(z)}`,cssVar('--green')));document.getElementById('ipc-chart-note').textContent=v==='ago'?'Banda P10–P90 disponible para ago–dic del REM ago-26.':'Para este vintage se muestra mediana vs. real.'}function renderTCChart(){const c=canvasSetup('chart-tc');if(!c)return;const{canvas,ctx,w,h}=c;enableCanvasTooltip(canvas);const pad={l:54,r:14,t:14,b:30},labels=['Sep 2026','Oct 2026','Nov 2026','Dic 2026'],vals=[];labels.forEach(m=>{const z=TC_PCT_AGO[m];vals.push(z.p10,z.med,z.p90)});if(Number.isFinite(currentSiopel))vals.push(currentSiopel);const[yMin,yMax]=niceRange(vals,.1),xy=xyFactory(w,h,pad,labels,yMin,yMax);drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:v=>'$'+Math.round(v).toLocaleString('es-AR')});fillBand(ctx,labels.map((m,i)=>({x:xy.x(i),lo:xy.y(TC_PCT_AGO[m].p10),hi:xy.y(TC_PCT_AGO[m].p90)})),'rgba(107,159,209,.10)','rgba(107,159,209,.28)');const med=labels.map((m,i)=>[xy.x(i),xy.y(TC_PCT_AGO[m].med)]);drawPolyline(ctx,med,cssVar('--blue'),2.4);if(Number.isFinite(currentSiopel)){const x=xy.x(0),y=xy.y(currentSiopel);ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fillStyle=cssVar('--text');ctx.fill();addHit(canvas,x,y,`SIOPEL intrames: ${fmtTC(currentSiopel)}`,cssVar('--text'))}}
+function accuracyObservations(v){const cfg={ipc:{tol:.1,unit:'p.p.',label:'IPC'},tc:{tol:1,unit:'%',label:'TC'},tamar:{tol:.1,unit:'p.p.',label:'TAMAR'}},vars=v==='all'?['ipc','tc','tamar']:[v],rows=[];vars.forEach(k=>Object.entries(DATA[k]||{}).forEach(([m,x])=>{if(!Number.isFinite(x.real)||!Number.isFinite(x.forecast))return;const e=k==='tc'?((x.real/x.forecast)-1)*100:x.real-x.forecast,c=cfg[k];rows.push({variable:k,varLabel:c.label,m,error:e,tol:c.tol,unit:c.unit,norm:e/c.tol})}));return rows}function renderAccuracyChart(){const c=canvasSetup('chart-accuracy');if(!c)return;const{canvas,ctx,w,h}=c;enableCanvasTooltip(canvas);const pad={l:50,r:14,t:14,b:36},v=document.getElementById('accuracy-variable')?.value||'ipc',rows=accuracyObservations(v),names={ipc:'IPC',tc:'Tipo de cambio',tamar:'TAMAR',all:'Consolidado'},isAll=v==='all';document.getElementById('accuracy-title').textContent='Accuracy del REM · '+names[v];document.getElementById('accuracy-sub').textContent=isAll?'Error normalizado por tolerancia · 1,0x = límite de acierto':'Error por período con dato real · real − REM';document.getElementById('accuracy-note').textContent=isAll?'IPC y TAMAR: ±0,10 p.p. · TC: ±1,0%.':'Solo se incluyen períodos con forecast REM y dato real comparable. TC requiere promedio mensual observado, no SIOPEL intrames.';const M=document.getElementById('acc-mae'),H=document.getElementById('acc-hit'),B=document.getElementById('acc-bias'),ML=document.getElementById('acc-mae-lbl'),HL=document.getElementById('acc-hit-lbl'),BL=document.getElementById('acc-bias-lbl');if(!rows.length){ctx.save();ctx.fillStyle=cssVar('--faint');ctx.font='12px Inter,system-ui';ctx.textAlign='center';ctx.fillText('Sin datos reales comparables todavía',w/2,h/2-6);ctx.font='10px Inter,system-ui';ctx.fillText('Cargá el promedio mensual observado para habilitar el accuracy',w/2,h/2+16);ctx.restore();M.textContent='—';H.textContent='0 / 0';B.textContent='—';return}const vals=rows.map(r=>isAll?r.norm:r.error),max=Math.max(isAll?1.15:(v==='tc'?1.15:.12),...vals.map(Math.abs))*1.18,yMin=-max,yMax=max,labels=rows.map(r=>isAll?`${r.varLabel} ${r.m.split(' ')[0]}`:r.m),xy=xyFactory(w,h,pad,labels,yMin,yMax);drawAxesCanvas(ctx,{w,h,pad,yMin,yMax,labels,yFmt:x=>isAll?((x>=0?'+':'')+x.toFixed(1).replace('.',',')+'x'):(v==='tc'?((x>=0?'+':'')+x.toFixed(1).replace('.',',')+'%'):((x>=0?'+':'')+x.toFixed(2).replace('.',',')))});const y0=xy.y(0),tol=isAll?1:(v==='tc'?1:.1);[-tol,tol].forEach(t=>{const yy=xy.y(t);ctx.save();ctx.strokeStyle='rgba(95,159,132,.34)';ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.restore()});const bw=Math.min(42,(w-pad.l-pad.r)/rows.length*.5);rows.forEach((r,i)=>{const val=isAll?r.norm:r.error,cx=xy.x(i),yv=xy.y(val),top=Math.min(y0,yv),hh=Math.max(2,Math.abs(yv-y0)),inside=Math.abs(r.error)<=r.tol+1e-9,col=inside?cssVar('--green'):(r.error>0?cssVar('--red'):cssVar('--amber'));ctx.fillStyle=col;ctx.fillRect(cx-bw/2,top,bw,hh);addHit(canvas,cx,r.error>=0?top:top+hh,`${r.varLabel} ${r.m}`,col)});const hit=rows.filter(r=>Math.abs(r.error)<=r.tol+1e-9).length;if(isAll){M.textContent=(rows.reduce((a,r)=>a+Math.abs(r.norm),0)/rows.length).toFixed(2).replace('.',',')+'x';H.textContent=`${hit} / ${rows.length}`;B.textContent=String(rows.length);ML.textContent='Error normalizado medio';HL.textContent='Dentro tolerancia';BL.textContent='Observaciones'}else{const mae=rows.reduce((a,r)=>a+Math.abs(r.error),0)/rows.length,bias=rows.reduce((a,r)=>a+r.error,0)/rows.length,u=v==='tc'?'%':' p.p.';M.textContent=mae.toFixed(v==='tc'?1:2).replace('.',',')+u;H.textContent=`${hit} / ${rows.length}`;B.textContent=(bias>=0?'+':'')+bias.toFixed(v==='tc'?1:2).replace('.',',')+u;ML.textContent='MAE';HL.textContent=v==='tc'?'Dentro ±1,0%':'Dentro ±0,10 p.p.';BL.textContent='Sesgo medio'}}
+let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{renderPerformanceComparison();renderIPCChart();renderTCChart();renderAccuracyChart()},120)});renderPerformanceComparison();loadManualData();fetchSIOPEL();
 </script>
 </body>
 </html>
