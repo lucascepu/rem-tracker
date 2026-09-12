@@ -13,7 +13,9 @@
   - `next` is the one-step-ahead observation used by Accuracy.
   - `ipcPath` / `tamarPath` / `tcPath` store additional verified monthly forecasts when available.
   - `dec26` stores the December-2026 anchor published in each vintage.
+  - Manual observed-data overrides are disabled; observed data is automatic only.
 */
+try{localStorage.removeItem('remTracker_manual_v2')}catch{}
 window.REM_HISTORY = {
   methodology: {
     accuracy: 'one_step_ahead',
@@ -21,7 +23,8 @@ window.REM_HISTORY = {
     tcReal: 'simple monthly average of daily SIOPEL observations',
     ipcReal: 'official INDEC monthly IPC',
     tamarReal: 'official BCRA monthly TAMAR when available',
-    interpolation: false
+    interpolation: false,
+    manualOverrides: false
   },
   vintages: {
     '2025-12': {
