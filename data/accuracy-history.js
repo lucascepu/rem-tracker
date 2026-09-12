@@ -5,12 +5,15 @@
   const manualSection=document.querySelector('.form-section');
   if(manualSection) manualSection.remove();
 
-  /* Panorama: "Completo" already renders real data as solid lines and REM as
-     dashed projections. Remove the redundant combined view. */
+  /* Panorama: keep three clear views and simplify their labels. */
   const perfSelect=document.getElementById('perf-view');
   if(perfSelect){
     const combined=perfSelect.querySelector('option[value="combined"]');
     if(combined) combined.remove();
+    const real=perfSelect.querySelector('option[value="real"]');
+    const projected=perfSelect.querySelector('option[value="projected"]');
+    if(real) real.textContent='Real';
+    if(projected) projected.textContent='Proyectado';
     if(perfSelect.value==='combined') perfSelect.value='full';
   }
 
