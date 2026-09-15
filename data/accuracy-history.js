@@ -2,6 +2,12 @@
    Loaded after index.html's core script so it can replace the original bar chart
    and keep Accuracy fully automatic. */
 (function(){
+  /* Match seguimiento-fx desktop viewport: 1280px total page width with 28px side padding.
+     Mobile keeps the existing REM Tracker responsive rules. */
+  const widthStyle=document.createElement('style');
+  widthStyle.textContent='@media (min-width:851px){body{max-width:1280px;margin:0 auto;padding:20px 28px}.shell{max-width:100%;width:100%}}';
+  document.head.appendChild(widthStyle);
+
   const manualSection=document.querySelector('.form-section');
   if(manualSection) manualSection.remove();
 
