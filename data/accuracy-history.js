@@ -55,6 +55,77 @@
   }
   renderIpcHistoryTable();
 
+  /* Senderos TC/TAMAR: latest verified vintages, including REM sep-26. */
+  function renderLatestPathTable(variable){
+    const panel=document.getElementById('path-'+variable),hist=window.REM_HISTORY?.vintages||{};if(!panel)return;
+    const vintages=['2026-06','2026-07','2026-08','2026-09'].filter(v=>hist[v]);
+    const periods=variable==='tc'?['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03']:['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03'];
+    const pathKey=variable+'Path',fmt=v=>variable==='tc'?'
+    if(variable==='ipc') return Number(window.REM_HISTORY?.actualIpc?.[period]);
+    if(variable==='tc'){
+      if(period>=currentYM()) return NaN;
+      const hist=(typeof fxMonthly!=='undefined')?fxMonthly:{};
+      return Number(hist?.[period]?.avg);
+    }
+    if(variable==='tamar'){
+      const app=(typeof DATA!=='undefined')?DATA:null;
+      return Number(app?.tamar?.[periodLabel(period)]?.real);
+    }
+    return NaN;
+  }
+  function historyRows(variable){
+    const hist=window.REM_HISTORY?.vintages||{},cfg=CFG[variable];if(!cfg)return[];
+    return Object.entries(hist).sort(([a],[b])=>a.localeCompare(b)).map(([vintage,v])=>{
+      const n=v?.next,period=n?.period,forecast=Number(n?.[variable]),real=period?realFor(variable,period):NaN;
+      if(!period||!Number.isFinite(forecast)||!Number.isFinite(real))return null;
+      const error=variable==='tc'?((real/forecast)-1)*100:(real-forecast);
+      return {variable,period,label:periodLabel(period),vintage,sourceLabel:v.label,forecast,real,error,tol:cfg.tol,unit:cfg.unit,norm:error/cfg.tol};
+    }).filter(Boolean);
+  }
+  window.accuracyObservations=function(variable){return historyRows(variable)};
+  function fmtValue(v,variable){if(variable==='tc')return '$'+Math.round(v).toLocaleString('es-AR');return v.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:2})+'%'}
+  function fmtError(v,variable){const sign=v>0?'+':'';return sign+v.toLocaleString('es-AR',{minimumFractionDigits:variable==='tc'?1:2,maximumFractionDigits:variable==='tc'?1:2})+(variable==='tc'?'%':' p.p.')}
+  function updateMetrics(rows,variable){
+    const M=document.getElementById('acc-mae'),H=document.getElementById('acc-hit'),B=document.getElementById('acc-bias'),ML=document.getElementById('acc-mae-lbl'),HL=document.getElementById('acc-hit-lbl'),BL=document.getElementById('acc-bias-lbl');
+    if(!rows.length){M.textContent='—';H.textContent='—';B.textContent='—';return}
+    const hit=rows.filter(r=>Math.abs(r.error)<=r.tol+1e-9).length,hitPct=hit/rows.length*100;
+    const mae=rows.reduce((a,r)=>a+Math.abs(r.error),0)/rows.length,bias=rows.reduce((a,r)=>a+r.error,0)/rows.length,u=variable==='tc'?'%':' p.p.';
+    M.textContent=mae.toFixed(variable==='tc'?1:2).replace('.',',')+u;H.textContent=Math.round(hitPct)+'% ('+hit+'/'+rows.length+')';B.textContent=(bias>=0?'+':'')+bias.toFixed(variable==='tc'?1:2).replace('.',',')+u;
+    ML.textContent='MAE';HL.textContent='Dentro tolerancia';BL.textContent='Sesgo medio';
+  }
+  function emptyChart(ctx,w,h,msg,sub){ctx.save();ctx.fillStyle=cssVar('--faint');ctx.textAlign='center';ctx.font='12px Inter,system-ui';ctx.fillText(msg,w/2,h/2-5);ctx.font='10px Inter,system-ui';ctx.fillText(sub,w/2,h/2+16);ctx.restore()}
+  function renderDumbbell(canvas,ctx,w,h,rows,variable){
+    const vals=rows.flatMap(r=>[r.forecast,r.real]),range=niceRange(vals,.10),min=range[0],max=range[1],pad={l:w<520?48:66,r:w<520?52:76,t:28,b:30},plotW=w-pad.l-pad.r,x=v=>pad.l+(v-min)/(max-min)*plotW,rowH=(h-pad.t-pad.b)/Math.max(rows.length,1);
+    ctx.save();ctx.font='9.5px Inter,system-ui';ctx.fillStyle=cssVar('--faint');ctx.textAlign='center';ctx.textBaseline='top';
+    for(let i=0;i<=4;i++){const v=min+(max-min)*i/4,xx=x(v);ctx.strokeStyle='rgba(255,255,255,.05)';ctx.beginPath();ctx.moveTo(xx,pad.t-5);ctx.lineTo(xx,h-pad.b);ctx.stroke();ctx.fillText(variable==='tc'?'$'+Math.round(v).toLocaleString('es-AR'):v.toFixed(1).replace('.',',')+'%',xx,h-pad.b+8)}
+    rows.forEach((r,i)=>{const y=pad.t+rowH*(i+.5),xf=x(r.forecast),xr=x(r.real),inside=Math.abs(r.error)<=r.tol+1e-9;ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillStyle=cssVar('--faint');ctx.font='10px Inter,system-ui';ctx.fillText(r.label.split(' ')[0],pad.l-10,y);ctx.strokeStyle=inside?'rgba(95,159,132,.55)':'rgba(255,255,255,.20)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(xf,y);ctx.lineTo(xr,y);ctx.stroke();ctx.fillStyle=cssVar('--blue');ctx.beginPath();ctx.arc(xf,y,4,0,Math.PI*2);ctx.fill();ctx.fillStyle=cssVar('--bg');ctx.strokeStyle=cssVar('--text');ctx.lineWidth=2;ctx.beginPath();ctx.arc(xr,y,4.5,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.textAlign='left';ctx.fillStyle=inside?cssVar('--green'):cssVar('--muted');ctx.font='600 9.5px Inter,system-ui';ctx.fillText(fmtError(r.error,variable),w-pad.r+10,y);addHit(canvas,xf,y,`${r.label} · ${r.sourceLabel}: ${fmtValue(r.forecast,variable)}`,cssVar('--blue'));addHit(canvas,xr,y,`${r.label} · Real: ${fmtValue(r.real,variable)} · error ${fmtError(r.error,variable)}`,cssVar('--text'))});ctx.restore();
+  }
+  const select=document.getElementById('accuracy-variable');
+  if(select){
+    const consolidated=select.querySelector('option[value="all"]');
+    if(consolidated) consolidated.remove();
+    if(select.value==='all') select.value='ipc';
+  }
+  window.renderAccuracyChart=function(){
+    const c=canvasSetup('chart-accuracy');if(!c)return;const{canvas,ctx,w,h}=c;enableCanvasTooltip(canvas);const variable=document.getElementById('accuracy-variable')?.value||'ipc',rows=window.accuracyObservations(variable),names={ipc:'IPC',tc:'Tipo de cambio',tamar:'TAMAR'};
+    document.getElementById('accuracy-title').textContent='Accuracy del REM · '+names[variable];document.getElementById('accuracy-sub').textContent='REM anterior al mes observado ●────○ Real';const note=document.getElementById('accuracy-note');
+    if(variable==='tc')note.textContent='● REM previo · ○ promedio mensual SIOPEL. Solo se incorporan meses ya cerrados.';else if(variable==='ipc')note.textContent='● REM previo · ○ IPC INDEC real. Comparación one-step-ahead, sin mezclar vintages.';else note.textContent='● REM previo · ○ TAMAR mensual real. Se muestran solo meses con dato BCRA comparable.';
+    updateMetrics(rows,variable);if(!rows.length){emptyChart(ctx,w,h,variable==='tc'?'Cargando histórico SIOPEL…':'Sin observaciones comparables','El gráfico aparece cuando forecast y real están disponibles.');return}renderDumbbell(canvas,ctx,w,h,rows,variable);
+  };
+  requestAnimationFrame(()=>window.renderAccuracyChart());
+})();
++Math.round(v).toLocaleString('es-AR'):Number(v).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
+    const wrap=panel.querySelector('.tbl-wrap');if(!wrap)return;let html='<table style="min-width:820px"><thead><tr><th>Mes</th>';
+    vintages.forEach(v=>html+='<th>'+hist[v].label+'</th>');html+='<th>Real / observado</th><th>Desvío vs REM previo</th></tr></thead><tbody>';
+    periods.forEach(period=>{const [y,m]=period.split('-').map(Number),pd=new Date(Date.UTC(y,m-2,1)),prior=`${pd.getUTCFullYear()}-${String(pd.getUTCMonth()+1).padStart(2,'0')}`;let real=NaN;
+      if(variable==='tc'&&period<currentYM()){const fx=(typeof fxMonthly!=='undefined')?fxMonthly:{};real=Number(fx?.[period]?.avg)}
+      const priorForecast=Number(hist[prior]?.[pathKey]?.[period]??hist[prior]?.next?.[variable]);let err=NaN;if(Number.isFinite(real)&&Number.isFinite(priorForecast))err=variable==='tc'?((real/priorForecast)-1)*100:real-priorForecast;
+      html+='<tr'+(Number.isFinite(real)?' class="cur-row"':'')+'><td>'+periodLabel(period)+'</td>';vintages.forEach(v=>{const val=Number(hist[v]?.[pathKey]?.[period]);html+=Number.isFinite(val)?'<td'+(v===prior?' class="hi"':'')+'>'+fmt(val)+'</td>':'<td class="nd">—</td>'});
+      html+=Number.isFinite(real)?'<td class="hi">'+fmt(real)+'</td>':'<td class="nd">—</td>';if(Number.isFinite(err)){const ok=Math.abs(err)<=1.0000001,cls=ok?'b-ok':'b-warn';html+='<td><span class="badge '+cls+'">'+(err>=0?'+':'')+err.toFixed(1).replace('.',',')+'% vs REM</span></td>'}else html+='<td><span class="badge b-pend">pendiente</span></td>';html+='</tr>'});
+    html+='</tbody></table>';wrap.innerHTML=html;const note=panel.querySelector('.note');if(note)note.innerHTML=variable==='tc'?'TC real = <strong>promedio mensual SIOPEL</strong>. Septiembre cerrado; el cierre 30/9 fue $1.517 y el promedio mensual se calcula automáticamente desde la serie diaria.':'TAMAR REM = promedio mensual de días hábiles. El dato real se incorpora solo cuando está disponible automáticamente desde BCRA.';
+  }
+  renderLatestPathTable('tc');renderLatestPathTable('tamar');setTimeout(()=>renderLatestPathTable('tc'),1800);setTimeout(()=>renderLatestPathTable('tc'),4500);
+
   function realFor(variable,period){
     if(variable==='ipc') return Number(window.REM_HISTORY?.actualIpc?.[period]);
     if(variable==='tc'){
