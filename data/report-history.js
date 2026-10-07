@@ -7,6 +7,8 @@
       label:'Septiembre 2026',
       vintage:'REM sep-26',
       published:'6 oct 2026',
+      sourcePage:'https://www.bcra.gob.ar/relevamiento-expectativas-mercado-rem/',
+      customReady:false,
       desktop:{
         filename:'REM_Tracker_Septiembre_2026_PC.pdf',
         parts:[
@@ -36,6 +38,7 @@
     .report-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
     .report-btn{appearance:none;border:1px solid rgba(107,159,209,.34);background:rgba(107,159,209,.09);color:var(--text);border-radius:5px;font:600 11px var(--font);padding:7px 10px;cursor:pointer}
     .report-btn:hover{background:rgba(107,159,209,.14)}
+    .report-btn[disabled]{opacity:.45;cursor:not-allowed}.report-actions a.report-btn{text-decoration:none;display:inline-flex;align-items:center}
     .report-btn.secondary{border-color:var(--border);background:none;color:var(--muted)}
     .report-status{font-size:10px;color:var(--faint);margin-top:7px;min-height:15px}
     @media(max-width:600px){.report-row{grid-template-columns:1fr;gap:10px}.report-actions{justify-content:flex-start}.report-btn{flex:1 1 145px}}
@@ -76,8 +79,9 @@
         <div class="report-meta">${r.vintage} · publicado ${r.published}</div>
       </div>
       <div class="report-actions">
-        <button class="report-btn" data-period="${r.period}" data-kind="desktop">Descargar PDF · PC</button>
-        <button class="report-btn secondary" data-period="${r.period}" data-kind="mobile">Descargar PDF · Mobile</button>
+        <button class="report-btn" data-period="${r.period}" data-kind="desktop" ${r.customReady?'':'disabled'}>${r.customReady?'Descargar PDF · PC':'PDF PC · preparando'}</button>
+        <button class="report-btn secondary" data-period="${r.period}" data-kind="mobile" ${r.customReady?'':'disabled'}>${r.customReady?'Descargar PDF · Mobile':'PDF Mobile · preparando'}</button>
+        <a class="report-btn secondary" href="${r.sourcePage}" target="_blank" rel="noopener noreferrer">Fuente oficial BCRA ↗</a>
       </div>
     `;
     list.appendChild(row);
