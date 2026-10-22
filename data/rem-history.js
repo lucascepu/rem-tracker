@@ -117,6 +117,9 @@ window.REM_HISTORY = {
       tamarPath: { '2026-10':23.5625,'2026-11':23.5,'2026-12':23.5,'2027-01':23.15,'2027-02':22.61,'2027-03':22.255 },
       tcPath: { '2026-10':1545.03203561277,'2026-11':1579.92075,'2026-12':1614.32226296034,'2027-01':1644,'2027-02':1672,'2027-03':1704 },
       dec26: { tc: 1614.32226296034, ipc_yoy: 30.0, tamar: 23.5 },
+      /* «Próx. 12 meses» del REM (hoja «Cuadros de resultados», columna Mediana): inflación interanual a sep-27
+         (40 participantes) y TC de sep-27. Es un dato de horizonte, no un sendero mensual. */
+      next12: { horizon: '2027-09', ipc_yoy: 21.05, tc: 1945.05, participants: 40 },
       annual: {
         ipc_2026_yoy:30, ipc_2027_yoy:21.21, ipc_2028_yoy:15,
         core_ipc_2026_yoy:28, core_ipc_2027_yoy:21.2, core_ipc_2028_yoy:14.45,

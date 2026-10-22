@@ -13,7 +13,7 @@ jobs:
           node-version: '22'
       - name: Check JavaScript files
         run: |
-          for file in data/*.js; do node --check "$file"; done
+          for file in data/*.js tests/*.js; do node --check "$file"; done
       - name: Check inline HTML JavaScript
         run: |
           node - <<'NODE'
@@ -24,3 +24,5 @@ jobs:
           scripts.forEach((m,i)=>new vm.Script(m[1],{filename:'index-inline-'+i+'.js'}));
           console.log('Validated',scripts.length,'inline script(s)');
           NODE
+      - name: Bandas cambiarias · conciliación y controles
+        run: node tests/bands.check.js
