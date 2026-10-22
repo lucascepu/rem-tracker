@@ -1,0 +1,26 @@
+name: Validate REM Tracker JavaScript
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript files
+        run: |
+          for file in data/*.js; do node --check "$file"; done
+      - name: Check inline HTML JavaScript
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs'),vm=require('node:vm');
+          const html=fs.readFileSync('index.html','utf8');
+          const scripts=[...html.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g)];
+          if(!scripts.length)throw Error('No inline scripts found');
+          scripts.forEach((m,i)=>new vm.Script(m[1],{filename:'index-inline-'+i+'.js'}));
+          console.log('Validated',scripts.length,'inline script(s)');
+          NODE
