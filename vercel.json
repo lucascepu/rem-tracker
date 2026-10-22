@@ -1,0 +1,29 @@
+{
+  "headers": [
+    {
+      "source": "/data/bandas-bcra.json",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, HEAD, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, s-maxage=300, stale-while-revalidate=60"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}
