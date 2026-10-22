@@ -40,3 +40,44 @@ En `REPORTES`, cada edición ofrece el PDF oficial BCRA, el Excel oficial y el e
 7. Validar JavaScript, funcionamiento desktop/mobile y la disponibilidad real de descargas.
 
 Última revisión de datos IPC: **22/10/2026**. Último vintage REM publicado: **septiembre 2026** (06/10/2026).
+
+
+## Bandas BCRA — API JSON pública compartida (única fuente)
+
+**URL canónica para Seguimiento FX y otros consumidores:**
+https://rem-tracker.vercel.app/data/bandas-bcra.json
+
+Respaldo público del mismo archivo versionado en `main`:
+https://raw.githubusercontent.com/lucascepu/rem-tracker/main/data/bandas-bcra.json
+
+Estos dos enlaces son representaciones del **mismo archivo** de REM Tracker. No representan dos proveedores distintos. Consumir normalmente la URL de Vercel; la de GitHub es alternativa sólo si falla el hosting.
+
+**Origen autoritativo:** `data/bands-history.js` (BCRA) + `data/rem-history.js` (INDEC y vintages REM) + `data/bands-model.js` (cálculo). `data/bandas-bcra.json` es la salida generada, **no se debe editar manualmente**.
+
+**Estructura del JSON (`schema_version: 1.0.0`):**
+- `official_daily`: todos los registros publicados por el BCRA con `date`, `piso`, `techo`, `status: "OFICIAL"`.
+- `projected_daily`: proyecciones desde el día posterior al último día oficial hasta agosto de 2027, sólo lunes a viernes. Sus estados distinguen `PROYECTADO REM` de `PROYECTADO IMPLÍCITO`. **No son cotizaciones del BCRA**.
+- `monthly_ceiling`: fin de mes calendario (`date`), banda superior e inferior, inflación aplicada y mes del IPC T−2, estado y tipo de fuente. Oct-26 31/10 es `ESTIMADO TÉCNICO`, mientras que 30/10 existe en `official_daily`.
+- `original_scenario_monthly`: escenario de sensibilidad histórico; no usar como base predeterminada.
+- `rem_vintages`: senderos IPC/TC y metadatos de los relevamientos guardados.
+- `ipc_observed`: tasas INDEC mensuales verificadas.
+- `sources`, `assumptions`, `implied_inflation`, `counts`: trazabilidad, metodología y fecha del último archivo BCRA almacenado.
+
+**Para generar o auditar:**
+```bash
+node tests/bands.check.js
+node scripts/build-bands-feed.js
+```
+
+El workflow `.github/workflows/build-bands-feed.yml` se ejecuta al cambiar fuentes/modelo en `main`, verifica los cálculos, regenera el JSON y hace commit sólo cuando cambia el contenido. También admite ejecución manual desde GitHub Actions. Vercel publica la versión resultante por integración con GitHub.
+
+**Contrato con Seguimiento FX:**
+1. Leer `bandas-bcra.json` por HTTPS, validar `schema_version`, `status`, `date` y `source_of_truth`.
+2. Usar `official_daily` únicamente para pisos/techos publicados; **no reclasificar** `projected_daily` como oficial.
+3. Mostrar la diferencia frente a SIOPEL que obtiene Seguimiento FX de su propia serie, sin modificar el feed.
+4. No descargar de nuevo el Excel BCRA, ni calcular IPC T−2, ni mantener una segunda tabla de bandas en Seguimiento FX.
+5. Si falla la red, utilizar una última copia válida con indicación visible de fecha/estado; **no recalcular bandas localmente**. Si no hay copia, indicar dato no disponible.
+6. Recordar que el REM TC mide un **promedio mensual** y los límites BCRA son valores **diarios** o **de fin de mes**.
+
+**Nota:** `date_of_snapshot` procede de la fecha de descarga del Excel BCRA; una actualización de REM o IPC puede recalcular las proyecciones sin alterar ese campo. `historical_official_end` indica el último registro BCRA almacenado, incluso cuando corresponde a fecha futura publicada.
+
