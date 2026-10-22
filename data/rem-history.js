@@ -135,6 +135,23 @@ window.REM_HISTORY = {
     '2026-05': 2.1,'2026-06': 1.9,'2026-07': 2.1,'2026-08': 1.7,'2026-09': 1.9
   },
   actualIpcSources: {
-    '2026-09': { institution:'INDEC',published:'2026-10-13',url:'https://www.indec.gob.ar/Nivel3/Tema/3/5' }
+    '2026-09': {
+      institution:'INDEC',
+      period:'2026-09',
+      published:'2026-10-13',
+      title:'Índice de precios al consumidor (IPC). Septiembre de 2026',
+      url:'https://www.indec.gob.ar/uploads/informesdeprensa/ipc_10_268C45A9444C.pdf',
+      sourcePage:'https://www.indec.gob.ar/Nivel3/Tema/3/5',
+      publication:'Informes técnicos, vol. 10, n.º 250; Índices de precios, vol. 10, n.º 31',
+      coverage:'Total nacional',
+      monthly:1.9,
+      yearToDate:23.6,
+      yearOverYear:33.4,
+      coreMonthly:1.7,
+      regulatedMonthly:2.3,
+      seasonalMonthly:2.9,
+      dataSource:'INDEC, resumen ejecutivo, páginas 3 y 4 del PDF',
+      status:'official'
+    }
   }
 };
