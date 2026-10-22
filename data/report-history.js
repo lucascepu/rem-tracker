@@ -10,7 +10,7 @@
       sourcePage:'https://www.bcra.gob.ar/publicaciones/relevamiento-de-expectativas-de-mercado-rem-septiembre-de-2026/',
       officialPdf:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-2026-09.pdf',
       officialExcel:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-tablas-2026-09.xlsx',
-      customReady:false,
+      customReady:false, // PDF propios todavía incompletos: nunca habilitar botones sin validar los assets.
       desktop:{
         filename:'REM_Tracker_Septiembre_2026_PC.pdf',
         parts:[
@@ -75,7 +75,7 @@
       <div><div class="kicker">Publicaciones mensuales</div><div class="section-title">Reportes REM</div></div>
       <div class="section-sub">PDF para escritorio y lectura mobile</div>
     </div>
-    <div class="note" style="margin-bottom:8px">Cada nuevo REM agrega una edición al historial. Los PDFs se generan con la misma metodología y quedan disponibles para descarga desde esta sección.</div>
+    <div class="note" style="margin-bottom:8px">Documentación <strong>oficial del BCRA</strong> disponible por relevamiento: informe PDF, planilla Excel y publicación original. Los informes elaborados por REM Tracker (PC y Mobile) son documentos independientes y se habilitan únicamente cuando sus archivos están completos. <a href="https://www.bcra.gob.ar/todos-relevamiento-de-expectativas-de-mercado-rem/" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">Archivo histórico completo del BCRA ↗</a></div>
     <div class="report-list" id="report-list"></div>
     <div class="report-status" id="report-status"></div>
   `;
@@ -88,14 +88,14 @@
     row.innerHTML=`
       <div>
         <div class="report-period">${r.label}</div>
-        <div class="report-meta">${r.vintage} · publicado ${r.published}</div>
+        <div class="report-meta">${r.vintage} · publicado ${r.published} · fuente primaria BCRA</div>
       </div>
       <div class="report-actions">
         ${r.desktop?`<button class="report-btn" data-period="${r.period}" data-kind="desktop" ${r.customReady?'':'disabled'}>`:''}${r.desktop?`${r.customReady?'Descargar PDF · PC':'PDF PC · preparando'}</button>`:''}
         ${r.mobile?`<button class="report-btn secondary" data-period="${r.period}" data-kind="mobile" ${r.customReady?'':'disabled'}>`:''}${r.mobile?`${r.customReady?'Descargar PDF · Mobile':'PDF Mobile · preparando'}</button>`:''}
-        <a class="report-btn secondary" href="${r.officialPdf}" target="_blank" rel="noopener noreferrer">BCRA · PDF ↗</a>
-        <a class="report-btn secondary" href="${r.officialExcel}" target="_blank" rel="noopener noreferrer">BCRA · Excel ↗</a>
-        <a class="report-btn secondary" href="${r.sourcePage}" target="_blank" rel="noopener noreferrer">Fuente BCRA ↗</a>
+        <a class="report-btn secondary" href="${r.officialPdf}" target="_blank" rel="noopener noreferrer">OFICIAL · PDF ↗</a>
+        <a class="report-btn secondary" href="${r.officialExcel}" target="_blank" rel="noopener noreferrer">OFICIAL · Excel ↗</a>
+        <a class="report-btn secondary" href="${r.sourcePage}" target="_blank" rel="noopener noreferrer">Publicación BCRA ↗</a>
       </div>
     `;
     list.appendChild(row);
