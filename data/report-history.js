@@ -7,7 +7,9 @@
       label:'Septiembre 2026',
       vintage:'REM sep-26',
       published:'6 oct 2026',
-      sourcePage:'https://www.bcra.gob.ar/relevamiento-expectativas-mercado-rem/',
+      sourcePage:'https://www.bcra.gob.ar/publicaciones/relevamiento-de-expectativas-de-mercado-rem-septiembre-de-2026/',
+      officialPdf:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-2026-09.pdf',
+      officialExcel:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-tablas-2026-09.xlsx',
       customReady:false,
       desktop:{
         filename:'REM_Tracker_Septiembre_2026_PC.pdf',
@@ -25,6 +27,16 @@
           'reports/2026-09/mobile-07.b64'
         ]
       }
+    }
+    ,{
+      period:'2026-08',
+      label:'Agosto 2026',
+      vintage:'REM ago-26',
+      published:'4 sep 2026',
+      sourcePage:'https://www.bcra.gob.ar/publicaciones/relevamiento-de-expectativas-de-mercado-rem-agosto-de-2026/',
+      officialPdf:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-2026-08.pdf',
+      officialExcel:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-tablas-2026-08.xlsx',
+      customReady:false
     }
   ];
   window.REM_REPORTS=REPORTS;
@@ -79,9 +91,11 @@
         <div class="report-meta">${r.vintage} · publicado ${r.published}</div>
       </div>
       <div class="report-actions">
-        <button class="report-btn" data-period="${r.period}" data-kind="desktop" ${r.customReady?'':'disabled'}>${r.customReady?'Descargar PDF · PC':'PDF PC · preparando'}</button>
-        <button class="report-btn secondary" data-period="${r.period}" data-kind="mobile" ${r.customReady?'':'disabled'}>${r.customReady?'Descargar PDF · Mobile':'PDF Mobile · preparando'}</button>
-        <a class="report-btn secondary" href="${r.sourcePage}" target="_blank" rel="noopener noreferrer">Fuente oficial BCRA ↗</a>
+        ${r.desktop?`<button class="report-btn" data-period="${r.period}" data-kind="desktop" ${r.customReady?'':'disabled'}>`:''}${r.desktop?`${r.customReady?'Descargar PDF · PC':'PDF PC · preparando'}</button>`:''}
+        ${r.mobile?`<button class="report-btn secondary" data-period="${r.period}" data-kind="mobile" ${r.customReady?'':'disabled'}>`:''}${r.mobile?`${r.customReady?'Descargar PDF · Mobile':'PDF Mobile · preparando'}</button>`:''}
+        <a class="report-btn secondary" href="${r.officialPdf}" target="_blank" rel="noopener noreferrer">BCRA · PDF ↗</a>
+        <a class="report-btn secondary" href="${r.officialExcel}" target="_blank" rel="noopener noreferrer">BCRA · Excel ↗</a>
+        <a class="report-btn secondary" href="${r.sourcePage}" target="_blank" rel="noopener noreferrer">Fuente BCRA ↗</a>
       </div>
     `;
     list.appendChild(row);
