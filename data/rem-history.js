@@ -101,16 +101,16 @@ window.REM_HISTORY = {
     },
     '2026-08': {
       label: 'REM ago-26', published: '2026-09-04',
-      source: 'https://www.bcra.gob.ar/relevamiento-expectativas-mercado-rem/',
-      next: { period: '2026-09', tc: 1530, ipc: 1.8, tamar: 24.11 },
-      ipcPath: { '2026-09':1.8,'2026-10':1.7,'2026-11':1.6,'2026-12':1.78 },
-      tamarPath: { '2026-09':24.11,'2026-10':23.80,'2026-11':23.26,'2026-12':23.45,'2027-01':23.00,'2027-02':22.90 },
-      tcPath: { '2026-09':1530,'2026-10':1565,'2026-11':1600,'2026-12':1630,'2027-01':1661,'2027-02':1695 },
-      dec26: { tc: 1630, ipc_yoy: 30.0, tamar: 23.45 }
+      source: 'https://www.bcra.gob.ar/publicaciones/relevamiento-de-expectativas-de-mercado-rem-agosto-de-2026/',
+      next: { period: '2026-09', tc: 1530.397708358, ipc: 1.8, tamar: 24.11 },
+      ipcPath: { '2026-09':1.8,'2026-10':1.7,'2026-11':1.6,'2026-12':1.776387951127933 },
+      tamarPath: { '2026-09':24.11,'2026-10':23.80226105563481,'2026-11':23.26127318667481,'2026-12':23.45,'2027-01':23.00,'2027-02':22.90 },
+      tcPath: { '2026-09':1530.397708358,'2026-10':1565,'2026-11':1600,'2026-12':1629.580206637178,'2027-01':1661.088197986527,'2027-02':1695 },
+      dec26: { tc: 1629.580206637178, ipc_yoy: 30.0, tamar: 23.45 }
     },
     '2026-09': {
       label: 'REM sep-26', published: '2026-10-06',
-      source: 'https://www.bcra.gob.ar/relevamiento-expectativas-mercado-rem/',
+      source: 'https://www.bcra.gob.ar/publicaciones/relevamiento-de-expectativas-de-mercado-rem-septiembre-de-2026/',
       participants: 44,
       next: { period: '2026-10', tc: 1545.03203561277, ipc: 1.7, tamar: 23.5625 },
       ipcPath: { '2026-09':1.9,'2026-10':1.7,'2026-11':1.615,'2026-12':1.8,'2027-01':1.6,'2027-02':1.6,'2027-03':1.7 },
