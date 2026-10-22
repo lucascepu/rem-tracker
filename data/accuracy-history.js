@@ -70,7 +70,8 @@
       html+=Number.isFinite(real)?'<td class="hi">'+fmt(real)+'</td>':'<td class="nd">—</td>';if(Number.isFinite(err)){const ok=Math.abs(err)<=1.0000001,cls=ok?'b-ok':'b-warn';html+='<td><span class="badge '+cls+'">'+(err>=0?'+':'')+err.toFixed(1).replace('.',',')+'% vs REM</span></td>'}else html+='<td><span class="badge b-pend">pendiente</span></td>';html+='</tr>'});
     html+='</tbody></table>';wrap.innerHTML=html;const note=panel.querySelector('.note');if(note)note.innerHTML=variable==='tc'?'TC real = <strong>promedio mensual SIOPEL</strong>. Septiembre cerrado; el cierre 30/9 fue $1.517 y el promedio mensual se calcula automáticamente desde la serie diaria.':'TAMAR REM = promedio mensual de días hábiles. El dato real se incorpora solo cuando está disponible automáticamente desde BCRA.';
   }
-  renderLatestPathTable('tc');renderLatestPathTable('tamar');setTimeout(()=>renderLatestPathTable('tc'),1800);setTimeout(()=>renderLatestPathTable('tc'),4500);
+  window.refreshRemFxSenderos=()=>renderLatestPathTable('tc');
+  renderLatestPathTable('tc');renderLatestPathTable('tamar');
 
   function realFor(variable,period){
     if(variable==='ipc') return Number(window.REM_HISTORY?.actualIpc?.[period]);
@@ -121,7 +122,7 @@
   window.renderAccuracyChart=function(){
     const c=canvasSetup('chart-accuracy');if(!c)return;const{canvas,ctx,w,h}=c;enableCanvasTooltip(canvas);const variable=document.getElementById('accuracy-variable')?.value||'ipc',rows=window.accuracyObservations(variable),names={ipc:'IPC',tc:'Tipo de cambio',tamar:'TAMAR'};
     document.getElementById('accuracy-title').textContent='Accuracy del REM · '+names[variable];document.getElementById('accuracy-sub').textContent='REM anterior al mes observado ●────○ Real';const note=document.getElementById('accuracy-note');
-    if(variable==='tc')note.textContent='● REM previo · ○ promedio mensual SIOPEL. Septiembre entra recién cuando cierra el mes.';else if(variable==='ipc')note.textContent='● REM previo · ○ IPC INDEC real. Comparación one-step-ahead, sin mezclar vintages.';else note.textContent='● REM previo · ○ TAMAR mensual real. Se muestran solo meses con dato BCRA comparable.';
+    if(variable==='tc')note.textContent='● REM previo · ○ promedio mensual SIOPEL. Se incluyen únicamente meses cerrados; septiembre de 2026 ya está incorporado.';else if(variable==='ipc')note.textContent='● REM previo · ○ IPC INDEC real. Comparación one-step-ahead, sin mezclar vintages.';else note.textContent='● REM previo · ○ TAMAR mensual real. Se muestran solo meses con dato BCRA comparable.';
     updateMetrics(rows,variable);if(!rows.length){emptyChart(ctx,w,h,variable==='tc'?'Cargando histórico SIOPEL…':'Sin observaciones comparables','El gráfico aparece cuando forecast y real están disponibles.');return}renderDumbbell(canvas,ctx,w,h,rows,variable);
   };
   requestAnimationFrame(()=>window.renderAccuracyChart());
