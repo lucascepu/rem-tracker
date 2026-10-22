@@ -10,22 +10,14 @@
       sourcePage:'https://www.bcra.gob.ar/publicaciones/relevamiento-de-expectativas-de-mercado-rem-septiembre-de-2026/',
       officialPdf:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-2026-09.pdf',
       officialExcel:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-tablas-2026-09.xlsx',
-      customReady:false, // PDF propios todavía incompletos: nunca habilitar botones sin validar los assets.
+      customReady:true,
       desktop:{
         filename:'REM_Tracker_Septiembre_2026_PC.pdf',
-        parts:[
-          'reports/2026-09/pc-01.b64','reports/2026-09/pc-02.b64',
-          'reports/2026-09/pc-03.b64','reports/2026-09/pc-04.b64'
-        ]
+        path:'reports/2026-09/REM_Tracker_Septiembre_2026_PC.pdf'
       },
       mobile:{
         filename:'REM_Tracker_Septiembre_2026_MOBILE.pdf',
-        parts:[
-          'reports/2026-09/mobile-01.b64','reports/2026-09/mobile-02.b64',
-          'reports/2026-09/mobile-03.b64','reports/2026-09/mobile-04.b64',
-          'reports/2026-09/mobile-05.b64','reports/2026-09/mobile-06.b64',
-          'reports/2026-09/mobile-07.b64'
-        ]
+        path:'reports/2026-09/REM_Tracker_Septiembre_2026_MOBILE.pdf'
       }
     }
     ,{
@@ -73,9 +65,9 @@
   panel.innerHTML=`
     <div class="section-head">
       <div><div class="kicker">Publicaciones mensuales</div><div class="section-title">Reportes REM</div></div>
-      <div class="section-sub">PDF para escritorio y lectura mobile</div>
+      <div class="section-sub">Informes del equipo y fuentes oficiales</div>
     </div>
-    <div class="note" style="margin-bottom:8px">Documentación <strong>oficial del BCRA</strong> disponible por relevamiento: informe PDF, planilla Excel y publicación original. Los informes elaborados por REM Tracker (PC y Mobile) son documentos independientes y se habilitan únicamente cuando sus archivos están completos. <a href="https://www.bcra.gob.ar/todos-relevamiento-de-expectativas-de-mercado-rem/" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">Archivo histórico completo del BCRA ↗</a></div>
+    <div class="note" style="margin-bottom:8px">Documentación <strong>oficial del BCRA</strong> disponible por relevamiento: informe PDF, planilla Excel y publicación original. Los informes elaborados por REM Tracker (PC y Mobile) son documentos independientes y se habilitan únicamente cuando sus archivos están completos; septiembre ya está publicado. <a href="https://www.bcra.gob.ar/todos-relevamiento-de-expectativas-de-mercado-rem/" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">Archivo histórico completo del BCRA ↗</a></div>
     <div class="report-list" id="report-list"></div>
     <div class="report-status" id="report-status"></div>
     <div class="section-head" style="margin-top:28px">
@@ -97,8 +89,8 @@
         <div class="report-meta">${r.vintage} · publicado ${r.published} · fuente primaria BCRA</div>
       </div>
       <div class="report-actions">
-        ${r.desktop?`<button class="report-btn" data-period="${r.period}" data-kind="desktop" ${r.customReady?'':'disabled'}>`:''}${r.desktop?`${r.customReady?'Descargar PDF · PC':'PDF PC · preparando'}</button>`:''}
-        ${r.mobile?`<button class="report-btn secondary" data-period="${r.period}" data-kind="mobile" ${r.customReady?'':'disabled'}>`:''}${r.mobile?`${r.customReady?'Descargar PDF · Mobile':'PDF Mobile · preparando'}</button>`:''}
+        ${r.desktop&&r.customReady?`<a class="report-btn" href="${r.desktop.path}" download="${r.desktop.filename}">Descargar PDF · PC ↓</a>`:`<button class="report-btn" disabled>PDF PC · pendiente</button>`}
+        ${r.mobile&&r.customReady?`<a class="report-btn secondary" href="${r.mobile.path}" download="${r.mobile.filename}">Descargar PDF · Mobile ↓</a>`:`<button class="report-btn secondary" disabled>PDF Mobile · pendiente</button>`}
         <a class="report-btn secondary" href="${r.officialPdf}" target="_blank" rel="noopener noreferrer">OFICIAL · PDF ↗</a>
         <a class="report-btn secondary" href="${r.officialExcel}" target="_blank" rel="noopener noreferrer">OFICIAL · Excel ↗</a>
         <a class="report-btn secondary" href="${r.sourcePage}" target="_blank" rel="noopener noreferrer">Publicación BCRA ↗</a>
@@ -131,31 +123,4 @@
       indecList.appendChild(row);
     });
 
-  async function downloadReport(period,kind,button){
-    const report=REPORTS.find(r=>r.period===period),cfg=report?.[kind];
-    if(!cfg)return;
-    const status=panel.querySelector('#report-status'),old=button.textContent;
-    button.disabled=true;button.textContent='Preparando…';status.textContent='Armando PDF para descarga…';
-    try{
-      const chunks=await Promise.all(cfg.parts.map(async p=>{
-        const res=await fetch(p,{cache:'force-cache'});
-        if(!res.ok)throw new Error('No se pudo leer '+p);
-        return (await res.text()).trim();
-      }));
-      const binary=atob(chunks.join('')),bytes=new Uint8Array(binary.length);
-      for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
-      const url=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}));
-      const a=document.createElement('a');a.href=url;a.download=cfg.filename;document.body.appendChild(a);a.click();a.remove();
-      setTimeout(()=>URL.revokeObjectURL(url),1500);
-      status.textContent='PDF listo.';
-    }catch(e){
-      console.error(e);status.textContent='No se pudo preparar el PDF. Reintentá en unos segundos.';
-    }finally{
-      button.disabled=false;button.textContent=old;
-    }
-  }
-  panel.addEventListener('click',e=>{
-    const b=e.target.closest('button[data-period][data-kind]');if(!b)return;
-    downloadReport(b.dataset.period,b.dataset.kind,b);
-  });
 })();
