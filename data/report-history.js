@@ -78,6 +78,12 @@
     <div class="note" style="margin-bottom:8px">Documentación <strong>oficial del BCRA</strong> disponible por relevamiento: informe PDF, planilla Excel y publicación original. Los informes elaborados por REM Tracker (PC y Mobile) son documentos independientes y se habilitan únicamente cuando sus archivos están completos. <a href="https://www.bcra.gob.ar/todos-relevamiento-de-expectativas-de-mercado-rem/" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">Archivo histórico completo del BCRA ↗</a></div>
     <div class="report-list" id="report-list"></div>
     <div class="report-status" id="report-status"></div>
+    <div class="section-head" style="margin-top:28px">
+      <div><div class="kicker">Datos observados · INDEC</div><div class="section-title">Informes oficiales del IPC</div></div>
+      <div class="section-sub">Publicaciones originales y valores observados</div>
+    </div>
+    <div class="note" style="margin-bottom:8px">Informes del IPC nacional publicados por INDEC. Se archiva el enlace oficial y sus principales indicadores en el historial de datos; no son estimaciones del REM.</div>
+    <div class="report-list" id="indec-report-list"></div>
   `;
   main.appendChild(panel);
 
@@ -100,6 +106,30 @@
     `;
     list.appendChild(row);
   });
+
+  const indecList=panel.querySelector('#indec-report-list');
+  const actualIpc=window.REM_HISTORY?.actualIpc||{};
+  const indecSources=window.REM_HISTORY?.actualIpcSources||{};
+  const formatPct=value=>Number(value).toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
+  Object.entries(indecSources).filter(([,source])=>source?.url&&source?.status==='official')
+    .sort(([a],[b])=>b.localeCompare(a))
+    .forEach(([period,source])=>{
+      const row=document.createElement('div');
+      row.className='report-row';
+      const [year,month]=period.split('-').map(Number);
+      const label=new Date(Date.UTC(year,month-1,1)).toLocaleDateString('es-AR',{month:'long',year:'numeric',timeZone:'UTC'});
+      const reported=Number(actualIpc[period]);
+      row.innerHTML=`
+        <div>
+          <div class="report-period">IPC · ${label.charAt(0).toUpperCase()+label.slice(1)}</div>
+          <div class="report-meta">INDEC · publicado ${source.published.split('-').reverse().join('/')} · mensual ${formatPct(reported)} · acumulado ${formatPct(source.yearToDate)} · interanual ${formatPct(source.yearOverYear)}</div>
+        </div>
+        <div class="report-actions">
+          <a class="report-btn secondary" href="${source.url}" target="_blank" rel="noopener noreferrer">INDEC · PDF oficial ↗</a>
+          <a class="report-btn secondary" href="${source.sourcePage}" target="_blank" rel="noopener noreferrer">Portal INDEC ↗</a>
+        </div>`;
+      indecList.appendChild(row);
+    });
 
   async function downloadReport(period,kind,button){
     const report=REPORTS.find(r=>r.period===period),cfg=report?.[kind];
