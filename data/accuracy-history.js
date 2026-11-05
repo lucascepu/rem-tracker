@@ -55,11 +55,11 @@
   }
   renderIpcHistoryTable();
 
-  /* Senderos TC/TAMAR: latest verified vintages, including REM sep-26. */
+  /* Senderos TC/TAMAR: latest verified REM vintages including October 2026. */
   function renderLatestPathTable(variable){
     const panel=document.getElementById('path-'+variable),hist=window.REM_HISTORY?.vintages||{};if(!panel)return;
-    const vintages=['2026-06','2026-07','2026-08','2026-09'].filter(v=>hist[v]);
-    const periods=variable==='tc'?['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03']:['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03'];
+    const vintages=['2026-07','2026-08','2026-09','2026-10'].filter(v=>hist[v]);
+    const periods=variable==='tc'?['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03']:['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03','2027-04'];
     const pathKey=variable+'Path',fmt=v=>variable==='tc'?'$'+Math.round(v).toLocaleString('es-AR'):Number(v).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
     const wrap=panel.querySelector('.tbl-wrap');if(!wrap)return;let html='<table style="min-width:820px"><thead><tr><th>Mes</th>';
     vintages.forEach(v=>html+='<th>'+hist[v].label+'</th>');html+='<th>Real / observado</th><th>Desvío vs REM previo</th></tr></thead><tbody>';
