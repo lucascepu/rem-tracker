@@ -77,7 +77,7 @@
       <div class="exp-note">— = horizonte no publicado para esa variable. Inflación: variación diciembre contra diciembre anterior. Tipo de cambio y TAMAR: promedio de diciembre, no cierre de año. PIB: variación del promedio anual. El resultado primario se expresa en miles de millones de pesos.</div>
     </div>
     <div class="section">
-      <div class="section-head"><div><div class="kicker">Sendero mensual publicado</div><div class="section-title">Primer trimestre de 2027</div></div><div class="section-sub">Sin interpolación ni extrapolación</div></div>
+      <div class="section-head"><div><div class="kicker">Sendero mensual publicado</div><div class="section-title">Enero–abril de 2027</div></div><div class="section-sub">Sin interpolación ni extrapolación</div></div>
       <div class="tbl-wrap"><table class="exp-table"><thead><tr><th>Período</th><th>IPC mensual</th><th>TC promedio ($/USD)</th><th>TAMAR TNA</th></tr></thead>
       <tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join('')}</tbody></table></div>
       <div class="exp-note">Se muestran exclusivamente los períodos mensuales con proyecciones publicadas en este relevamiento. La expectativa para diciembre de 2027 es una referencia anual independiente: no se construye una trayectoria artificial entre abril y diciembre.</div>
