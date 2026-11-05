@@ -3,6 +3,13 @@
 (function(){
   const REPORTS=[
     {
+      period:'2026-10',label:'Octubre 2026',vintage:'REM oct-26',published:'5 nov 2026',
+      sourcePage:'https://www.bcra.gob.ar/relevamiento-expectativas-mercado-rem/',
+      officialPdf:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-2026-10.pdf',
+      officialExcel:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-tablas-2026-10.xlsx',
+      customReady:false
+    },
+    {
       period:'2026-09',
       label:'Septiembre 2026',
       vintage:'REM sep-26',
@@ -67,7 +74,7 @@
       <div><div class="kicker">Publicaciones mensuales</div><div class="section-title">Reportes REM</div></div>
       <div class="section-sub">Informes del equipo y fuentes oficiales</div>
     </div>
-    <div class="note" style="margin-bottom:8px">Documentación <strong>oficial del BCRA</strong> disponible por relevamiento: informe PDF, planilla Excel y publicación original. Los informes elaborados por REM Tracker (PC y Mobile) son documentos independientes y se habilitan únicamente cuando sus archivos están completos; septiembre ya está publicado. <a href="https://www.bcra.gob.ar/todos-relevamiento-de-expectativas-de-mercado-rem/" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">Archivo histórico completo del BCRA ↗</a></div>
+    <div class="note" style="margin-bottom:8px">Documentación <strong>oficial del BCRA</strong> disponible por relevamiento: informe PDF, planilla Excel y publicación original. Los informes elaborados por REM Tracker (PC y Mobile) son documentos independientes y se habilitan únicamente cuando sus archivos están completos; septiembre ya está publicado. Para octubre están disponibles las fuentes oficiales; los PDF propios de PC/Mobile aún no están generados. <a href="https://www.bcra.gob.ar/todos-relevamiento-de-expectativas-de-mercado-rem/" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">Archivo histórico completo del BCRA ↗</a></div>
     <div class="report-list" id="report-list"></div>
     <div class="report-status" id="report-status"></div>
     <div class="section-head" style="margin-top:28px">
