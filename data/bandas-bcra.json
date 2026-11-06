@@ -15,7 +15,7 @@
     "projected_after": "2026-11-30",
     "vintage_used": "2026-10",
     "projected_start": "2026-12-01",
-    "projection_end": "2027-08-31",
+    "projection_end": "2027-12-31",
     "missing_monthly_REM": "Use implied flat monthly rate from REM 12-month YoY; not an official individual monthly forecast",
     "hypothetical_older_scenarios": "Original dashboard scenario is a sensitivity only, not REM official",
     "comparison_warning": "REM nominal FX is a monthly average; the band ceiling is a value at date/month-end"
@@ -41,8 +41,8 @@
   },
   "counts": {
     "official_daily": 220,
-    "projection_weekdays": 196,
-    "monthly": 20
+    "projection_weekdays": 284,
+    "monthly": 24
   },
   "ipc_observed": [
     {
@@ -3235,6 +3235,622 @@
       "techo": 2313.3455994392243,
       "status": "PROYECTADO IMPLÍCITO",
       "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-01",
+      "piso": 598.6768335076293,
+      "techo": 2314.580631504764,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-02",
+      "piso": 598.3521899444532,
+      "techo": 2315.816322920209,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-03",
+      "piso": 598.0277224252414,
+      "techo": 2317.052674037569,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-06",
+      "piso": 597.0553751770199,
+      "techo": 2320.765689124045,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-07",
+      "piso": 596.7316108795519,
+      "techo": 2322.0046825729123,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-08",
+      "piso": 596.4080221492502,
+      "techo": 2323.24433748656,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-09",
+      "piso": 596.0846088909102,
+      "techo": 2324.4846542181263,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-10",
+      "piso": 595.761371009379,
+      "techo": 2325.725633120937,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-13",
+      "piso": 594.7927086748829,
+      "techo": 2329.4525463929317,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-14",
+      "piso": 594.4701713500893,
+      "techo": 2330.69617751776,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-15",
+      "piso": 594.1478089271135,
+      "techo": 2331.9404725832974,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-16",
+      "piso": 593.8256213111116,
+      "techo": 2333.185431944003,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-17",
+      "piso": 593.5036084072913,
+      "techo": 2334.4310559545265,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-20",
+      "piso": 592.5386170217679,
+      "techo": 2338.171919434334,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-21",
+      "piso": 592.2173020197787,
+      "techo": 2339.420205594407,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-22",
+      "piso": 591.89616125678,
+      "techo": 2340.669158180385,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-23",
+      "piso": 591.5751946382876,
+      "techo": 2341.918777548054,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-24",
+      "piso": 591.2544020698684,
+      "techo": 2343.1690640533916,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-27",
+      "piso": 590.2930677214871,
+      "techo": 2346.9239299580295,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-28",
+      "piso": 589.9729704100537,
+      "techo": 2348.1768885776073,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-29",
+      "piso": 589.6530466772956,
+      "techo": 2349.430516117589,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-09-30",
+      "piso": 589.3332964290867,
+      "techo": 2350.6848129350924,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-01",
+      "piso": 589.0240257968021,
+      "techo": 2351.8992861428255,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-04",
+      "piso": 588.0971873545222,
+      "techo": 2355.546471783263,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-05",
+      "piso": 587.7885654081975,
+      "techo": 2356.7634567502855,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-06",
+      "piso": 587.4801054206575,
+      "techo": 2357.9810704683973,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-07",
+      "piso": 587.1718073069095,
+      "techo": 2359.1993132624407,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-08",
+      "piso": 586.8636709820051,
+      "techo": 2360.4181854574254,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-11",
+      "piso": 585.9402318915404,
+      "techo": 2364.078581700645,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-12",
+      "piso": 585.6327418734198,
+      "techo": 2365.2999747528534,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-13",
+      "piso": 585.3254132200701,
+      "techo": 2366.521998833573,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-14",
+      "piso": 585.0182458468101,
+      "techo": 2367.7446542688226,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-15",
+      "piso": 584.7112396690032,
+      "techo": 2368.9679413847894,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-18",
+      "piso": 583.7911874626009,
+      "techo": 2372.6415960813924,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-19",
+      "piso": 583.4848252211278,
+      "techo": 2373.867413185471,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-20",
+      "piso": 583.1786237525905,
+      "techo": 2375.093863603732,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-21",
+      "piso": 582.8725829726183,
+      "techo": 2376.320947663375,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-22",
+      "piso": 582.5667027968849,
+      "techo": 2377.5486656917687,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-25",
+      "piso": 581.6500250525196,
+      "techo": 2381.2356268656777,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-26",
+      "piso": 581.3447864513643,
+      "techo": 2382.4658840461443,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-27",
+      "piso": 581.03970803348,
+      "techo": 2383.6967768347436,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-28",
+      "piso": 580.7347897148057,
+      "techo": 2384.9283055598603,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-10-29",
+      "piso": 580.4300314113245,
+      "techo": 2386.160470550049,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-01",
+      "piso": 579.5065758776478,
+      "techo": 2389.901933236484,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-02",
+      "piso": 579.1923277405107,
+      "techo": 2391.1778366387935,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-03",
+      "piso": 578.8782500102262,
+      "techo": 2392.4544212110995,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-04",
+      "piso": 578.5643425943882,
+      "techo": 2393.7316873170603,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-05",
+      "piso": 578.2506054006404,
+      "techo": 2395.009635320528,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-08",
+      "piso": 577.310414229128,
+      "techo": 2398.84757435741,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-09",
+      "piso": 576.997357001181,
+      "techo": 2400.128253593314,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-10",
+      "piso": 576.6844695342941,
+      "techo": 2401.4096165489027,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-11",
+      "piso": 576.3717517364113,
+      "techo": 2402.6916635891944,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-12",
+      "piso": 576.0592035155264,
+      "techo": 2403.974395079403,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-15",
+      "piso": 575.1225753955463,
+      "techo": 2407.826699904601,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-16",
+      "piso": 574.8107045635892,
+      "techo": 2409.112172850522,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-17",
+      "piso": 574.4990028493472,
+      "techo": 2410.3983320753573,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-18",
+      "piso": 574.1874701611131,
+      "techo": 2411.6851779454933,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-19",
+      "piso": 573.8761064072293,
+      "techo": 2412.972710827511,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-22",
+      "piso": 572.9430278358508,
+      "techo": 2416.8394352136015,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-23",
+      "piso": 572.6323389037874,
+      "techo": 2418.129719812873,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-24",
+      "piso": 572.3218184485321,
+      "techo": 2419.42069325987,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-25",
+      "piso": 572.0114663787251,
+      "techo": 2420.7123559223487,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-26",
+      "piso": 571.7012826030564,
+      "techo": 2422.0047081682633,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-29",
+      "piso": 570.771740128521,
+      "techo": 2425.8859060891,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-11-30",
+      "piso": 570.4622286172939,
+      "techo": 2427.18102035222,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-01",
+      "piso": 570.1628611537416,
+      "techo": 2428.4350150618957,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-02",
+      "piso": 569.8636507924017,
+      "techo": 2429.6896576436166,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-03",
+      "piso": 569.5645974508301,
+      "techo": 2430.9449484321035,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-06",
+      "piso": 568.668378720932,
+      "techo": 2434.714713387965,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-07",
+      "piso": 568.3699526348566,
+      "techo": 2435.972600354185,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-08",
+      "piso": 568.0716831569772,
+      "techo": 2437.2311372033714,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-09",
+      "piso": 567.7735702051086,
+      "techo": 2438.490324271284,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-10",
+      "piso": 567.4756136971092,
+      "techo": 2439.750161893856,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-13",
+      "piso": 566.5826820155545,
+      "techo": 2443.5335814514633,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-14",
+      "piso": 566.2853504624755,
+      "techo": 2444.796024655477,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-15",
+      "piso": 565.9881749432029,
+      "techo": 2446.059120096422,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-16",
+      "piso": 565.6911553758531,
+      "techo": 2447.3228681112732,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-17",
+      "piso": 565.3942916785855,
+      "techo": 2448.5872690371816,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-20",
+      "piso": 564.5046349895151,
+      "techo": 2452.384392655361,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-21",
+      "piso": 564.2083939550299,
+      "techo": 2453.651408600482,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-22",
+      "piso": 563.9123083820681,
+      "techo": 2454.9190791450246,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-23",
+      "piso": 563.6163781890465,
+      "techo": 2456.1874046271855,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-24",
+      "piso": 563.3206032944247,
+      "techo": 2457.456385385336,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-27",
+      "piso": 562.4342095861965,
+      "techo": 2461.2672627020597,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-28",
+      "piso": 562.1390550706259,
+      "techo": 2462.5388679513785,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-29",
+      "piso": 561.8440554463947,
+      "techo": 2463.811130171167,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-30",
+      "piso": 561.549210632219,
+      "techo": 2465.084049700847,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
+    },
+    {
+      "date": "2027-12-31",
+      "piso": 561.2545205468574,
+      "techo": 2466.3576268800152,
+      "status": "PROYECTADO IMPLÍCITO",
+      "source": "Cálculo implícito 2026-10"
     }
   ],
   "monthly_ceiling": [
@@ -3529,6 +4145,62 @@
       "ipc_origin": "implicito",
       "last_official_trading_day": null,
       "rem_fx_mean": null
+    },
+    {
+      "month": "2027-09",
+      "date": "2027-09-30",
+      "piso": 589.3332964290867,
+      "techo": 2350.6848129350924,
+      "status": "PROYECTADO IMPLÍCITO",
+      "official": false,
+      "change_pct": 1.6140784803152286,
+      "ipc_month": "2027-07",
+      "ipc_rate_pct": 1.6140784803148955,
+      "ipc_origin": "implicito",
+      "last_official_trading_day": null,
+      "rem_fx_mean": null
+    },
+    {
+      "month": "2027-10",
+      "date": "2027-10-31",
+      "piso": 579.820994514094,
+      "techo": 2388.6267106407076,
+      "status": "PROYECTADO IMPLÍCITO",
+      "official": false,
+      "change_pct": 1.6140784803148733,
+      "ipc_month": "2027-08",
+      "ipc_rate_pct": 1.6140784803148955,
+      "ipc_origin": "implicito",
+      "last_official_trading_day": null,
+      "rem_fx_mean": null
+    },
+    {
+      "month": "2027-11",
+      "date": "2027-11-30",
+      "piso": 570.4622286172939,
+      "techo": 2427.18102035222,
+      "status": "PROYECTADO IMPLÍCITO",
+      "official": false,
+      "change_pct": 1.6140784803151842,
+      "ipc_month": "2027-09",
+      "ipc_rate_pct": 1.6140784803148955,
+      "ipc_origin": "implicito",
+      "last_official_trading_day": null,
+      "rem_fx_mean": null
+    },
+    {
+      "month": "2027-12",
+      "date": "2027-12-31",
+      "piso": 561.2545205468574,
+      "techo": 2466.3576268800152,
+      "status": "PROYECTADO IMPLÍCITO",
+      "official": false,
+      "change_pct": 1.6140784803150066,
+      "ipc_month": "2027-10",
+      "ipc_rate_pct": 1.6140784803148955,
+      "ipc_origin": "implicito",
+      "last_official_trading_day": null,
+      "rem_fx_mean": null
     }
   ],
   "original_scenario_monthly": [
@@ -3710,6 +4382,42 @@
       "piso": 613.6728018120361,
       "status": "ESCENARIO ORIGINAL",
       "ipc_month": "2027-06",
+      "ipc_rate_pct": 1.274
+    },
+    {
+      "month": "2027-09",
+      "date": "2027-09-30",
+      "techo": 2288.423573738051,
+      "piso": 605.854610316951,
+      "status": "ESCENARIO ORIGINAL",
+      "ipc_month": "2027-07",
+      "ipc_rate_pct": 1.274
+    },
+    {
+      "month": "2027-10",
+      "date": "2027-10-31",
+      "techo": 2317.578090067467,
+      "piso": 598.1360225815127,
+      "status": "ESCENARIO ORIGINAL",
+      "ipc_month": "2027-08",
+      "ipc_rate_pct": 1.274
+    },
+    {
+      "month": "2027-11",
+      "date": "2027-11-30",
+      "techo": 2347.1040349349228,
+      "piso": 590.5157696538248,
+      "status": "ESCENARIO ORIGINAL",
+      "ipc_month": "2027-09",
+      "ipc_rate_pct": 1.274
+    },
+    {
+      "month": "2027-12",
+      "date": "2027-12-31",
+      "techo": 2377.006140339987,
+      "piso": 582.9925987484347,
+      "status": "ESCENARIO ORIGINAL",
+      "ipc_month": "2027-10",
       "ipc_rate_pct": 1.274
     }
   ]

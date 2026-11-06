@@ -36,7 +36,7 @@ assert.equal(REM.vintages['2026-10'].precision,'official_xlsx');
 assert.equal(REM.vintages['2026-10'].ipcPath['2026-12'],1.84);
 
 /* 4) fin de mes calendario vs última rueda */
-const tab=m.monthly('rem','2026-06','2027-08'),by=Object.fromEntries(tab.map(x=>[x.ym,x]));
+const tab=m.monthly('rem','2026-06','2027-12'),by=Object.fromEntries(tab.map(x=>[x.ym,x]));
 assert.equal(m.vintageKey,'2026-10');
 assert.equal(by['2026-10'].status,'ESTIMADO TÉCNICO');assert.equal(by['2026-10'].lastRueda.date,'2026-10-30');assert.equal(by['2026-10'].lastRueda.techo,1950.97);
 out.push(near(by['2026-10'].techo,1952.03,0.01,'techo 31/10 (estimado técnico)'));
@@ -44,13 +44,14 @@ assert.equal(by['2026-11'].status,'OFICIAL');assert.equal(by['2026-09'].status,'
 
 /* 5) proyección REM oct-26 contra valores de control (calculados aparte: 1989,12 × Π(1+IPC T-2) con las medianas del XLSX) */
 [['2026-12',2024.9242],['2027-01',2059.3479],['2027-02',2097.2399],['2027-03',2132.8929],['2027-04',2167.0192],
- ['2027-05',2203.8586],['2027-06',2240.4371],['2027-07',2276.5995],['2027-08',2313.3456]].forEach(([k,v])=>out.push(near(by[k].techo,v,0.01,'techo fin de '+k)));
+ ['2027-05',2203.8586],['2027-06',2240.4371],['2027-07',2276.5995],['2027-08',2313.3456],
+ ['2027-09',2350.6848],['2027-10',2388.6267],['2027-11',2427.181],['2027-12',2466.3576]].forEach(([k,v])=>out.push(near(by[k].techo,v,0.01,'techo fin de '+k)));
 ['2026-12','2027-01','2027-02','2027-03','2027-04','2027-05','2027-06'].forEach(k=>assert.equal(by[k].status,'PROYECTADO REM',k));
-['2027-07','2027-08'].forEach(k=>assert.equal(by[k].status,'PROYECTADO IMPLÍCITO',k));
+['2027-07','2027-08','2027-09','2027-10','2027-11','2027-12'].forEach(k=>assert.equal(by[k].status,'PROYECTADO IMPLÍCITO',k));
 assert.equal(by['2026-12'].ipcRef,'2026-10');assert.equal(by['2027-06'].ipcRef,'2027-04');assert.equal(by['2027-07'].ipcRef,'2027-05');assert.equal(by['2026-10'].ipcRef,'2026-08');assert.equal(by['2026-10'].rate,1.7);assert.equal(by['2026-11'].rate,1.9);
 
 /* 6) sin saltos en el cambio de mes: cada día calendario usa el factor de su mes; el mes cierra con (1+IPC) exacto */
-const days=m.projection('rem','2027-08-31',{allDays:true}),H2=m.helpers;
+const days=m.projection('rem','2027-12-31',{allDays:true}),H2=m.helpers;
 for(let i=1;i<days.length;i++){const ym=H2.monthOf(days[i].date),r=m.rateFor(ym,'rem').rate,f=Math.pow(1+r/100,1/H2.dim(ym));
   assert.ok(Math.abs(days[i].techo/days[i-1].techo-f)<1e-12,'factor diario '+days[i].date)}
 const dec=days.find(x=>x.date==='2026-12-31'),nov=days[0];
@@ -58,14 +59,14 @@ out.push(near(dec.techo/nov.techo,1.018,1e-12,'cierre dic / cierre nov = 1 + IPC
 assert.equal(days[0].date,'2026-11-30');assert.equal(days[0].techo,1989.12);assert.equal(days[0].status,'OFICIAL');
 
 /* 7) escenario original (referencia histórica) */
-const og=Object.fromEntries(m.monthly('original','2026-12','2027-08').map(x=>[x.ym,x]));
+const og=Object.fromEntries(m.monthly('original','2026-12','2027-12').map(x=>[x.ym,x]));
 out.push(near(og['2026-12'].techo,2022.94,0.01,'original dic-26'),near(og['2027-01'].techo,2057.33,0.02,'original ene-27'),
   near(og['2027-02'].techo,2094.37,0.02,'original feb-27'),near(og['2027-03'].techo,2121.06,0.03,'original mar-27'),near(og['2027-08'].techo,2259.68,0.1,'original ago-27'));
 assert.equal(og['2027-03'].status,'ESCENARIO ORIGINAL');
 assert.ok(by['2027-08'].techo>og['2027-08'].techo,'el escenario REM supera al original a ago-27');
 
 /* 8) los datos oficiales no se alteran al proyectar */
-const before=JSON.stringify(H.rows);m.projection('rem','2027-08-31');m.monthly('original','2026-12','2027-08');assert.equal(JSON.stringify(H.rows),before);
+const before=JSON.stringify(H.rows);m.projection('rem','2027-12-31');m.monthly('original','2026-12','2027-12');assert.equal(JSON.stringify(H.rows),before);
 
 console.log(out.join('\n'));
 console.log('\nOK · bands.check.js · '+KINDS.length+' clasificaciones · '+H.rows.length+' filas oficiales');

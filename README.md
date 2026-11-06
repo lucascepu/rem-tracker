@@ -56,7 +56,7 @@ Estos dos enlaces son representaciones del **mismo archivo** de REM Tracker. No 
 
 **Estructura del JSON (`schema_version: 1.0.0`):**
 - `official_daily`: todos los registros publicados por el BCRA con `date`, `piso`, `techo`, `status: "OFICIAL"`.
-- `projected_daily`: proyecciones desde el día posterior al último día oficial hasta agosto de 2027, sólo lunes a viernes. Sus estados distinguen `PROYECTADO REM` de `PROYECTADO IMPLÍCITO`. **No son cotizaciones del BCRA**.
+- `projected_daily`: proyecciones desde el día posterior al último día oficial hasta diciembre de 2027, sólo lunes a viernes. Sus estados distinguen `PROYECTADO REM` de `PROYECTADO IMPLÍCITO`. **No son cotizaciones del BCRA**.
 - `monthly_ceiling`: fin de mes calendario (`date`), banda superior e inferior, inflación aplicada y mes del IPC T−2, estado y tipo de fuente. Oct-26 31/10 es `ESTIMADO TÉCNICO`, mientras que 30/10 existe en `official_daily`.
 - `original_scenario_monthly`: escenario de sensibilidad histórico; no usar como base predeterminada.
 - `rem_vintages`: senderos IPC/TC y metadatos de los relevamientos guardados.

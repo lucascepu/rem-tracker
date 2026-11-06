@@ -11,7 +11,7 @@
 
   const MODEL=window.BandsModel,H=window.BANDS_HISTORY,REM=window.REM_HISTORY;
   const MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-  const TABLE_FROM='2026-09',TABLE_TO='2027-08',CHART_FROM='2026-06',DAILY_END='2027-08-31';
+  const TABLE_FROM='2026-09',TABLE_TO='2027-12',CHART_FROM='2026-06',DAILY_END='2027-12-31';
   const C={techo:'#C29B55',piso:'#8A94A0',siopel:'#5F9F84',rem:'#6B9FD1',orig:'#BD6A67'};
   const KIND_LABEL={observado:'INDEC',rem:'REM',implicito:'Implícito',original:'Supuesto original'};
   const BADGE={'OFICIAL':'b-ok','ESTIMADO TÉCNICO':'b-warn','PROYECTADO REM':'b-now','PROYECTADO IMPLÍCITO':'b-pend','ESCENARIO ORIGINAL':'b-pend'};
@@ -222,7 +222,7 @@
         <td>${Number.isFinite(t)?money(t):'<span class="nd">sin dato REM</span>'}</td><td>${sMoney(dif)}</td><td>${signed(difP,2,'%')}</td><td>${badge(r.status)}</td></tr>`}).join('');
     $('bnd-table-sub').textContent='techo al último día calendario de cada mes · '+(scenario==='rem'?'escenario base REM':'escenario original')+' · '+(m.vintage?m.vintage.label:'');
     $('bnd-table-note').innerHTML='<strong>Atención:</strong> se contrasta un <strong>techo de fin de mes</strong> con un <strong>tipo de cambio promedio mensual</strong> del REM; no son magnitudes equivalentes, por lo que el TC promedio queda naturalmente por debajo del techo de cierre. Meses sin mediana mensual publicada en el REM no se interpolan. El «fin de mes» es la fecha calendario; cuando no hay fila oficial para esa fecha se indica la última rueda publicada por el BCRA.';
-    const a=m.monthly('rem','2026-12','2027-08'),b=m.monthly('original','2026-12','2027-08');
+    const a=m.monthly('rem','2026-12','2027-12'),b=m.monthly('original','2026-12','2027-12');
     $('bnd-scn-tbody').innerHTML=a.map((r,i)=>{
       const o=b[i],d=r.techo-o.techo,p=(r.techo/o.techo-1)*100;
       return `<tr><td class="hi">${fm(r.ym)}</td><td>${money(r.techo)}<span class="bnd-sub">${r.status}</span></td><td>${money(o.techo)}<span class="bnd-sub">${o.status}</span></td>

@@ -10,7 +10,7 @@
     const latest=vintages.filter(([,v])=>v.next12).at(-1)?.[0]||vintages.at(-1)?.[0];
     if(!latest)throw Error('No REM vintage');
     const model=Model.create({rows:H.rows,rem:REM,vintage:latest});
-    const from='2026-01',to='2027-08',end='2027-08-31';
+    const from='2026-01',to='2027-12',end='2027-12-31';
     const fmt=value=>value===null||value===undefined||!Number.isFinite(value)?null:Number(value);
     const entries=H.rows.map(([date,piso,techo])=>({date,piso,techo,status:'OFICIAL',source:'BCRA'}));
     const forward=model.projection('rem',end).slice(1).map(v=>({
