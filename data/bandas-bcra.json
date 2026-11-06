@@ -13,7 +13,7 @@
     "historical_official_end": "2026-11-30",
     "future_official_values_can_be_published": true,
     "projected_after": "2026-11-30",
-    "vintage_used": "2026-09",
+    "vintage_used": "2026-10",
     "projected_start": "2026-12-01",
     "projection_end": "2027-08-31",
     "missing_monthly_REM": "Use implied flat monthly rate from REM 12-month YoY; not an official individual monthly forecast",
@@ -23,21 +23,21 @@
   "sources": {
     "bcra_excel": "https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/serie-completa-bandas-cambiarias.xlsx",
     "bcra_band_page": "https://www.bcra.gob.ar/regimen-de-bandas-cambiarias/",
-    "rem_page": "https://www.bcra.gob.ar/publicaciones/relevamiento-de-expectativas-de-mercado-rem-septiembre-de-2026/",
+    "rem_page": "https://www.bcra.gob.ar/relevamiento-expectativas-mercado-rem/",
     "indec_page": "https://www.indec.gob.ar/Nivel3/Tema/3/5"
   },
   "implied_inflation": {
-    "rate_pct": 1.5402695819686452,
+    "rate_pct": 1.6140784803148955,
     "months": [
-      "2027-04",
       "2027-05",
       "2027-06",
       "2027-07",
       "2027-08",
-      "2027-09"
+      "2027-09",
+      "2027-10"
     ],
-    "horizon": "2027-09",
-    "yoy_pct": 21.05
+    "horizon": "2027-10",
+    "yoy_pct": 21.8
   },
   "counts": {
     "official_daily": 220,
@@ -292,6 +292,32 @@
       "forecast_12_month_inflation": {
         "horizon": "2027-09",
         "yoy_pct": 21.05
+      }
+    },
+    {
+      "id": "2026-10",
+      "published": "2026-11-05",
+      "source": "https://www.bcra.gob.ar/relevamiento-expectativas-mercado-rem/",
+      "monthly_ipc_path": {
+        "2026-10": 1.8,
+        "2026-11": 1.7,
+        "2026-12": 1.84,
+        "2027-01": 1.7,
+        "2027-02": 1.6,
+        "2027-03": 1.7,
+        "2027-04": 1.659749
+      },
+      "monthly_fx_mean_path": {
+        "2026-11": 1558.481827,
+        "2026-12": 1590,
+        "2027-01": 1618.832072,
+        "2027-02": 1649.178804,
+        "2027-03": 1676.892248,
+        "2027-04": 1701.541777
+      },
+      "forecast_12_month_inflation": {
+        "horizon": "2027-10",
+        "yoy_pct": 21.8
       }
     }
   ],
@@ -1840,1375 +1866,1375 @@
   "projected_daily": [
     {
       "date": "2026-12-01",
-      "piso": 698.0537983247146,
-      "techo": 1990.2019337746724,
+      "piso": 698.0308797529593,
+      "techo": 1990.2650306643372,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-02",
-      "piso": 697.6678101992459,
-      "techo": 1991.2844560410865,
+      "piso": 697.6219991533851,
+      "techo": 1991.4107204619709,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-03",
-      "piso": 697.2820355055118,
-      "techo": 1992.367567119338,
+      "piso": 697.2133580609009,
+      "techo": 1992.5570697723288,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-04",
-      "piso": 696.8964741254954,
-      "techo": 1993.4512673296967,
+      "piso": 696.8049563352122,
+      "techo": 1993.7040789750572,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-07",
-      "piso": 695.7410686885626,
-      "techo": 1996.70590595873,
+      "piso": 695.5811859572084,
+      "techo": 1997.14906973721,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-08",
-      "piso": 695.356359384553,
-      "techo": 1997.7919659037032,
+      "piso": 695.1737402974012,
+      "techo": 1998.2987223102584,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-09",
-      "piso": 694.9718628051551,
-      "techo": 1998.8786165847484,
+      "piso": 694.7665333041494,
+      "techo": 1999.4490366771902,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-10",
-      "piso": 694.5875788327428,
-      "techo": 1999.9658583231824,
+      "piso": 694.3595648376512,
+      "techo": 2000.600013218965,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-11",
-      "piso": 694.2035073497555,
-      "techo": 2001.0536914404966,
+      "piso": 693.9528347581862,
+      "techo": 2001.7516523167615,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-14",
-      "piso": 693.0525666627098,
-      "techo": 2004.3207422832575,
+      "piso": 692.7340734460173,
+      "techo": 2005.2105487613633,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-15",
-      "piso": 692.6693439631135,
-      "techo": 2005.4109441345047,
+      "piso": 692.3282955191205,
+      "techo": 2006.3648418994264,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-16",
-      "piso": 692.2863331661125,
-      "techo": 2006.501738974714,
+      "piso": 691.922755281883,
+      "techo": 2007.5197995026997,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-17",
-      "piso": 691.9035341545354,
-      "techo": 2007.5931271264274,
+      "piso": 691.5174525950753,
+      "techo": 2008.6754219536804,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-18",
-      "piso": 691.5209468112755,
-      "techo": 2008.6851089123622,
+      "piso": 691.1123873195488,
+      "techo": 2009.831709635086,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-21",
-      "piso": 690.3744536213059,
-      "techo": 2011.9646193053038,
+      "piso": 689.8986145703976,
+      "techo": 2013.3045678923324,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-22",
-      "piso": 689.9927117815447,
-      "techo": 2013.0589788588113,
+      "piso": 689.4944975501437,
+      "techo": 2014.4635203270207,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-23",
-      "piso": 689.6111810255388,
-      "techo": 2014.1539336627625,
+      "piso": 689.0906172466517,
+      "techo": 2015.6231399090284,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-24",
-      "piso": 689.2298612365696,
-      "techo": 2015.2494840409295,
+      "piso": 688.6869735212617,
+      "techo": 2016.7834270223968,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-25",
-      "piso": 688.8487522979832,
-      "techo": 2016.3456303172604,
+      "piso": 688.283566235395,
+      "techo": 2017.9443820513884,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-28",
-      "piso": 687.7066894189476,
-      "techo": 2019.6376477773629,
+      "piso": 687.0747616303651,
+      "techo": 2021.4312584780441,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-29",
-      "piso": 687.3264227166416,
-      "techo": 2020.7361808893575,
+      "piso": 686.6722987184274,
+      "techo": 2022.5948890165773,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-30",
-      "piso": 686.9463662824152,
-      "techo": 2021.835311521902,
+      "piso": 686.2700715543364,
+      "techo": 2023.7591893953659,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2026-12-31",
-      "piso": 686.5665200000008,
-      "techo": 2022.9350400000035,
+      "piso": 685.8680799999995,
+      "techo": 2024.9241600000012,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-01",
-      "piso": 686.206015934213,
-      "techo": 2023.9807745147543,
+      "piso": 685.4888299548692,
+      "techo": 2026.0255685826178,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-04",
-      "piso": 685.1256391055813,
-      "techo": 2027.121222664213,
+      "piso": 684.3523375912358,
+      "techo": 2029.3333901416324,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-05",
-      "piso": 684.7658916211379,
-      "techo": 2028.169121181075,
+      "piso": 683.973925674302,
+      "techo": 2030.437197018475,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-06",
-      "piso": 684.4063330338037,
-      "techo": 2029.2175613978065,
+      "piso": 683.5957229998461,
+      "techo": 2031.5416042844045,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-07",
-      "piso": 684.0469632443919,
-      "techo": 2030.2665435944332,
+      "piso": 683.2177294521676,
+      "techo": 2032.646612265988,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-08",
-      "piso": 683.6877821537681,
-      "techo": 2031.316068051126,
+      "piso": 682.8399449156303,
+      "techo": 2033.7522212899707,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-11",
-      "piso": 682.6113700840606,
-      "techo": 2034.46789778548,
+      "piso": 681.7078442174593,
+      "techo": 2037.0726578864264,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-12",
-      "piso": 682.2529427982846,
-      "techo": 2035.5195940870415,
+      "piso": 681.3308945704001,
+      "techo": 2038.1806743510085,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-13",
-      "piso": 681.8947037164045,
-      "techo": 2036.5718340516962,
+      "piso": 680.9541533572583,
+      "techo": 2039.2892934943811,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-14",
-      "piso": 681.5366527395976,
-      "techo": 2037.6246179604852,
+      "piso": 680.5776204627804,
+      "techo": 2040.3985156443568,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-15",
-      "piso": 681.1787897690932,
-      "techo": 2038.6779460945945,
+      "piso": 680.2012957717768,
+      "techo": 2041.5083411289265,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-18",
-      "piso": 680.1063279084667,
-      "techo": 2041.8411986628855,
+      "piso": 679.0735697686717,
+      "techo": 2044.8414408727854,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-19",
-      "piso": 679.7492159765027,
-      "techo": 2042.8967065130448,
+      "piso": 678.6980767409432,
+      "techo": 2045.9536829792096,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-20",
-      "piso": 679.3922915577652,
-      "techo": 2043.9527599966366,
+      "piso": 678.3227913416957,
+      "techo": 2047.0665300628602,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-21",
-      "piso": 679.0355545537944,
-      "techo": 2045.0093593957201,
+      "piso": 677.9477134561215,
+      "techo": 2048.1799824528,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-22",
-      "piso": 678.6790048661821,
-      "techo": 2046.0665049925005,
+      "piso": 677.572842969476,
+      "techo": 2049.2940404782703,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-25",
-      "piso": 677.6104787181886,
-      "techo": 2049.2412217932633,
+      "piso": 676.4494747566185,
+      "techo": 2052.6398516629715,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-26",
-      "piso": 677.2546773129609,
-      "techo": 2050.3005550058015,
+      "piso": 676.0754327195116,
+      "techo": 2053.756335526566,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-27",
-      "piso": 676.8990627328251,
-      "techo": 2051.3604358292523,
+      "piso": 675.701597508562,
+      "techo": 2054.8734266745882,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-28",
-      "piso": 676.5436348796826,
-      "techo": 2052.420864546697,
+      "piso": 675.3279690094056,
+      "techo": 2055.991125437356,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-01-29",
-      "piso": 676.1883936554864,
-      "techo": 2053.4818414413635,
+      "piso": 674.9545471077411,
+      "techo": 2057.1094321453666,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-01",
-      "piso": 675.0404209766393,
-      "techo": 2056.9155665315707,
+      "piso": 673.7612929512343,
+      "techo": 2060.6892935805267,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-02",
-      "piso": 674.6026553277801,
-      "techo": 2058.2265271664724,
+      "piso": 673.3145596627593,
+      "techo": 2062.031590220228,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-03",
-      "piso": 674.1651735711995,
-      "techo": 2059.5383233328926,
+      "piso": 672.8681225780483,
+      "techo": 2063.3747612082716,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-04",
-      "piso": 673.7279755227927,
-      "techo": 2060.850955563351,
+      "piso": 672.4219815007052,
+      "techo": 2064.7188071141936,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-05",
-      "piso": 673.291060998574,
-      "techo": 2062.164424390707,
+      "piso": 671.9761362344642,
+      "techo": 2066.0637285078997,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-08",
-      "piso": 671.9820167329806,
-      "techo": 2066.109855787855,
+      "piso": 670.6403733416465,
+      "techo": 2070.103751320352,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-09",
-      "piso": 671.5462344680441,
-      "techo": 2067.426676338194,
+      "piso": 670.1957093597565,
+      "techo": 2071.4521803716825,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-10",
-      "piso": 671.1107348091562,
-      "techo": 2068.7443361548267,
+      "piso": 669.7513402095896,
+      "techo": 2072.8014877659007,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-11",
-      "piso": 670.6755175730459,
-      "techo": 2070.062835772654,
+      "piso": 669.3072656956592,
+      "techo": 2074.1516740751435,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-12",
-      "piso": 670.2405825765613,
-      "techo": 2071.3821757269175,
+      "piso": 668.8634856226088,
+      "techo": 2075.5027398719208,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-15",
-      "piso": 668.9374691951234,
-      "techo": 2075.3452429658546,
+      "piso": 667.5339100971119,
+      "techo": 2079.5612199181505,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-16",
-      "piso": 668.5036613279963,
-      "techo": 2076.6679496251013,
+      "piso": 667.0913058366028,
+      "techo": 2080.9158093976243,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-17",
-      "piso": 668.070134786515,
-      "techo": 2077.991499302112,
+      "piso": 666.6489950421312,
+      "techo": 2082.27128123278,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-18",
-      "piso": 667.6368893882392,
-      "techo": 2079.315892534178,
+      "piso": 666.2069775191161,
+      "techo": 2083.6276359983685,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-19",
-      "piso": 667.2039249508466,
-      "techo": 2080.6411298589337,
+      "piso": 665.7652530731057,
+      "techo": 2084.984874269515,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-22",
-      "piso": 665.9067155825194,
-      "techo": 2084.621911770816,
+      "piso": 664.4418362545179,
+      "techo": 2089.061895873175,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-23",
-      "piso": 665.4748731678015,
-      "techo": 2085.950530849524,
+      "piso": 664.0012821745852,
+      "techo": 2090.4226739253027,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-24",
-      "piso": 665.043310804128,
-      "techo": 2087.279996714235,
+      "piso": 663.5610202013303,
+      "techo": 2091.784338364239,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-25",
-      "piso": 664.612028309885,
-      "techo": 2088.6103099046422,
+      "piso": 663.1210501410736,
+      "techo": 2093.1468897673603,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-02-26",
-      "piso": 664.1810255035763,
-      "techo": 2089.941470960782,
+      "piso": 662.6813718002641,
+      "techo": 2094.5103287124202,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-01",
-      "piso": 662.9748209237363,
-      "techo": 2093.678118725849,
+      "piso": 661.4369462804764,
+      "techo": 2098.3806145082935,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-02",
-      "piso": 662.6299630952335,
-      "techo": 2094.7504475580454,
+      "piso": 661.071205405456,
+      "techo": 2099.5219779549207,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-03",
-      "piso": 662.2852846504994,
-      "techo": 2095.8233256098733,
+      "piso": 660.705666766474,
+      "techo": 2100.6639622186235,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-04",
-      "piso": 661.9407854962243,
-      "techo": 2096.896753162629,
+      "piso": 660.3403302517042,
+      "techo": 2101.8065676370807,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-05",
-      "piso": 661.5964655391472,
-      "techo": 2097.970730497753,
+      "piso": 659.9751957493822,
+      "techo": 2102.9497945481544,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-08",
-      "piso": 660.5645799192213,
-      "techo": 2101.1959640138994,
+      "piso": 658.8810032003863,
+      "techo": 2106.3832076184535,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-09",
-      "piso": 660.2209758192957,
-      "techo": 2102.2721432957837,
+      "piso": 658.5166756314474,
+      "techo": 2107.5289238822916,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-10",
-      "piso": 659.8775504509903,
-      "techo": 2103.348873769402,
+      "piso": 658.1525495170606,
+      "techo": 2108.675263330815,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-11",
-      "piso": 659.5343037213344,
-      "techo": 2104.4261557170607,
+      "piso": 657.7886247458321,
+      "techo": 2109.822226302991,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-12",
-      "piso": 659.1912355374062,
-      "techo": 2105.503989421211,
+      "piso": 657.4249012064292,
+      "techo": 2110.9698131379696,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-15",
-      "piso": 658.1631013314928,
-      "techo": 2108.74080389929,
+      "piso": 656.334936866773,
+      "techo": 2114.4163202139944,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-16",
-      "piso": 657.8207464022219,
-      "techo": 2109.82084745681,
+      "piso": 655.9720171425786,
+      "techo": 2115.5664058953803,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-17",
-      "piso": 657.4785695547931,
-      "techo": 2110.9014441852482,
+      "piso": 655.6092980944702,
+      "techo": 2116.717117138091,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-18",
-      "piso": 657.1365706965743,
-      "techo": 2111.9825943679243,
+      "piso": 655.2467796114842,
+      "techo": 2117.8684542823858,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-19",
-      "piso": 656.7947497349811,
-      "techo": 2113.0642982883037,
+      "piso": 654.8844615827181,
+      "techo": 2119.0204176687084,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-22",
-      "piso": 655.7703533048369,
-      "techo": 2116.312735312492,
+      "piso": 653.7987091136373,
+      "techo": 2122.4800686870617,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-23",
-      "piso": 655.4292430048679,
-      "techo": 2117.3966570212415,
+      "piso": 653.4371917939546,
+      "techo": 2123.634540449641,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-24",
-      "piso": 655.0883101393257,
-      "techo": 2118.4811338871996,
+      "piso": 653.0758743748999,
+      "techo": 2124.789640159248,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-25",
-      "piso": 654.7475546159147,
-      "techo": 2119.566166194704,
+      "piso": 652.7147567459381,
+      "techo": 2125.9453681574396,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-26",
-      "piso": 654.4069763423873,
-      "techo": 2120.651754228237,
+      "piso": 652.3538387965955,
+      "techo": 2127.1017247859577,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-29",
-      "piso": 653.3863040993507,
-      "techo": 2123.9118555320288,
+      "piso": 651.2722819224622,
+      "techo": 2130.574569873686,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-30",
-      "piso": 653.0464339038414,
-      "techo": 2124.9996693174244,
+      "piso": 650.9121615880807,
+      "techo": 2131.7334444446547,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-03-31",
-      "piso": 652.706740497697,
-      "techo": 2126.0880402534517,
+      "piso": 650.5522403818654,
+      "techo": 2132.8929493574524,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-01",
-      "piso": 652.3559096073818,
-      "techo": 2127.2132758414878,
+      "piso": 650.2025675387205,
+      "techo": 2134.021786454811,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-02",
-      "piso": 652.005267289217,
-      "techo": 2128.3391069623076,
+      "piso": 649.8530826452737,
+      "techo": 2135.1512209910575,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-05",
-      "piso": 650.9544707543189,
-      "techo": 2131.720176674169,
+      "piso": 648.8057546531616,
+      "techo": 2138.5431123959193,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-06",
-      "piso": 650.6045817117218,
-      "techo": 2132.8483930796583,
+      "piso": 648.4570205488178,
+      "techo": 2139.674939851348,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-07",
-      "piso": 650.2548807350305,
-      "techo": 2133.9772065955335,
+      "piso": 648.1084738895987,
+      "techo": 2140.807366328317,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-08",
-      "piso": 649.9053677231592,
-      "techo": 2135.1066175378164,
+      "piso": 647.7601145747522,
+      "techo": 2141.9403921438593,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-09",
-      "piso": 649.5560425750765,
-      "techo": 2136.236626222696,
+      "piso": 647.4119425035803,
+      "techo": 2143.0740176151758,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-12",
-      "piso": 648.5091933040609,
-      "techo": 2139.6302418973146,
+      "piso": 646.3685487459456,
+      "techo": 2146.478495138298,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-13",
-      "piso": 648.1606186019045,
-      "techo": 2140.762644717818,
+      "piso": 646.0211246435757,
+      "techo": 2147.6145224080797,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-14",
-      "piso": 647.8122312591938,
-      "techo": 2141.8956468643746,
+      "piso": 645.6738872822023,
+      "techo": 2148.75115092216,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-15",
-      "piso": 647.4640311752229,
-      "techo": 2143.0292486541784,
+      "piso": 645.3268365614517,
+      "techo": 2149.8883809987483,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-16",
-      "piso": 647.1160182493397,
-      "techo": 2144.163450404592,
+      "piso": 644.9799723810045,
+      "techo": 2151.026212956223,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-19",
-      "piso": 646.07310141451,
-      "techo": 2147.5696585956307,
+      "piso": 643.940498079095,
+      "techo": 2154.4433233002724,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-20",
-      "piso": 645.7258361155411,
-      "techo": 2148.7062633654646,
+      "piso": 643.5943790577428,
+      "techo": 2155.583565968443,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-21",
-      "piso": 645.3787574722118,
-      "techo": 2149.84346968524,
+      "piso": 643.248446075904,
+      "techo": 2156.7244121119193,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-22",
-      "piso": 645.0318653841941,
-      "techo": 2150.9812778733285,
+      "piso": 642.902699033582,
+      "techo": 2157.865862050091,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-23",
-      "piso": 644.6851597512144,
-      "techo": 2152.1196882482695,
+      "piso": 642.5571378308343,
+      "techo": 2159.007916102518,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-26",
-      "piso": 643.6461605805737,
-      "techo": 2155.5385356821366,
+      "piso": 641.5215682614136,
+      "techo": 2162.4377061434584,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-27",
-      "piso": 643.3001997660856,
-      "techo": 2156.6793579932596,
+      "piso": 641.1767494186084,
+      "techo": 2163.582179851882,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-28",
-      "piso": 642.9544249060746,
-      "techo": 2157.8207840864648,
+      "piso": 640.8321159164688,
+      "techo": 2164.727259274896,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-29",
-      "piso": 642.6088359005897,
-      "techo": 2158.962814281305,
+      "piso": 640.4876676553736,
+      "techo": 2165.8729447330757,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-04-30",
-      "piso": 642.263432649734,
-      "techo": 2160.105448897502,
+      "piso": 640.1434045357556,
+      "techo": 2167.019236547166,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-03",
-      "piso": 641.1986049607177,
-      "techo": 2163.6321780189937,
+      "piso": 639.0820917045413,
+      "techo": 2170.5572535695596,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-04",
-      "piso": 640.8440548555884,
-      "techo": 2164.809033477371,
+      "piso": 638.7287119232269,
+      "techo": 2171.7378757554998,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-05",
-      "piso": 640.4897007985728,
-      "techo": 2165.9865290578464,
+      "piso": 638.375527542897,
+      "techo": 2172.919140112359,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-06",
-      "piso": 640.1355426812664,
-      "techo": 2167.1646651085994,
+      "piso": 638.0225384555047,
+      "techo": 2174.1010469894304,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-07",
-      "piso": 639.7815803953246,
-      "techo": 2168.343441977998,
+      "piso": 637.669744553063,
+      "techo": 2175.283596736197,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-10",
-      "piso": 638.7208674431378,
-      "techo": 2171.8836209845936,
+      "piso": 636.6125328764667,
+      "techo": 2178.835106692356,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-11",
-      "piso": 638.367687400405,
-      "techo": 2173.0649646160496,
+      "piso": 636.2605186351509,
+      "techo": 2180.020231416542,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-12",
-      "piso": 638.0147026482114,
-      "techo": 2174.246950810837,
+      "piso": 635.9086990397456,
+      "techo": 2181.2060007606938,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-13",
-      "piso": 637.6619130785712,
-      "techo": 2175.429579918463,
+      "piso": 635.5570739826214,
+      "techo": 2182.392415075437,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-14",
-      "piso": 637.3093185835585,
-      "techo": 2176.6128522886243,
+      "piso": 635.2056433562088,
+      "techo": 2183.5794747115874,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-17",
-      "piso": 636.2527044679202,
-      "techo": 2180.166532474144,
+      "piso": 634.1525169864348,
+      "techo": 2187.1445290595075,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-18",
-      "piso": 635.9008891933506,
-      "techo": 2181.352381395222,
+      "piso": 633.8018630083599,
+      "techo": 2188.334173493267,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-19",
-      "piso": 635.549268454673,
-      "techo": 2182.538875330175,
+      "piso": 633.4514029240393,
+      "techo": 2189.524465005379,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-20",
-      "piso": 635.197842144319,
-      "techo": 2183.726014629843,
+      "piso": 633.1011366262596,
+      "techo": 2190.7154039478064,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-21",
-      "piso": 634.8466101547797,
-      "techo": 2184.9137996452564,
+      "piso": 632.751064007867,
+      "techo": 2191.906990672703,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-24",
-      "piso": 633.7940790368518,
-      "techo": 2188.481032499139,
+      "piso": 631.7020071583584,
+      "techo": 2195.485641066624,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-25",
-      "piso": 633.4436232566702,
-      "techo": 2189.67140389166,
+      "piso": 631.3527081871572,
+      "techo": 2196.679822446771,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-26",
-      "piso": 633.0933612606497,
-      "techo": 2190.862422757945,
+      "piso": 631.0036023604607,
+      "techo": 2197.8746533730337,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-27",
-      "piso": 632.7432929416374,
-      "techo": 2192.054089450172,
+      "piso": 630.6546895714699,
+      "techo": 2199.070134198716,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-28",
-      "piso": 632.3934181925398,
-      "techo": 2193.24640432071,
+      "piso": 630.3059697134447,
+      "techo": 2200.266265277315,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-05-31",
-      "piso": 631.3449542946887,
-      "techo": 2196.827241528761,
+      "piso": 629.260966658648,
+      "techo": 2203.858563568471,
       "status": "PROYECTADO REM",
-      "source": "REM 2026-09"
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-01",
-      "piso": 631.018369345924,
-      "techo": 2197.9468305956593,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 628.9100046639364,
+      "techo": 2205.068171473757,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-02",
-      "piso": 630.691953334486,
-      "techo": 2199.0669902489262,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 628.5592384136429,
+      "techo": 2206.2784432833923,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-03",
-      "piso": 630.3657061729859,
-      "techo": 2200.187720779355,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 628.2086677985935,
+      "techo": 2207.489379361766,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-04",
-      "piso": 630.0396277740804,
-      "techo": 2201.309022477887,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 627.8582927096754,
+      "techo": 2208.700980073469,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-07",
-      "piso": 629.062404280174,
-      "techo": 2204.6763574937413,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 626.8083395094914,
+      "techo": 2212.3397736574516,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-08",
-      "piso": 628.7370000591152,
-      "techo": 2205.7999467770665,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 626.458745435185,
+      "techo": 2213.554036552373,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-09",
-      "piso": 628.411764164611,
-      "techo": 2206.924108685427,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 626.1093463423573,
+      "techo": 2214.7689659065763,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-10",
-      "piso": 628.0866965095886,
-      "techo": 2208.048843510656,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 625.7601421222597,
+      "techo": 2215.9845620858546,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-11",
-      "piso": 627.7617970070203,
-      "techo": 2209.174151544733,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 625.4111326662046,
+      "techo": 2217.2008254562006,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-14",
-      "piso": 626.7881065444385,
-      "techo": 2212.5535178220957,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 624.3652717963264,
+      "techo": 2220.853622376589,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-15",
-      "piso": 626.46387878231,
-      "techo": 2213.6811216143524,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 624.0170403107762,
+      "techo": 2222.0725581751553,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-16",
-      "piso": 626.139818738172,
-      "techo": 2214.8093000775953,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 623.6690030467387,
+      "techo": 2223.29216299777,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-17",
-      "piso": 625.8159263252667,
-      "techo": 2215.9380535046994,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 623.3211598958893,
+      "techo": 2224.512437211633,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-18",
-      "piso": 625.4922014568809,
-      "techo": 2217.0673821886885,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 622.973510749964,
+      "techo": 2225.7333811841454,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-21",
-      "piso": 624.5220312523838,
-      "techo": 2220.458822714448,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 621.9317262599975,
+      "techo": 2229.4002353306214,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-22",
-      "piso": 624.1989756958429,
-      "techo": 2221.5904553592063,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 621.584852052335,
+      "techo": 2230.6238620157824,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-23",
-      "piso": 623.8760872509289,
-      "techo": 2222.722664728212,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 621.2381713091813,
+      "techo": 2231.8481602996276,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-24",
-      "piso": 623.5533658311973,
-      "techo": 2223.8554511153857,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 620.8916839226342,
+      "techo": 2233.07313055077,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-25",
-      "piso": 623.2308113502488,
-      "techo": 2224.988814814799,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 620.5453897848515,
+      "techo": 2234.2987731380254,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-28",
-      "piso": 622.2641486767762,
-      "techo": 2228.3923727294323,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 619.5076657865714,
+      "techo": 2237.9797386076584,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-29",
-      "piso": 621.9422610878579,
-      "techo": 2229.5280486215115,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 619.1621435666281,
+      "techo": 2239.2080742315684,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-06-30",
-      "piso": 621.6205400063948,
-      "techo": 2230.664303298435,
-      "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "piso": 618.8168140571403,
+      "techo": 2240.437084038707,
+      "status": "PROYECTADO REM",
+      "source": "REM 2026-10"
     },
     {
       "date": "2027-07-01",
-      "piso": 621.3093554804816,
-      "techo": 2231.7644559567766,
+      "piso": 618.492071049217,
+      "techo": 2241.5945981372383,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-02",
-      "piso": 620.9983267341846,
-      "techo": 2232.865151204996,
+      "piso": 618.1674984600975,
+      "techo": 2242.75271026144,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-05",
-      "piso": 620.0661743933505,
-      "techo": 2236.170495165607,
+      "piso": 617.1948023114713,
+      "techo": 2246.2306378785415,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-06",
-      "piso": 619.7557679860728,
-      "techo": 2237.273363450684,
+      "piso": 616.8709105037113,
+      "techo": 2247.3911451966987,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-07",
-      "piso": 619.4455169688836,
-      "techo": 2238.3767756649727,
+      "piso": 616.5471886680618,
+      "techo": 2248.5522520869627,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-08",
-      "piso": 619.1354212639942,
-      "techo": 2239.480732076736,
+      "piso": 616.2236367153248,
+      "techo": 2249.7139588591,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-09",
-      "piso": 618.825480793655,
-      "techo": 2240.5852329543695,
+      "piso": 615.900254556349,
+      "techo": 2250.8762658230376,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-12",
-      "piso": 617.8965900130255,
-      "techo": 2243.9020050684326,
+      "piso": 614.9311259511777,
+      "techo": 2254.366790967325,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-13",
-      "piso": 617.5872697041686,
-      "techo": 2245.008686496151,
+      "piso": 614.6084220766695,
+      "techo": 2255.531501800937,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-14",
-      "piso": 617.2781042416971,
-      "techo": 2246.1159137337036,
+      "piso": 614.2858875508676,
+      "techo": 2256.6968143783874,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-15",
-      "piso": 616.9690935480944,
-      "techo": 2247.2236870502816,
+      "piso": 613.963522284901,
+      "techo": 2257.862729010565,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-16",
-      "piso": 616.6602375458831,
-      "techo": 2248.3320067152085,
+      "piso": 613.6413261899456,
+      "techo": 2259.0292460085197,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-19",
-      "piso": 615.7345969134022,
-      "techo": 2251.6602464953107,
+      "piso": 612.6757520436023,
+      "techo": 2262.5324143099497,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-20",
-      "piso": 615.4263589027553,
-      "techo": 2252.770754249526,
+      "piso": 612.3542317453805,
+      "techo": 2263.7013438847216,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-21",
-      "piso": 615.1182751966929,
-      "techo": 2253.881809700701,
+      "piso": 612.0328801747472,
+      "techo": 2264.87087738293,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-22",
-      "piso": 614.81034571797,
-      "techo": 2254.993413118958,
+      "piso": 611.7116972431575,
+      "techo": 2266.0410151165897,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-23",
-      "piso": 614.50257038938,
-      "techo": 2256.105564774551,
+      "piso": 611.3906828621127,
+      "techo": 2267.211757397877,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-26",
-      "piso": 613.5801685329218,
-      "techo": 2259.445311869894,
+      "piso": 610.4286501379606,
+      "techo": 2270.727614651686,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-27",
-      "piso": 613.2730090335708,
-      "techo": 2260.559659180045,
+      "piso": 610.1083090750398,
+      "techo": 2271.9007782484723,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-28",
-      "piso": 612.9660032988995,
-      "techo": 2261.6745560808063,
+      "piso": 609.7881361208676,
+      "techo": 2273.074547956188,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-29",
-      "piso": 612.6591512519329,
-      "techo": 2262.790002843233,
+      "piso": 609.4681311872241,
+      "techo": 2274.248924087978,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-07-30",
-      "piso": 612.3524528157346,
-      "techo": 2263.9059997385148,
+      "piso": 609.1482941859352,
+      "techo": 2275.4239069571495,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-02",
-      "piso": 611.4332784029635,
-      "techo": 2267.257293935385,
+      "piso": 608.1897898951518,
+      "techo": 2278.95249912445,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-03",
-      "piso": 611.1271936412447,
-      "techo": 2268.3754940766516,
+      "piso": 607.8706237424677,
+      "techo": 2280.1299120794547,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-04",
-      "piso": 610.8212621061897,
-      "techo": 2269.494245708726,
+      "piso": 607.5516250819625,
+      "techo": 2281.307933340805,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-05",
-      "piso": 610.5154837210928,
-      "techo": 2270.6135491036002,
+      "piso": 607.2327938257393,
+      "techo": 2282.48656322278,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-06",
-      "piso": 610.2098584092869,
-      "techo": 2271.7334045334014,
+      "piso": 606.9141298859479,
+      "techo": 2283.665802039822,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-09",
-      "piso": 609.2939001475189,
-      "techo": 2275.096285755647,
+      "piso": 605.9591410873496,
+      "techo": 2287.2071752482043,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-10",
-      "piso": 608.9888863629724,
-      "techo": 2276.2183520491076,
+      "piso": 605.6411455357013,
+      "techo": 2288.3888529531814,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-11",
-      "piso": 608.6840252689562,
-      "techo": 2277.3409717401432,
+      "piso": 605.3233168619232,
+      "techo": 2289.5711411678726,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-12",
-      "piso": 608.3793167890333,
-      "techo": 2278.4641451016864,
+      "piso": 605.005654978441,
+      "techo": 2290.7540402076957,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-13",
-      "piso": 608.0747608468046,
-      "techo": 2279.5878724068048,
+      "piso": 604.6881597977265,
+      "techo": 2291.937550388231,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-16",
-      "piso": 607.162007482868,
-      "techo": 2282.9623807163084,
+      "piso": 603.7366735975941,
+      "techo": 2295.491750932365,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-17",
-      "piso": 606.8580609281915,
-      "techo": 2284.088326529098,
+      "piso": 603.4198443535852,
+      "techo": 2296.677708834819,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-18",
-      "piso": 606.554266529788,
-      "techo": 2285.214827652823,
+      "piso": 603.1031813753909,
+      "techo": 2297.8642794583366,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-19",
-      "piso": 606.2506242114877,
-      "techo": 2286.3418843613586,
+      "piso": 602.7866845757583,
+      "techo": 2299.0514631194774,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-20",
-      "piso": 605.9471338971588,
-      "techo": 2287.4694969287175,
+      "piso": 602.47035386748,
+      "techo": 2300.2392601349657,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-23",
-      "piso": 605.0375742172567,
-      "techo": 2290.855672525876,
+      "piso": 601.5223574193843,
+      "techo": 2303.8063344772067,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-24",
-      "piso": 604.7346911582598,
-      "techo": 2291.985511271347,
+      "piso": 601.2066902053654,
+      "techo": 2304.9965880805958,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-25",
-      "piso": 604.4319597231477,
-      "techo": 2293.1159072477285,
+      "piso": 600.8911886473504,
+      "techo": 2306.1874566244073,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-26",
-      "piso": 604.129379836017,
-      "techo": 2294.246860729843,
+      "piso": 600.5758526584063,
+      "techo": 2307.378940426348,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-27",
-      "piso": 603.8269514210027,
-      "techo": 2295.37837199265,
+      "piso": 600.2606821516457,
+      "techo": 2308.571039804289,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-30",
-      "piso": 602.9205742505748,
-      "techo": 2298.7762552168515,
+      "piso": 599.3161626562741,
+      "techo": 2312.1510345752868,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     },
     {
       "date": "2027-08-31",
-      "piso": 602.6187509661326,
-      "techo": 2299.9100003547323,
+      "piso": 599.0016532102846,
+      "techo": 2313.3455994392243,
       "status": "PROYECTADO IMPLÍCITO",
-      "source": "Cálculo implícito 2026-09"
+      "source": "Cálculo implícito 2026-10"
     }
   ],
   "monthly_ceiling": [
@@ -3221,7 +3247,7 @@
       "official": false,
       "change_pct": null,
       "ipc_month": "2025-11",
-      "ipc_rate_pct": 1.5402695819686452,
+      "ipc_rate_pct": 1.6140784803148955,
       "ipc_origin": "implicito",
       "last_official_trading_day": {
         "date": "2026-01-30",
@@ -3238,7 +3264,7 @@
       "official": false,
       "change_pct": 2.782821112044087,
       "ipc_month": "2025-12",
-      "ipc_rate_pct": 1.5402695819686452,
+      "ipc_rate_pct": 1.6140784803148955,
       "ipc_origin": "implicito",
       "last_official_trading_day": {
         "date": "2026-02-27",
@@ -3362,7 +3388,7 @@
         "date": "2026-10-30",
         "techo": 1950.97
       },
-      "rem_fx_mean": 1545.03203561277
+      "rem_fx_mean": null
     },
     {
       "month": "2026-11",
@@ -3376,86 +3402,86 @@
       "ipc_rate_pct": 1.9,
       "ipc_origin": "observado",
       "last_official_trading_day": null,
-      "rem_fx_mean": 1579.92075
+      "rem_fx_mean": 1558.481827
     },
     {
       "month": "2026-12",
       "date": "2026-12-31",
-      "piso": 686.5665200000008,
-      "techo": 2022.9350400000035,
+      "piso": 685.8680799999995,
+      "techo": 2024.9241600000012,
       "status": "PROYECTADO REM",
       "official": false,
-      "change_pct": 1.7000000000001902,
+      "change_pct": 1.8000000000000682,
       "ipc_month": "2026-10",
-      "ipc_rate_pct": 1.7,
+      "ipc_rate_pct": 1.8,
       "ipc_origin": "rem",
       "last_official_trading_day": null,
-      "rem_fx_mean": 1614.32226296034
+      "rem_fx_mean": 1590
     },
     {
       "month": "2027-01",
       "date": "2027-01-31",
-      "piso": 675.4784707020017,
-      "techo": 2055.6054408960063,
+      "piso": 674.2083226399998,
+      "techo": 2059.3478707200043,
       "status": "PROYECTADO REM",
       "official": false,
-      "change_pct": 1.615000000000144,
+      "change_pct": 1.7000000000001458,
       "ipc_month": "2026-11",
-      "ipc_rate_pct": 1.615,
+      "ipc_rate_pct": 1.7,
       "ipc_origin": "rem",
       "last_official_trading_day": null,
-      "rem_fx_mean": 1644
+      "rem_fx_mean": 1618.832072
     },
     {
       "month": "2027-02",
       "date": "2027-02-28",
-      "piso": 663.3198582293658,
-      "techo": 2092.6063388321313,
+      "piso": 661.8028895034232,
+      "techo": 2097.239871541248,
       "status": "PROYECTADO REM",
       "official": false,
-      "change_pct": 1.7999999999998462,
+      "change_pct": 1.8399999999997751,
       "ipc_month": "2026-12",
-      "ipc_rate_pct": 1.8,
+      "ipc_rate_pct": 1.84,
       "ipc_origin": "rem",
       "last_official_trading_day": null,
-      "rem_fx_mean": 1672
+      "rem_fx_mean": 1649.178804
     },
     {
       "month": "2027-03",
       "date": "2027-03-31",
-      "piso": 652.706740497697,
-      "techo": 2126.0880402534517,
+      "piso": 650.5522403818654,
+      "techo": 2132.8929493574524,
       "status": "PROYECTADO REM",
       "official": false,
-      "change_pct": 1.60000000000029,
+      "change_pct": 1.700000000000168,
       "ipc_month": "2027-01",
-      "ipc_rate_pct": 1.6,
+      "ipc_rate_pct": 1.7,
       "ipc_origin": "rem",
       "last_official_trading_day": null,
-      "rem_fx_mean": 1704
+      "rem_fx_mean": 1676.892248
     },
     {
       "month": "2027-04",
       "date": "2027-04-30",
-      "piso": 642.263432649734,
-      "techo": 2160.105448897502,
+      "piso": 640.1434045357556,
+      "techo": 2167.019236547166,
       "status": "PROYECTADO REM",
       "official": false,
-      "change_pct": 1.5999999999997572,
+      "change_pct": 1.599999999999735,
       "ipc_month": "2027-02",
       "ipc_rate_pct": 1.6,
       "ipc_origin": "rem",
       "last_official_trading_day": null,
-      "rem_fx_mean": null
+      "rem_fx_mean": 1701.541777
     },
     {
       "month": "2027-05",
       "date": "2027-05-31",
-      "piso": 631.3449542946887,
-      "techo": 2196.827241528761,
+      "piso": 629.260966658648,
+      "techo": 2203.858563568471,
       "status": "PROYECTADO REM",
       "official": false,
-      "change_pct": 1.7000000000000792,
+      "change_pct": 1.7000000000001236,
       "ipc_month": "2027-03",
       "ipc_rate_pct": 1.7,
       "ipc_origin": "rem",
@@ -3465,27 +3491,27 @@
     {
       "month": "2027-06",
       "date": "2027-06-30",
-      "piso": 621.6205400063948,
-      "techo": 2230.664303298435,
-      "status": "PROYECTADO IMPLÍCITO",
+      "piso": 618.8168140571403,
+      "techo": 2240.437084038707,
+      "status": "PROYECTADO REM",
       "official": false,
-      "change_pct": 1.5402695819688894,
+      "change_pct": 1.6597489999997217,
       "ipc_month": "2027-04",
-      "ipc_rate_pct": 1.5402695819686452,
-      "ipc_origin": "implicito",
+      "ipc_rate_pct": 1.659749,
+      "ipc_origin": "rem",
       "last_official_trading_day": null,
       "rem_fx_mean": null
     },
     {
       "month": "2027-07",
       "date": "2027-07-31",
-      "piso": 612.0459079134068,
-      "techo": 2265.0225470379737,
+      "piso": 608.8286250288735,
+      "techo": 2276.599496877171,
       "status": "PROYECTADO IMPLÍCITO",
       "official": false,
-      "change_pct": 1.5402695819686674,
+      "change_pct": 1.61407848031494,
       "ipc_month": "2027-05",
-      "ipc_rate_pct": 1.5402695819686452,
+      "ipc_rate_pct": 1.6140784803148955,
       "ipc_origin": "implicito",
       "last_official_trading_day": null,
       "rem_fx_mean": null
@@ -3493,13 +3519,13 @@
     {
       "month": "2027-08",
       "date": "2027-08-31",
-      "piso": 602.6187509661326,
-      "techo": 2299.9100003547323,
+      "piso": 599.0016532102846,
+      "techo": 2313.3455994392243,
       "status": "PROYECTADO IMPLÍCITO",
       "official": false,
-      "change_pct": 1.5402695819687118,
+      "change_pct": 1.6140784803149621,
       "ipc_month": "2027-06",
-      "ipc_rate_pct": 1.5402695819686452,
+      "ipc_rate_pct": 1.6140784803148955,
       "ipc_origin": "implicito",
       "last_official_trading_day": null,
       "rem_fx_mean": null

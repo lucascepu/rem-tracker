@@ -114,25 +114,25 @@ window.REM_HISTORY = {
       officialPdf:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-2026-10.pdf',
       officialExcel:'https://www.bcra.gob.ar/archivos/Pdfs/PublicacionesEstadisticas/informes/relevamiento-expectativas-mercado-tablas-2026-10.xlsx',
       participants:45,
-      /* Cuadros 1.1, 2.1 y 3.1 del PDF BCRA: medianas publicadas REDONDEADAS.
-         Sustituir por valores de precisión completa cuando el XLSX oficial esté incorporado. */
-      precision:'published_pdf_rounded',
-      next:{period:'2026-11',tc:1558.5,ipc:1.7,tamar:23.9},
-      ipcPath:{'2026-10':1.8,'2026-11':1.7,'2026-12':1.8,'2027-01':1.7,'2027-02':1.6,'2027-03':1.7,'2027-04':1.7},
-      tamarPath:{'2026-11':23.9,'2026-12':24.0,'2027-01':24.0,'2027-02':23.3,'2027-03':23.5,'2027-04':23.2},
-      tcPath:{'2026-11':1558.5,'2026-12':1590.0,'2027-01':1618.8,'2027-02':1649.2,'2027-03':1676.9,'2027-04':1701.5},
-      dec26:{tc:1590.0,ipc_yoy:30.4,tamar:24.0},
-      next12:{horizon:'2027-10',ipc_yoy:21.8,tc:1984.9},
+      /* Medianas con precisión completa del XLSX oficial del BCRA (Cuadros de resultados):
+         IPC (var. % mensual), TAMAR, tipo de cambio nominal, IPC próx. 12 meses y anuales. */
+      precision:'official_xlsx',
+      next:{period:'2026-11',tc:1558.481827,ipc:1.7,tamar:23.9},
+      ipcPath:{'2026-10':1.8,'2026-11':1.7,'2026-12':1.84,'2027-01':1.7,'2027-02':1.6,'2027-03':1.7,'2027-04':1.659749},
+      tamarPath:{'2026-11':23.9,'2026-12':24,'2027-01':23.95,'2027-02':23.25,'2027-03':23.54,'2027-04':23.2},
+      tcPath:{'2026-11':1558.481827,'2026-12':1590,'2027-01':1618.832072,'2027-02':1649.178804,'2027-03':1676.892248,'2027-04':1701.541777},
+      dec26:{tc:1590,ipc_yoy:30.36,tamar:24},
+      next12:{horizon:'2027-10',ipc_yoy:21.8,tc:1984.906562,participants:41},
       annual:{
-        ipc_2026_yoy:30.4,ipc_2027_yoy:21.9,ipc_2028_yoy:15.3,
-        tc_dec26:1590.0,tamar_dec26:24.0,
-        gdp_2026:0.7,gdp_2027:2.1,gdp_2028:2.9,
+        ipc_2026_yoy:30.36,ipc_2027_yoy:21.9,ipc_2028_yoy:15.344731,
+        tc_dec26:1590,tamar_dec26:24,
+        gdp_2026:0.7,gdp_2027:2.085914,gdp_2028:2.91253,
         exports_2026:103434,imports_2026:75673,
-        primary_2026:15100,
-        unemployment_2026_q4:7.8
+        primary_2026:15107.759098,
+        unemployment_2026_q4:7.75
       },
-      activityQuarterly:{'2026-Q3':-2.3,'2026-Q4':2.0,'2027-Q1':0.9},
-      notes:'Valores verificados en informe PDF BCRA 05/11/2026; las cifras mostradas por el PDF están redondeadas. Para campos de 2027 no publicados en formato legible no se extrapola el REM previo.'
+      activityQuarterly:{'2026-Q3':-2.3,'2026-Q4':1.965,'2027-Q1':0.891723},
+      notes:'Medianas del XLSX oficial BCRA (REM oct-26, publicado 05/11/2026), sin redondeo. Reemplaza la carga previa con cifras redondeadas del PDF.'
     },
     '2026-09': {
       label: 'REM sep-26', published: '2026-10-06',

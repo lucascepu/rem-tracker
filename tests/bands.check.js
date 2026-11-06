@@ -28,27 +28,33 @@ const imp=impliedRate(REM.vintages['2026-09'],REM.actualIpc);
 out.push(near(imp.rate,1.5403,0.0005,'tasa implícita (% mensual)'));
 assert.equal(imp.months.length,6);assert.equal(imp.months[0],'2027-04');
 
+/* 3b) tasa implícita del REM oct-26 (XLSX oficial: próx. 12 meses oct-27 = 21,8 %; 6 meses publicados nov-26 a abr-27) */
+const imp10=impliedRate(REM.vintages['2026-10'],REM.actualIpc);
+out.push(near(imp10.rate,1.614078,0.00001,'tasa implícita REM oct-26 (% mensual)'));
+assert.equal(imp10.months.length,6);assert.equal(imp10.months[0],'2027-05');assert.equal(imp10.horizon,'2027-10');
+assert.equal(REM.vintages['2026-10'].precision,'official_xlsx');
+assert.equal(REM.vintages['2026-10'].ipcPath['2026-12'],1.84);
+
 /* 4) fin de mes calendario vs última rueda */
 const tab=m.monthly('rem','2026-06','2027-08'),by=Object.fromEntries(tab.map(x=>[x.ym,x]));
+assert.equal(m.vintageKey,'2026-10');
 assert.equal(by['2026-10'].status,'ESTIMADO TÉCNICO');assert.equal(by['2026-10'].lastRueda.date,'2026-10-30');assert.equal(by['2026-10'].lastRueda.techo,1950.97);
 out.push(near(by['2026-10'].techo,1952.03,0.01,'techo 31/10 (estimado técnico)'));
 assert.equal(by['2026-11'].status,'OFICIAL');assert.equal(by['2026-09'].status,'OFICIAL');
 
-/* 5) proyección REM contra valores de control (aprox.) */
-out.push(near(by['2026-12'].techo,2022.94,0.01,'techo 31/12/2026'));
-out.push(near(by['2027-01'].techo,2055.50,0.15,'techo ene-27 (control ≈ 2.055,50)'));
-out.push(near(by['2027-02'].techo,2092.50,0.15,'techo feb-27 (control ≈ 2.092,50)'));
-out.push(near(by['2027-03'].techo,2125.98,0.15,'techo mar-27 (control ≈ 2.125,98)'));
-['2026-12','2027-01','2027-02','2027-03','2027-04','2027-05'].forEach(k=>assert.equal(by[k].status,'PROYECTADO REM',k));
-['2027-06','2027-07','2027-08'].forEach(k=>assert.equal(by[k].status,'PROYECTADO IMPLÍCITO',k));
-assert.equal(by['2026-12'].ipcRef,'2026-10');assert.equal(by['2027-06'].ipcRef,'2027-04');assert.equal(by['2026-10'].ipcRef,'2026-08');assert.equal(by['2026-10'].rate,1.7);assert.equal(by['2026-11'].rate,1.9);
+/* 5) proyección REM oct-26 contra valores de control (calculados aparte: 1989,12 × Π(1+IPC T-2) con las medianas del XLSX) */
+[['2026-12',2024.9242],['2027-01',2059.3479],['2027-02',2097.2399],['2027-03',2132.8929],['2027-04',2167.0192],
+ ['2027-05',2203.8586],['2027-06',2240.4371],['2027-07',2276.5995],['2027-08',2313.3456]].forEach(([k,v])=>out.push(near(by[k].techo,v,0.01,'techo fin de '+k)));
+['2026-12','2027-01','2027-02','2027-03','2027-04','2027-05','2027-06'].forEach(k=>assert.equal(by[k].status,'PROYECTADO REM',k));
+['2027-07','2027-08'].forEach(k=>assert.equal(by[k].status,'PROYECTADO IMPLÍCITO',k));
+assert.equal(by['2026-12'].ipcRef,'2026-10');assert.equal(by['2027-06'].ipcRef,'2027-04');assert.equal(by['2027-07'].ipcRef,'2027-05');assert.equal(by['2026-10'].ipcRef,'2026-08');assert.equal(by['2026-10'].rate,1.7);assert.equal(by['2026-11'].rate,1.9);
 
 /* 6) sin saltos en el cambio de mes: cada día calendario usa el factor de su mes; el mes cierra con (1+IPC) exacto */
 const days=m.projection('rem','2027-08-31',{allDays:true}),H2=m.helpers;
 for(let i=1;i<days.length;i++){const ym=H2.monthOf(days[i].date),r=m.rateFor(ym,'rem').rate,f=Math.pow(1+r/100,1/H2.dim(ym));
   assert.ok(Math.abs(days[i].techo/days[i-1].techo-f)<1e-12,'factor diario '+days[i].date)}
 const dec=days.find(x=>x.date==='2026-12-31'),nov=days[0];
-out.push(near(dec.techo/nov.techo,1.017,1e-12,'cierre dic / cierre nov = 1 + IPC oct'));
+out.push(near(dec.techo/nov.techo,1.018,1e-12,'cierre dic / cierre nov = 1 + IPC oct'));
 assert.equal(days[0].date,'2026-11-30');assert.equal(days[0].techo,1989.12);assert.equal(days[0].status,'OFICIAL');
 
 /* 7) escenario original (referencia histórica) */
