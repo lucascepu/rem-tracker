@@ -40,10 +40,10 @@
     vintages.forEach(v=>{html+=`<th>${hist[v]?.label?.replace('REM ','REM ')||v}</th>`});
     html+='<th>Real INDEC</th></tr></thead><tbody>';
     periods.forEach(period=>{
-      const real=Number(actual[period]),isObserved=Number.isFinite(real),prior=prevVintage(period);
+      const real=Object.prototype.hasOwnProperty.call(actual,period)?Number(actual[period]):NaN,isObserved=Number.isFinite(real),prior=prevVintage(period);
       html+=`<tr${isObserved?' class="cur-row"':''}><td>${periodLabel(period)}</td>`;
       vintages.forEach(v=>{
-        const val=Number(hist[v]?.ipcPath?.[period]),isPrior=v===prior&&Number.isFinite(val);
+        const raw=hist[v]?.ipcPath?.[period];const val=raw==null?NaN:Number(raw),isPrior=v===prior&&Number.isFinite(val);
         html+=Number.isFinite(val)?`<td${isPrior?' class="hi" title="REM inmediatamente anterior al mes observado"':''}>${fmt(val)}</td>`:'<td class="nd">—</td>';
       });
       html+=Number.isFinite(real)?`<td class="hi">${fmt(real)}</td>`:'<td class="nd">—</td>';
@@ -59,14 +59,14 @@
   function renderLatestPathTable(variable){
     const panel=document.getElementById('path-'+variable),hist=window.REM_HISTORY?.vintages||{};if(!panel)return;
     const vintages=['2026-07','2026-08','2026-09','2026-10'].filter(v=>hist[v]);
-    const periods=variable==='tc'?['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03']:['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03','2027-04'];
+    const periods=variable==='tc'?['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03','2027-04']:['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12','2027-01','2027-02','2027-03','2027-04'];
     const pathKey=variable+'Path',fmt=v=>variable==='tc'?'$'+Math.round(v).toLocaleString('es-AR'):Number(v).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
     const wrap=panel.querySelector('.tbl-wrap');if(!wrap)return;let html='<table style="min-width:820px"><thead><tr><th>Mes</th>';
     vintages.forEach(v=>html+='<th>'+hist[v].label+'</th>');html+='<th>Real / observado</th><th>Desvío vs REM previo</th></tr></thead><tbody>';
     periods.forEach(period=>{const [y,m]=period.split('-').map(Number),pd=new Date(Date.UTC(y,m-2,1)),prior=`${pd.getUTCFullYear()}-${String(pd.getUTCMonth()+1).padStart(2,'0')}`;let real=NaN;
-      if(variable==='tc'&&period<currentYM()){const fx=(typeof fxMonthly!=='undefined')?fxMonthly:{};real=Number(fx?.[period]?.avg)}
+      if(variable==='tc'&&period<currentYM()){const fx=(typeof fxMonthly!=='undefined')?fxMonthly:{};real=fx?.[period]?.avg==null?NaN:Number(fx[period].avg)}
       const priorForecast=Number(hist[prior]?.[pathKey]?.[period]??hist[prior]?.next?.[variable]);let err=NaN;if(Number.isFinite(real)&&Number.isFinite(priorForecast))err=variable==='tc'?((real/priorForecast)-1)*100:real-priorForecast;
-      html+='<tr'+(Number.isFinite(real)?' class="cur-row"':'')+'><td>'+periodLabel(period)+'</td>';vintages.forEach(v=>{const val=Number(hist[v]?.[pathKey]?.[period]);html+=Number.isFinite(val)?'<td'+(v===prior?' class="hi"':'')+'>'+fmt(val)+'</td>':'<td class="nd">—</td>'});
+      html+='<tr'+(Number.isFinite(real)?' class="cur-row"':'')+'><td>'+periodLabel(period)+'</td>';vintages.forEach(v=>{const raw=hist[v]?.[pathKey]?.[period];const val=raw==null?NaN:Number(raw);html+=Number.isFinite(val)?'<td'+(v===prior?' class="hi"':'')+'>'+fmt(val)+'</td>':'<td class="nd">—</td>'});
       html+=Number.isFinite(real)?'<td class="hi">'+fmt(real)+'</td>':'<td class="nd">—</td>';if(Number.isFinite(err)){const ok=Math.abs(err)<=1.0000001,cls=ok?'b-ok':'b-warn';html+='<td><span class="badge '+cls+'">'+(err>=0?'+':'')+err.toFixed(1).replace('.',',')+'% vs REM</span></td>'}else html+='<td><span class="badge b-pend">pendiente</span></td>';html+='</tr>'});
     html+='</tbody></table>';wrap.innerHTML=html;const note=panel.querySelector('.note');if(note)note.innerHTML=variable==='tc'?'TC real = <strong>promedio mensual SIOPEL</strong>. Septiembre cerrado; el cierre 30/9 fue $1.517 y el promedio mensual se calcula automáticamente desde la serie diaria.':'TAMAR REM = promedio mensual de días hábiles. El dato real se incorpora solo cuando está disponible automáticamente desde BCRA.';
   }
@@ -74,15 +74,15 @@
   renderLatestPathTable('tc');renderLatestPathTable('tamar');
 
   function realFor(variable,period){
-    if(variable==='ipc') return Number(window.REM_HISTORY?.actualIpc?.[period]);
+    if(variable==='ipc'){const raw=window.REM_HISTORY?.actualIpc?.[period];return raw==null?NaN:Number(raw)}
     if(variable==='tc'){
       if(period>=currentYM()) return NaN;
       const hist=(typeof fxMonthly!=='undefined')?fxMonthly:{};
-      return Number(hist?.[period]?.avg);
+      return hist?.[period]?.avg==null?NaN:Number(hist[period].avg);
     }
     if(variable==='tamar'){
       const app=(typeof DATA!=='undefined')?DATA:null;
-      return Number(app?.tamar?.[periodLabel(period)]?.real);
+      const raw=app?.tamar?.[periodLabel(period)]?.real;return raw==null?NaN:Number(raw);
     }
     return NaN;
   }
